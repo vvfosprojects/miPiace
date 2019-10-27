@@ -20,17 +20,17 @@ Il sistema si compone di due macro-moduli:
 
 ![Alt text](docs/images/thanks.JPG?raw=true "La schermata finale")
 
-## The backend
+## Il backend
 Il backend è scritto nella tecnologia net core con linguaggio C# ed architettura WebApi. Lo strato di persistenza è basato sul database MongoDB community edition.
 
-L'architettura software del backend è basata sul software (RockApi)[https://github.com/supix/rockapi].
+L'architettura software del backend è basata sul software [RockApi](https://github.com/supix/rockapi).
 
-## The frontend
+## Il frontend
 Il frontend è basato sul framework Angular8 e fa uso del linguaggio Typescript.
 
 ## Come funziona
 L'applicativo MiPiace consente di acquisire un feedback sul livello di gradimento di un servizio
-da parte dell'utenza. Nel caso in cui il feedback non sia positivo, il sistema consente di
+da parte dell'utenza. Nel caso in cui il feedback non sia positivo, il sistema consente altresì di
 dettagliare motivazioni e indicare suggerimenti finalizzati al miglioramento della qualità.
 
 # License
