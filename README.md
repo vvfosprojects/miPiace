@@ -6,8 +6,18 @@ Il sistema si compone di due macro-moduli:
 * un modulo di backend, nella forma di un servizio REST;
 * un modulo frontend, basato sul framework Angular8.
 
+## Schermate
+
+### La schermata principale
+
 ![Alt text](docs/images/mainScreen.JPG?raw=true "La schermata principale")
+
+### Il modulo per il dettaglio sul feedback
+
 ![Alt text](docs/images/feedbackDetail.JPG?raw=true "Il modulo per il dettaglio sul feedback")
+
+### La schermata finale
+
 ![Alt text](docs/images/thanks.JPG?raw=true "La schermata finale")
 
 ## The backend
