@@ -6,10 +6,10 @@ import { SendFeedbackDetailComponent } from './send-feedback-detail/send-feedbac
 
 export const appRoutes: Routes = [
     { path: 'thanks', component: ThanksComponent },
-    { path: 'sendRating', component: SendRatingComponent },
+    { path: 'sendRating/:id', component: SendRatingComponent },
     { path: 'sendFeedbackDetail', component: SendFeedbackDetailComponent },
-    { path: '',
-      redirectTo: '/sendRating',
+    { path: ':id',
+      redirectTo: '/sendRating/:id',
       pathMatch: 'full'
     },
     { path: '**', component: PageNotFoundComponent }

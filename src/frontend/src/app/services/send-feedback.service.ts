@@ -14,7 +14,16 @@ export class SendFeedbackService {
 
   constructor(private http: HttpClient) { }
 
-  public sendRating(rating: string): Observable<ReturnedId> {
+  public getWelcomeMessage(publicToken: string): Observable<string> {
+    let url = environment.backendUrl + '/getWelcomeMessage/' + publicToken;
+
+    return this.http.get<string>(url)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  public sendRating(rating: string, publicToken: string): Observable<ReturnedId> {
     let url = environment.backendUrl + '/insertRating';
 
     const httpOptions = {
@@ -23,7 +32,12 @@ export class SendFeedbackService {
       })
     };
 
-    return this.http.post<ReturnedId>(url, "'" + rating + "'", httpOptions)
+    let body = { 
+      rating: rating,
+      publicToken: publicToken
+    }
+
+    return this.http.post<ReturnedId>(url, body, httpOptions)
       .pipe(
         catchError(this.handleError)
       );
