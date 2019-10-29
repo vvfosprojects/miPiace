@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { environment } from './../environments/environment';
+import { environment } from '../../environments/environment';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 import { catchError, retry } from 'rxjs/operators';
-import { ReturnedId } from './returned-id';
-import { FeedbackDetail } from './feedback-detail';
+import { ReturnedId } from '../returned-id';
+import { FeedbackDetail } from '../feedback-detail';
 
 @Injectable({
   providedIn: 'root'

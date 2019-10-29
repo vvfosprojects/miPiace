@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SendFeedbackService } from '../send-feedback.service';
+import { SendFeedbackService } from '../services/send-feedback.service';
 import { Router } from "@angular/router";
 
 @Component({

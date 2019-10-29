@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FeedbackDetail } from '../feedback-detail';
-import { SendFeedbackService } from '../send-feedback.service';
+import { SendFeedbackService } from '../services/send-feedback.service';
 
 @Component({
   selector: 'app-send-feedback-detail',
