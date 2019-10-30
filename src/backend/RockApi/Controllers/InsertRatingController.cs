@@ -20,7 +20,7 @@ namespace MiPiace.Controllers
 
         // POST: api/InsertRating
         [HttpPost]
-        public ActionResult<string> Post([FromBody] string rating)
+        public ActionResult<string> Post([FromBody] string rating, [FromQuery] string publicToken)
         {
             Rating ratingEnum;
             switch (rating)
@@ -48,6 +48,7 @@ namespace MiPiace.Controllers
                 {
                     Rating = ratingEnum,
                     Host = ip,
+                    PublicToken = publicToken
                 }
             };
             handler.Handle(command);

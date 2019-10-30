@@ -40,5 +40,10 @@ namespace DomainModel.Classes
         /// The contacts the user possibly wants to be contacted at
         /// </summary>
         public string UserContacts { get; set; }
+
+        /// <summary>
+        /// Represents the service's public token
+        /// </summary>
+        public string PublicToken { get; set; }
     }
 }
