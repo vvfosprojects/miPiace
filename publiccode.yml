@@ -57,7 +57,7 @@ description:
     screenshots:
       - docs/images/mainScreen.JPG
       - docs/images/feedbackDetail.JPG
-      - doc/images/thanks.JPG
+      - docs/images/thanks.JPG
 inputTypes:
   - text/plain
 outputTypes:
