@@ -48,7 +48,7 @@ namespace MiPiace.Controllers
             try
             {
                 handler.Handle(service);
-                return Ok();
+                return Ok(new { publicToken = service.Service.PublicToken });
             }
             catch
             {
