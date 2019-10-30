@@ -14,7 +14,7 @@ namespace DomainModel.CQRS.Commands.CreateNewService
 
         public void Handle(CreateNewServiceCommand createNewService)
         {
-            this.createNewService.Insert(createNewService.PublicToken, createNewService.PublicToken, createNewService.WelcomeMessage);
+            this.createNewService.Insert(createNewService.Service);
         }
     }
 }

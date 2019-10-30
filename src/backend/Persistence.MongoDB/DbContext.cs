@@ -57,5 +57,13 @@ namespace Persistence.MongoDB
                 return database.GetCollection<Feedback>("feedback");
             }
         }
+
+        public IMongoCollection<Service> ServiceCollection
+        {
+            get
+            {
+                return database.GetCollection<Service>("service");
+            }
+        }
     }
 }
