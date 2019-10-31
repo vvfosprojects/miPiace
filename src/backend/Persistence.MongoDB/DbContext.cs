@@ -48,6 +48,14 @@ namespace Persistence.MongoDB
                     .SetIdGenerator(StringObjectIdGenerator.Instance)
                     .SetSerializer(new StringSerializer(BsonType.ObjectId));
             });
+
+            BsonClassMap.RegisterClassMap<Service>(cm =>
+            {
+                cm.AutoMap();
+                cm.MapIdMember(c => c.Id)
+                    .SetIdGenerator(StringObjectIdGenerator.Instance)
+                    .SetSerializer(new StringSerializer(BsonType.ObjectId));
+            });
         }
 
         public IMongoCollection<Feedback> FeedbackCollection
@@ -62,7 +70,7 @@ namespace Persistence.MongoDB
         {
             get
             {
-                return database.GetCollection<Service>("service");
+                return database.GetCollection<Service>("services");
             }
         }
     }

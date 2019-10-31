@@ -8,7 +8,7 @@ namespace MiPiace.Helper
 {
     public class GenerateToken
     {
-        public static string generate(int length)
+        public static string Generate(int length)
         {
             StringBuilder builder = new StringBuilder();
             Random random = new Random();

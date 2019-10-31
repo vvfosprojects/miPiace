@@ -1,4 +1,5 @@
 ﻿using CQRS.Commands;
+using DomainModel.Classes;
 using DomainModel.Services;
 using System;
 using System.Collections.Generic;
@@ -17,8 +18,36 @@ namespace DomainModel.CQRS.Commands.InsertRating
 
         public void Handle(InsertRatingCommand command)
         {
-            command.Feedback.InstantUtc = DateTime.UtcNow;
-            this.saveRating.Save(command.Feedback);
+            Rating ratingEnum;
+            switch (command.Rating)
+            {
+                case "good":
+                    ratingEnum = Rating.Good;
+                    break;
+
+                case "fair":
+                    ratingEnum = Rating.Fair;
+                    break;
+
+                case "poor":
+                    ratingEnum = Rating.Poor;
+                    break;
+
+                default:
+                    throw new InvalidOperationException("Invalid rating");
+            }
+
+            var feedback = new Feedback()
+            {
+                Rating = ratingEnum,
+                Host = command.Host,
+                PublicToken = command.PublicToken
+            };
+
+            feedback.InstantUtc = DateTime.UtcNow;
+            this.saveRating.Save(feedback);
+
+            command.Id = feedback.Id;
         }
     }
 }

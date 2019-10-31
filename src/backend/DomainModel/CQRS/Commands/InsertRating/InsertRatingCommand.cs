@@ -7,6 +7,9 @@ namespace DomainModel.CQRS.Commands.InsertRating
 {
     public class InsertRatingCommand
     {
-        public Feedback Feedback { get; set; }
+        public string Rating { get; set; }
+        public string PublicToken { get; set; }
+        public string Host { get; set; }
+        public string Id { get; set; } // output field
     }
 }

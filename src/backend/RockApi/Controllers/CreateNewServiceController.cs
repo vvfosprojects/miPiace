@@ -25,11 +25,13 @@ namespace MiPiace.Controllers
         }
 
         /// <summary>
-        /// Il metodo Insert permette la creazione di un nuovo servizio con relativo welcomeMessage. Questo servizio verrà utilizzato
-        /// una tantum, nel momento della registrazione dello stesso.
+        /// Il metodo Insert permette la creazione di un nuovo servizio con relativo welcomeMessage.
+        /// Questo servizio verrà utilizzato una tantum, nel momento della registrazione dello stesso.
         /// </summary>
-        /// <param name="welcomeMessage">Rappresenta il messaggio che verrà visualizzato nella pagina mostrata all'utente che vuole rilasciare 
-        /// il feedback.</param>
+        /// <param name="welcomeMessage">
+        /// Rappresenta il messaggio che verrà visualizzato nella pagina mostrata all'utente che
+        /// vuole rilasciare il feedback.
+        /// </param>
         /// <returns>200 Ok, se l'operazione è stata eseguita correttamente.</returns>
         [HttpPost]
         public ActionResult Insert([FromBody] string welcomeMessage)
@@ -38,17 +40,16 @@ namespace MiPiace.Controllers
             {
                 Service = new Service()
                 {
-                    Id = new Guid(),
-                    PrivateToken = GenerateToken.generate(32),
-                    PublicToken = GenerateToken.generate(32),
-                    WelcomeMessage = welcomeMessage.ToString()
+                    PrivateToken = GenerateToken.Generate(32),
+                    PublicToken = GenerateToken.Generate(32),
+                    WelcomeMessage = welcomeMessage
                 }
             };
 
             try
             {
                 handler.Handle(service);
-                return Ok(new { publicToken = service.Service.PublicToken });
+                return Created(service.Service.Id, service.Service);
             }
             catch
             {
@@ -57,5 +58,3 @@ namespace MiPiace.Controllers
         }
     }
 }
-
-    

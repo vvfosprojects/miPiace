@@ -10,10 +10,10 @@ namespace DomainModel.CQRS.Commands.InsertRating
     {
         public IEnumerable<ValidationResult> Validate(InsertRatingCommand command)
         {
-            if (string.IsNullOrWhiteSpace(command.Feedback.Host))
+            if (string.IsNullOrWhiteSpace(command.Host))
                 yield return new ValidationResult("Host cannot be null");
 
-            if (!string.IsNullOrWhiteSpace(command.Feedback.Id))
+            if (!string.IsNullOrWhiteSpace(command.Id))
                 yield return new ValidationResult("Feedback id must be null");
         }
     }
