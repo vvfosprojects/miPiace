@@ -21,6 +21,7 @@ namespace CompositionRoot
             container.Register<DomainModel.Services.ISaveRating, Persistence.MongoDB.SaveRating>();
             container.Register<DomainModel.Services.IAppendFeedbackDetail, Persistence.MongoDB.AppendFeedbackDetail>();
             container.Register<DomainModel.Services.ICreateNewService, Persistence.MongoDB.CreateNewService>();
+            container.Register<DomainModel.Services.IGetWelcomeMessageByPublicToken, Persistence.MongoDB.GetWelcomeMessageByPublicToken>();
         }
     }
 }
