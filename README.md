@@ -33,7 +33,7 @@ L'applicativo MiPiace consente di acquisire un feedback sul livello di gradiment
 da parte dell'utenza. Nel caso in cui il feedback non sia positivo, il sistema consente altresì di
 dettagliare motivazioni e indicare suggerimenti finalizzati al miglioramento della qualità.
 
-Il sistema può gestire feedback per servizi multipli. Attraverso un sistema basato su token, il proprietario di un servizio può creare un nuovo questionario sul sistema e divulgare ai suoi utenti il link per l'indicazione del gradimento. Il sistema MiPiace acquisisce i feedback classificandoli per singolo servizio e consente la consultazione delle statistiche sui feedback, sempre per singolo servizio. il numero di servizi gestibili è illimitato.
+Il sistema può gestire feedback per servizi multipli. Attraverso un sistema basato su token, il proprietario di un servizio può creare un nuovo questionario sul sistema e divulgare ai suoi utenti il link per l'indicazione del gradimento. Il sistema MiPiace acquisisce i feedback classificandoli per singolo servizio e consente la consultazione delle statistiche sui feedback, sempre per singolo servizio. Il numero di servizi gestibili è illimitato.
 
 # License
 MiPiace è free software. Il codice sorgente è rilasciato nei termini della licenza AGPL-3.0.

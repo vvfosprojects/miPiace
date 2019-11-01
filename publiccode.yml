@@ -47,7 +47,9 @@ description:
     longDescription: >
       L'applicativo MiPiace consente di acquisire un feedback sul livello di gradimento di un servizio
       da parte dell'utenza. Nel caso in cui il feedback non sia positivo, il sistema consente di
-      dettagliare motivazioni e indicare suggerimenti finalizzati al miglioramento della qualità.
+      dettagliare motivazioni e indicare suggerimenti finalizzati al miglioramento della qualità. L'applicazione
+      consente la creazione dinamica e decentralizzata di nuovi servizi e consente, attraverso un sistema basato
+      su token, di gestire i feedback per un numero illimitato di differenti servizi.
     documentation: 'https://github.com/vvfosprojects/mipiace'
     features:
        - Web based frontend for operators.
