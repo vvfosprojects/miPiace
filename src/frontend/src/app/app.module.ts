@@ -11,6 +11,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { appRoutes } from './routes';
 import { SendRatingComponent } from './send-rating/send-rating.component';
 import { SendFeedbackDetailComponent } from './send-feedback-detail/send-feedback-detail.component';
+import { NoServiceSpecifiedComponent } from './no-service-specified/no-service-specified.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SendFeedbackDetailComponent } from './send-feedback-detail/send-feedbac
     ThanksComponent,
     PageNotFoundComponent,
     SendRatingComponent,
-    SendFeedbackDetailComponent
+    SendFeedbackDetailComponent,
+    NoServiceSpecifiedComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

@@ -3,6 +3,7 @@ import { ThanksComponent } from './thanks/thanks.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SendRatingComponent } from './send-rating/send-rating.component';
 import { SendFeedbackDetailComponent } from './send-feedback-detail/send-feedback-detail.component';
+import { NoServiceSpecifiedComponent } from './no-service-specified/no-service-specified.component';
 
 export const appRoutes: Routes = [
     { path: 'thanks', component: ThanksComponent },
@@ -12,5 +13,6 @@ export const appRoutes: Routes = [
       redirectTo: '/sendRating/:id',
       pathMatch: 'full'
     },
+    { path: '', component: NoServiceSpecifiedComponent },
     { path: '**', component: PageNotFoundComponent }
   ];
