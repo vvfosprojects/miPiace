@@ -40,8 +40,8 @@ namespace MiPiace.Controllers
             {
                 Service = new Service()
                 {
-                    PrivateToken = GenerateToken.Generate(32),
-                    PublicToken = GenerateToken.Generate(32),
+                    PrivateToken = GenerateToken.Generate(24),
+                    PublicToken = GenerateToken.Generate(24),
                     WelcomeMessage = welcomeMessage
                 }
             };

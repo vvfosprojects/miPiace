@@ -15,11 +15,17 @@ namespace MiPiace.Helper
             char ch;
             for (int i = 1; i < length; i++)
             {
+                if (Math.Floor(26 * random.NextDouble() + DateTime.UtcNow.Millisecond) % 2 == 0)
+                {
+                    Random ran = new Random();
+                    var num = ran.Next(0, 9);
+                    builder.Append(num);
+                }
                 ch = Convert.ToChar(Convert.ToInt32(Math.Floor(26 * random.NextDouble() + 65)));
                 builder.Append(ch);
             }
 
-            return builder.ToString();
+            return builder.ToString().ToLower();
         }
     }
 }
