@@ -15,12 +15,20 @@ namespace Logging
             //    .CreateLogger();
 
             var log = new LoggerConfiguration()
-            .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day, retainedFileCountLimit: null)
+            .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true)
             .CreateLogger();
 
             Log.Logger = log;
 
-            //Log.Debug("Log configured");
+            Log.Debug("Log configured");
+
+            //var configuration = new ConfigurationBuilder()
+            //                        .AddJsonFile("appsettings.json")
+            //                        .Build();
+
+            //var logger = new LoggerConfiguration()
+            //                        .ReadFrom.Configuration(configuration)
+            //                        .CreateLogger();
         }
     }
 }
