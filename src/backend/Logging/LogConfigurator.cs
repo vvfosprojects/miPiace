@@ -9,14 +9,18 @@ namespace Logging
     {
         public static void Configure()
         {
+            //var log = new LoggerConfiguration()
+            //    .MinimumLevel.Debug()
+            //    .WriteTo.Trace()
+            //    .CreateLogger();
+
             var log = new LoggerConfiguration()
-                .MinimumLevel.Debug()
-                .WriteTo.Trace()
-                .CreateLogger();
+            .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day, retainedFileCountLimit: null)
+            .CreateLogger();
 
             Log.Logger = log;
 
-            Log.Debug("Log configured");
+            //Log.Debug("Log configured");
         }
     }
 }

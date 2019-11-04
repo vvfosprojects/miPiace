@@ -49,21 +49,15 @@ namespace Persistence.MongoDB
                              filterBuilderHour.Lte(x => x.InstantUtc, utcNow);
 
             var filterMonth = filterBuilderHour.Eq(x => x.PublicToken, servicePublicToken) &
-                 filterBuilderHour.Gte(x => x.InstantUtc, utcNow.AddDays(-31)) &
-                 filterBuilderHour.Lte(x => x.InstantUtc, utcNow);
+                              filterBuilderHour.Gte(x => x.InstantUtc, utcNow.AddDays(-31)) &
+                              filterBuilderHour.Lte(x => x.InstantUtc, utcNow);
 
             var filterYear = filterBuilderHour.Eq(x => x.PublicToken, servicePublicToken) &
-                 filterBuilderHour.Gte(x => x.InstantUtc, utcNow.AddDays(-365)) &
-                 filterBuilderHour.Lte(x => x.InstantUtc, utcNow);
+                             filterBuilderHour.Gte(x => x.InstantUtc, utcNow.AddDays(-365)) &
+                             filterBuilderHour.Lte(x => x.InstantUtc, utcNow);
 
             var filterAllTime = filterBuilderHour.Eq(x => x.PublicToken, servicePublicToken);
-            /*
-             * List<Feedback> feedbacksLastHour = feedbackCollection.Find(f => f.PublicToken == servicePublicToken && 
-                                                                        f.InstantUtc.Date == utcNow.Date && 
-                                                                        f.InstantUtc.Hour >= utcNow.AddHours(-1).Hour &&
-                                                                        f.InstantUtc.Hour <= utcNow.Hour)
-                                                                        .ToList();
-            */
+
             List<Feedback> feedbacksLastHour = feedbackCollection.Find(filterHour).ToList();
             List<Feedback> feedbacksLastDay = feedbackCollection.Find(filterDay).ToList();
             List<Feedback> feedbacksLastWeek = feedbackCollection.Find(filterWeek).ToList();
@@ -71,11 +65,6 @@ namespace Persistence.MongoDB
             List<Feedback> feedbacksLastYear = feedbackCollection.Find(filterYear).ToList();
             List<Feedback> feedbacksAllTime = feedbackCollection.Find(filterAllTime).ToList();
 
-            //List<Feedback> feedbacksLastDay = feedbackCollection.Find(f => f.PublicToken == servicePublicToken && f.InstantUtc.Date >= utcNow.Date.AddDays(-1) && f.InstantUtc.Date <= utcNow.Date).ToList();
-            //List<Feedback> feedbacksLastWeek = feedbackCollection.Find(f => f.PublicToken == servicePublicToken && f.InstantUtc.Date >= utcNow.Date.AddDays(-7) && f.InstantUtc.Date <= utcNow.Date).ToList();
-            //List<Feedback> feedbacksLastMonth = feedbackCollection.Find(f => f.PublicToken == servicePublicToken && f.InstantUtc.Date >= utcNow.Date.AddMonths(-1) && f.InstantUtc.Date <= utcNow.Date).ToList();
-            //List<Feedback> feedbacksLastYear = feedbackCollection.Find(f => f.PublicToken == servicePublicToken && f.InstantUtc.Date >= utcNow.Date.AddYears(-1) && f.InstantUtc.Date <= utcNow.Date).ToList();
-            //List<Feedback> feedbacksAllTime = feedbackCollection.Find(f => f.PublicToken == servicePublicToken).ToList();
 
             var averageScoreFeedbacksLastHour = 0.0;
             var averageScoreFeedbackLastDay = 0.0;
@@ -91,7 +80,7 @@ namespace Persistence.MongoDB
 
             foreach (var feedback in feedbacksLastDay)
             {
-                averageScoreFeedbacksLastHour += GetRating(feedback.Rating.ToString());
+                averageScoreFeedbackLastDay += GetRating(feedback.Rating.ToString());
             }
 
             foreach (var feedback in feedbacksLastWeek)
