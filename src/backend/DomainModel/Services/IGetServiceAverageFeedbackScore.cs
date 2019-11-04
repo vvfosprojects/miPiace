@@ -4,8 +4,8 @@ using System.Text;
 
 namespace DomainModel.Services
 {
-    public interface IGetTemplateToCreateNewService
+    public interface IGetServiceAverageFeedbackScore
     {
-        void Get();
+        Dictionary<string,double> Get(string privateToken);
     }
 }

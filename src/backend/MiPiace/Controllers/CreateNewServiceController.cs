@@ -18,12 +18,6 @@ namespace MiPiace.Controllers
             this.handler = handler;
         }
 
-        [HttpGet]
-        public IActionResult Index()
-        {
-            return Ok();
-        }
-
         /// <summary>
         /// Il metodo Insert permette la creazione di un nuovo servizio con relativo welcomeMessage.
         /// Questo servizio verrà utilizzato una tantum, nel momento della registrazione dello stesso.
