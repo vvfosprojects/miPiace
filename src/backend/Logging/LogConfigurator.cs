@@ -1,34 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.Extensions.Configuration;
 using Serilog;
 
 namespace Logging
 {
     public static class LogConfigurator
     {
-        public static void Configure()
+        public static void Configure(IConfiguration configuration)
         {
-            //var log = new LoggerConfiguration()
-            //    .MinimumLevel.Debug()
-            //    .WriteTo.Trace()
-            //    .CreateLogger();
-
             var log = new LoggerConfiguration()
-            .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true)
-            .CreateLogger();
+                .ReadFrom.Configuration(configuration)
+                .CreateLogger();
 
             Log.Logger = log;
 
             Log.Debug("Log configured");
-
-            //var configuration = new ConfigurationBuilder()
-            //                        .AddJsonFile("appsettings.json")
-            //                        .Build();
-
-            //var logger = new LoggerConfiguration()
-            //                        .ReadFrom.Configuration(configuration)
-            //                        .CreateLogger();
         }
     }
 }
