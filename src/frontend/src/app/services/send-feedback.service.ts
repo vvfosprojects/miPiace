@@ -6,6 +6,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { catchError, retry } from 'rxjs/operators';
 import { ReturnedId } from '../returned-id';
 import { FeedbackDetail } from '../feedback-detail';
+import { Service } from '../service';
 
 @Injectable({
   providedIn: 'root'
@@ -53,6 +54,21 @@ export class SendFeedbackService {
     };
 
     return this.http.post<null>(url, detail, httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  public createService(welcomeMessage: string): Observable<Service> {
+    let url = environment.backendUrl + '/createNewService';
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+      })
+    };
+
+    return this.http.post<Service>(url, welcomeMessage, httpOptions)
       .pipe(
         catchError(this.handleError)
       );

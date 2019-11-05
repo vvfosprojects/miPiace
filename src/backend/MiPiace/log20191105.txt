@@ -1,0 +1,60 @@
+2019-11-05 17:29:18.906 +01:00 [INF] Action starting DomainModel.CQRS.Commands.CreateNewService.CreateNewServiceCommand: {"Service":{"Id":null,"PublicToken":"c4b2u2r1iufyrjy4vhd3i2l0h2ppcx2m2s","PrivateToken":"5vxl1w7q4lg4f5g0sitc8vk8ih0k0la7e2h4h","WelcomeMessage":"Cosa ne pensi del servizio di assistenza delle infrastrutture ICT del Dipartimento?"}}
+2019-11-05 17:29:19.284 +01:00 [INF] Action executed (299 ms)
+2019-11-05 17:30:08.365 +01:00 [INF] Action starting DomainModel.CQRS.Queries.GetWelcomeMessage.GetWelcomeMessageQuery: {"PublicToken":"servicedesk"}
+2019-11-05 17:30:08.739 +01:00 [INF] Action executed (373 ms)
+2019-11-05 17:35:26.529 +01:00 [INF] Action starting DomainModel.CQRS.Queries.GetWelcomeMessage.GetWelcomeMessageQuery: {"PublicToken":"servicedesk"}
+2019-11-05 17:35:26.544 +01:00 [INF] Action executed (14 ms)
+2019-11-05 17:35:35.592 +01:00 [INF] Action starting DomainModel.CQRS.Commands.InsertRating.InsertRatingCommand: {"Rating":"fair","PublicToken":"servicedesk","Host":"127.0.0.1","Id":null}
+2019-11-05 17:35:35.681 +01:00 [INF] Action executed (89 ms)
+2019-11-05 17:35:42.799 +01:00 [INF] Action starting DomainModel.CQRS.Commands.AppendFeedbackDetail.AppendFeedbackDetailCommand: {"FeedbackId":"5dc1a4d76d8a2d067065e6e0","Text":"popo","User":"popo","Contacts":"popo"}
+2019-11-05 17:35:42.878 +01:00 [INF] Action executed (78 ms)
+2019-11-05 17:37:05.676 +01:00 [INF] Action starting DomainModel.CQRS.Queries.GetWelcomeMessage.GetWelcomeMessageQuery: {"PublicToken":"servicedesk"}
+2019-11-05 17:37:05.680 +01:00 [INF] Action executed (3 ms)
+2019-11-05 17:37:54.151 +01:00 [INF] Action starting DomainModel.CQRS.Commands.InsertRating.InsertRatingCommand: {"Rating":"good","PublicToken":"servicedesk","Host":"127.0.0.1","Id":null}
+2019-11-05 17:37:54.153 +01:00 [INF] Action executed (1 ms)
+2019-11-05 17:38:09.109 +01:00 [INF] Action starting DomainModel.CQRS.Queries.GetWelcomeMessage.GetWelcomeMessageQuery: {"PublicToken":"sendRating"}
+2019-11-05 17:38:29.401 +01:00 [INF] Action starting DomainModel.CQRS.Queries.GetWelcomeMessage.GetWelcomeMessageQuery: {"PublicToken":"servicedesk"}
+2019-11-05 17:38:29.403 +01:00 [INF] Action executed (1 ms)
+2019-11-05 17:38:34.049 +01:00 [INF] Action starting DomainModel.CQRS.Commands.InsertRating.InsertRatingCommand: {"Rating":"fair","PublicToken":"servicedesk","Host":"127.0.0.1","Id":null}
+2019-11-05 17:38:34.050 +01:00 [INF] Action executed (0 ms)
+2019-11-05 17:39:29.333 +01:00 [INF] Action starting DomainModel.CQRS.Commands.AppendFeedbackDetail.AppendFeedbackDetailCommand: {"FeedbackId":"5dc1a58a6d8a2d067065e6e2","Text":"ciao","User":"ciao","Contacts":"ciao\n"}
+2019-11-05 17:39:29.335 +01:00 [INF] Action executed (2 ms)
+2019-11-05 17:40:48.450 +01:00 [INF] Action starting DomainModel.CQRS.Commands.CreateNewService.CreateNewServiceCommand: {"Service":{"Id":null,"PublicToken":"4b6ljeo3zf7r0lsz8qm1vv6nmeo3w2k6sd","PrivateToken":"2mp0kwl4w2erk4a3c0y6nk8jmn6b4c0lz1ry","WelcomeMessage":"Cosa ne pensi del servizio di assistenza SO115?"}}
+2019-11-05 17:40:48.456 +01:00 [INF] Action executed (4 ms)
+2019-11-05 17:40:48.456 +01:00 [INF] Action starting DomainModel.CQRS.Commands.CreateNewService.CreateNewServiceCommand: {"Service":{"Id":null,"PublicToken":"crb4l6ju2j8ubrc8ad7yr6q4n0qmsv6b3f","PrivateToken":"i5p5yc0dpu2d3w3i1piztwaqf8yb0b1r4a","WelcomeMessage":"Cosa ne pensi del servizio di assistenza SO115?"}}
+2019-11-05 17:40:48.463 +01:00 [INF] Action executed (6 ms)
+2019-11-05 17:42:08.122 +01:00 [INF] Action starting DomainModel.CQRS.Queries.GetWelcomeMessage.GetWelcomeMessageQuery: {"PublicToken":"crb4l6ju2j8ubrc8ad7yr6q4n0qmsv6b3f"}
+2019-11-05 17:42:08.131 +01:00 [INF] Action executed (8 ms)
+2019-11-05 22:05:57.546 +01:00 [INF] Action starting DomainModel.CQRS.Commands.CreateNewService.CreateNewServiceCommand: {"Service":{"Id":null,"PublicToken":"1v7ei2c8w0owct3cgp3tyuw3m7m5qu8v1s0h","PrivateToken":"zxf6eh2kwdj7g4nr3lib2g3c6x7s6kwqx","WelcomeMessage":"Cosa ne pensi del servizio di assistenza SO115?"}}
+2019-11-05 22:05:58.127 +01:00 [INF] Action executed (500 ms)
+2019-11-05 22:21:19.306 +01:00 [INF] Action starting DomainModel.CQRS.Commands.CreateNewService.CreateNewServiceCommand: {"Service":{"Id":null,"PublicToken":"8tp8x2tp1k4f5cl1ffp8qml7fbbpu3lg7c","PrivateToken":"ul5bcyn0z3kn2otjz1u2o2j5xj2mu6x0nt","WelcomeMessage":"Come ti chiami?"}}
+2019-11-05 22:21:19.346 +01:00 [INF] Action executed (38 ms)
+2019-11-05 22:27:21.344 +01:00 [INF] Action starting DomainModel.CQRS.Commands.CreateNewService.CreateNewServiceCommand: {"Service":{"Id":null,"PublicToken":"pfhh0d7pwc3gq4pp8i7m3bw0ws3iw1x6pd","PrivateToken":"7bt1ltqwb6n2a5o6ikny8q8yc1az8oog4t","WelcomeMessage":"Come ti chiami?"}}
+2019-11-05 22:27:21.346 +01:00 [INF] Action executed (1 ms)
+2019-11-05 22:27:42.490 +01:00 [INF] Action starting DomainModel.CQRS.Commands.CreateNewService.CreateNewServiceCommand: {"Service":{"Id":null,"PublicToken":"kn3v8i4ak8xd4h3xg6sfvywmw4rf4oej","PrivateToken":"5t6d2hd0fzd0i8r8e6p6y6h2twj2axb7y1t1xu","WelcomeMessage":"Come stai?"}}
+2019-11-05 22:27:42.496 +01:00 [INF] Action executed (6 ms)
+2019-11-05 22:28:12.558 +01:00 [INF] Action starting DomainModel.CQRS.Commands.CreateNewService.CreateNewServiceCommand: {"Service":{"Id":null,"PublicToken":"0r4f6f6l8t2sygkt5mku1tk2f6ep3tvx1g5k","PrivateToken":"6w2uxunks6br8qhf8qtcf5w8vz8pn7er","WelcomeMessage":"ciao?"}}
+2019-11-05 22:28:12.559 +01:00 [INF] Action executed (1 ms)
+2019-11-05 22:34:03.817 +01:00 [INF] Action starting DomainModel.CQRS.Commands.CreateNewService.CreateNewServiceCommand: {"Service":{"Id":null,"PublicToken":"e4d4wa0g2m2g8j0m4u1mq2g6c6sr5z4p2t4r3b8z0d","PrivateToken":"n2kgf2s3ydl5ais3habw0j3fs0y1byqo","WelcomeMessage":"ciao?"}}
+2019-11-05 22:34:03.818 +01:00 [INF] Action executed (1 ms)
+2019-11-05 22:34:10.785 +01:00 [INF] Action starting DomainModel.CQRS.Queries.GetWelcomeMessage.GetWelcomeMessageQuery: {"PublicToken":"sendRating"}
+2019-11-05 22:40:19.489 +01:00 [INF] Action starting DomainModel.CQRS.Commands.CreateNewService.CreateNewServiceCommand: {"Service":{"Id":null,"PublicToken":"8j4h6dqo7ho7b2m3w5g6s0as3d0fq2eg3e6q8j8b","PrivateToken":"8c2kz3x2iv0v0n1yj2s5e1n3d2d7ywk6gkkv3q","WelcomeMessage":"Ciao?"}}
+2019-11-05 22:40:19.491 +01:00 [INF] Action executed (1 ms)
+2019-11-05 22:40:32.210 +01:00 [INF] Action starting DomainModel.CQRS.Commands.CreateNewService.CreateNewServiceCommand: {"Service":{"Id":null,"PublicToken":"b4a3h1u8eb5m3ei5o8d5pmx1co1f0j2byu2c3h","PrivateToken":"p1uk6d0w6e4q8ay4pffl6q4zf4z2defvkz","WelcomeMessage":"ciao?"}}
+2019-11-05 22:40:32.212 +01:00 [INF] Action executed (1 ms)
+2019-11-05 22:40:57.372 +01:00 [INF] Action starting DomainModel.CQRS.Commands.CreateNewService.CreateNewServiceCommand: {"Service":{"Id":null,"PublicToken":"er0u8xnbe6p3m6q3m0d8axm8v0b5zjp6qjm","PrivateToken":"1iy5u3mnlg1tv6e4ez7w4ihw1k0uciie4g","WelcomeMessage":"ciao?"}}
+2019-11-05 22:40:57.375 +01:00 [INF] Action executed (2 ms)
+2019-11-05 22:43:12.461 +01:00 [INF] Action starting DomainModel.CQRS.Commands.CreateNewService.CreateNewServiceCommand: {"Service":{"Id":null,"PublicToken":"k1dola6i5db6r7gx4a2v6u3b8pq8ofzbz0n","PrivateToken":"v5z5yv8e8opah0axr6gejfmz0n5m3nwu","WelcomeMessage":"ciao?"}}
+2019-11-05 22:43:12.462 +01:00 [INF] Action executed (1 ms)
+2019-11-05 22:43:22.828 +01:00 [INF] Action starting DomainModel.CQRS.Queries.GetWelcomeMessage.GetWelcomeMessageQuery: {"PublicToken":"sendRating"}
+2019-11-05 22:44:18.712 +01:00 [INF] Action starting DomainModel.CQRS.Commands.CreateNewService.CreateNewServiceCommand: {"Service":{"Id":null,"PublicToken":"i4ica7u7r0f7sx0ep7y6u3hpbx7y1lr0u8en","PrivateToken":"7bs5d5l0k2c8k5y0n8aa8t6pn7xi3q6kw7e1ybc","WelcomeMessage":"ciao?"}}
+2019-11-05 22:44:18.715 +01:00 [INF] Action executed (2 ms)
+2019-11-05 22:44:23.287 +01:00 [INF] Action starting DomainModel.CQRS.Queries.GetWelcomeMessage.GetWelcomeMessageQuery: {"PublicToken":"sendRating"}
+2019-11-05 22:44:38.206 +01:00 [INF] Action starting DomainModel.CQRS.Commands.CreateNewService.CreateNewServiceCommand: {"Service":{"Id":null,"PublicToken":"0jexn8lx3ob7m4r2e0sc6o3d4g4dz3y7z2mto","PrivateToken":"u1mwyqbk7p7tebc8s7j3ly6m2a7y5kc2z4y","WelcomeMessage":"Cosa ne pensi del servizio di assistenza SO115?"}}
+2019-11-05 22:44:38.208 +01:00 [INF] Action executed (1 ms)
+2019-11-05 22:45:40.870 +01:00 [INF] Action starting DomainModel.CQRS.Queries.GetWelcomeMessage.GetWelcomeMessageQuery: {"PublicToken":"0jexn8lx3ob7m4r2e0sc6o3d4g4dz3y7z2mto"}
+2019-11-05 22:45:40.884 +01:00 [INF] Action executed (14 ms)
+2019-11-05 22:46:06.303 +01:00 [INF] Action starting DomainModel.CQRS.Commands.CreateNewService.CreateNewServiceCommand: {"Service":{"Id":null,"PublicToken":"pds7w8xn6ux1gn2v3y6bp0n1swz4krxvz","PrivateToken":"r3s4on3mtij2qi6xf4ji2l5tdx6ztou2z","WelcomeMessage":"chi sei?"}}
+2019-11-05 22:46:06.306 +01:00 [INF] Action executed (2 ms)
+2019-11-05 22:46:45.344 +01:00 [INF] Action starting DomainModel.CQRS.Queries.GetWelcomeMessage.GetWelcomeMessageQuery: {"PublicToken":"pds7w8xn6ux1gn2v3y6bp0n1swz4krxvz"}
+2019-11-05 22:46:45.346 +01:00 [INF] Action executed (1 ms)
