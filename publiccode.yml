@@ -1,4 +1,4 @@
-publiccodeYmlVersion: '0.1'
+publiccodeYmlVersion: '0.2'
 name: MiPiace
 releaseDate: '2019-10-27'
 url: 'https://github.com/vvfosprojects/mipiace'
@@ -49,7 +49,11 @@ description:
       da parte dell'utenza. Nel caso in cui il feedback non sia positivo, il sistema consente di
       dettagliare motivazioni e indicare suggerimenti finalizzati al miglioramento della qualità. L'applicazione
       consente la creazione dinamica e decentralizzata di nuovi servizi e consente, attraverso un sistema basato
-      su token, di gestire i feedback per un numero illimitato di differenti servizi.
+      su token, di gestire i feedback per un numero illimitato di differenti servizi. E' possibile consultare le
+      statistiche di gradimento di ogni singolo servizio creato, attarverso uso di un token privato consegnato
+      all'owner del servizio in fase di creazione. Le statistiche riportano le medie dei feedback ricevuti su
+      differenti intervalli temporali. E' possibile consultare i singoli feedback ricevuti, comprensivi del
+      testo destrutturato indicato dagli utenti in fase di dettaglio dei feedbeck non positivi.
     documentation: 'https://github.com/vvfosprojects/mipiace'
     features:
        - Web based frontend for operators.
