@@ -15,17 +15,13 @@ namespace DomainModel.CQRS.Queries.GetServiceAverageFeedbackScore
 
         public GetServiceAverageFeedbackScoreQueryResult Handle(GetServiceAverageFeedbackScoreQuery query)
         {
-            var dictionaryScore = this.getSeriviceAverageFeedbackScore.Get(query.privateToken);
+            var feedbackScoreList = this.getSeriviceAverageFeedbackScore.Get(query.privateToken);
+
 
             return new GetServiceAverageFeedbackScoreQueryResult()
             {
-                AverageScoreLastHour = dictionaryScore["averageScoreFeedbacksLastHour"],
-                AverageScoreLastDay = dictionaryScore["averageScoreFeedbacksLastDay"],
-                AverageScoreLastWeek = dictionaryScore["averageScoreFeedbacksLastWeek"],
-                AverageScoreLastMonth = dictionaryScore["averageScoreFeedbacksLastMonth"],
-                AverageScoreLastYear = dictionaryScore["averageScoreFeedbacksLastYear"],
-                AverageScoreAllTime = dictionaryScore["averageScoreFeedbacksAllTime"]
-            };
+                feedbackAverageScores = feedbackScoreList
+            }; 
         }
     }
 }

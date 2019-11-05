@@ -17,9 +17,11 @@ namespace Persistence.MongoDB
             this.dbContext = dbContext;
         }
 
-        public Dictionary<string, double> Get(string privateToken)
+        //public Dictionary<string, double> Get(string privateToken)
+        public List<FeedbackAverageScore> Get(string privateToken)
         {
-            Dictionary<string, double> scoreDictionary = new Dictionary<string, double>();
+            //Dictionary<string, double> scoreDictionary = new Dictionary<string, double>();
+            List<FeedbackAverageScore> feedbackAverageScoreList = new List<FeedbackAverageScore>();
 
             var serviceCollection = dbContext.ServiceCollection;
 
@@ -67,7 +69,7 @@ namespace Persistence.MongoDB
 
 
             var averageScoreFeedbacksLastHour = 0.0;
-            var averageScoreFeedbackLastDay = 0.0;
+            var averageScoreFeedbacksLastDay = 0.0;
             var averageScoreFeedbacksLastWeek = 0.0;
             var averageScoreFeedbacksLastMonth = 0.0;
             var averageScoreFeedbacksLastYear = 0.0;
@@ -80,7 +82,8 @@ namespace Persistence.MongoDB
 
             foreach (var feedback in feedbacksLastDay)
             {
-                averageScoreFeedbackLastDay += GetRating(feedback.Rating.ToString());
+                averageScoreFeedbacksLastDay += GetRating(feedback.Rating.ToString());
+
             }
 
             foreach (var feedback in feedbacksLastWeek)
@@ -103,15 +106,41 @@ namespace Persistence.MongoDB
                 averageScoreFeedbacksAllTime += GetRating(feedback.Rating.ToString());
             }
 
-            
-            scoreDictionary.Add("averageScoreFeedbacksLastHour", averageScoreFeedbacksLastHour / feedbacksLastHour.Count);
-            scoreDictionary.Add("averageScoreFeedbacksLastDay", averageScoreFeedbackLastDay / feedbacksLastDay.Count);
-            scoreDictionary.Add("averageScoreFeedbacksLastWeek", averageScoreFeedbacksLastWeek / feedbacksLastWeek.Count);
-            scoreDictionary.Add("averageScoreFeedbacksLastMonth", averageScoreFeedbacksLastMonth / feedbacksLastMonth.Count);
-            scoreDictionary.Add("averageScoreFeedbacksLastYear", averageScoreFeedbacksLastYear / feedbacksLastYear.Count);
-            scoreDictionary.Add("averageScoreFeedbacksAllTime", averageScoreFeedbacksAllTime / feedbacksLastYear.Count);
 
-            return scoreDictionary;
+
+            feedbackAverageScoreList.Add(new FeedbackAverageScore() 
+            {   
+                Intervallo = "averageScoreFeedbacksLastHour", 
+                Average = averageScoreFeedbacksLastHour 
+            });
+
+            feedbackAverageScoreList.Add(new FeedbackAverageScore()
+            { 
+                Intervallo = "averageScoreFeedbacksLastDay",
+                Average = averageScoreFeedbacksLastDay
+            });
+            feedbackAverageScoreList.Add(new FeedbackAverageScore()
+            {
+                Intervallo = "averageScoreFeedbacksLastWeek",
+                Average = averageScoreFeedbacksLastWeek
+            });
+            feedbackAverageScoreList.Add(new FeedbackAverageScore()
+            { 
+                Intervallo = "averageScoreFeedbacksLastMonth",
+                Average = averageScoreFeedbacksLastMonth
+            });
+            feedbackAverageScoreList.Add(new FeedbackAverageScore() 
+            {
+                Intervallo = "averageScoreFeedbacksLastYear", 
+                Average = averageScoreFeedbacksLastYear
+            });
+            feedbackAverageScoreList.Add(new FeedbackAverageScore() 
+            {
+                Intervallo = "averageScoreFeedbacksAllTime",
+                Average = averageScoreFeedbacksAllTime
+            });
+
+            return feedbackAverageScoreList;
         }
 
 
