@@ -13,5 +13,7 @@ namespace DomainModel.CQRS.Queries.GetServiceAverageFeedbackScore
         //public double AverageScoreAllTime { get; set; }
 
         public List<FeedbackAverageScore> feedbackAverageScores { get; set; }
+
+        public List<FacetStatistiche> facetStatistiche { get; set; }
     }
 }

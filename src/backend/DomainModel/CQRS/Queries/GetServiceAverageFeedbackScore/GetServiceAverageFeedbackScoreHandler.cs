@@ -15,13 +15,7 @@ namespace DomainModel.CQRS.Queries.GetServiceAverageFeedbackScore
 
         public GetServiceAverageFeedbackScoreQueryResult Handle(GetServiceAverageFeedbackScoreQuery query)
         {
-            var feedbackScoreList = this.getSeriviceAverageFeedbackScore.Get(query.privateToken);
-
-
-            return new GetServiceAverageFeedbackScoreQueryResult()
-            {
-                feedbackAverageScores = feedbackScoreList
-            }; 
+            return this.getSeriviceAverageFeedbackScore.Get(query.privateToken);
         }
     }
 }
