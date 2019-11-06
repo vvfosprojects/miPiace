@@ -18,10 +18,8 @@ namespace Persistence.MongoDB
             this.dbContext = dbContext;
         }
 
-        //public Dictionary<string, double> Get(string privateToken)
         public GetServiceAverageFeedbackScoreQueryResult Get(string privateToken)
         {
-            //Dictionary<string, double> scoreDictionary = new Dictionary<string, double>();
             List<FeedbackAverageScore> feedbackAverageScoreList = new List<FeedbackAverageScore>();
 
             var serviceCollection = dbContext.ServiceCollection;

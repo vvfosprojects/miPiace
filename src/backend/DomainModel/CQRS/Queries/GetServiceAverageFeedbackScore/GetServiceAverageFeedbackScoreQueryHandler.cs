@@ -4,11 +4,11 @@ using System;
 
 namespace DomainModel.CQRS.Queries.GetServiceAverageFeedbackScore
 {
-    public class GetServiceAverageFeedbackScoreHandler : IQueryHandler<GetServiceAverageFeedbackScoreQuery, GetServiceAverageFeedbackScoreQueryResult>
+    public class GetServiceAverageFeedbackScoreQueryHandler : IQueryHandler<GetServiceAverageFeedbackScoreQuery, GetServiceAverageFeedbackScoreQueryResult>
     {
         private readonly IGetServiceAverageFeedbackScore getSeriviceAverageFeedbackScore;
 
-        public GetServiceAverageFeedbackScoreHandler(IGetServiceAverageFeedbackScore getSeriviceAverageFeedbackScore)
+        public GetServiceAverageFeedbackScoreQueryHandler(IGetServiceAverageFeedbackScore getSeriviceAverageFeedbackScore)
         {
             this.getSeriviceAverageFeedbackScore = getSeriviceAverageFeedbackScore ?? throw new ArgumentNullException(nameof(getSeriviceAverageFeedbackScore)); ;
         }

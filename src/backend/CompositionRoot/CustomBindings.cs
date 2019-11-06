@@ -23,6 +23,7 @@ namespace CompositionRoot
             container.Register<DomainModel.Services.ICreateNewService, Persistence.MongoDB.CreateNewService>();
             container.Register<DomainModel.Services.IGetWelcomeMessageByPublicToken, Persistence.MongoDB.GetWelcomeMessageByPublicToken>();
             container.Register<DomainModel.Services.IGetServiceAverageFeedbackScore, Persistence.MongoDB.GetServiceAverageFeedbackScore>();
+            container.Register<DomainModel.Services.IGetFeedback, Persistence.MongoDB.GetFeedback>();
         }
     }
 }
