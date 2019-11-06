@@ -5,7 +5,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
-
+using System.Linq;
 
 namespace Persistence.MongoDB
 {
@@ -36,9 +36,6 @@ namespace Persistence.MongoDB
             var filterBuilderMonth = Builders<Feedback>.Filter;
             var filterBuilderYear = Builders<Feedback>.Filter;
             var filterBuilderAllTime = Builders<Feedback>.Filter;
-            var filterBuilderAllTimeGood = Builders<Feedback>.Filter;
-            var filterBuilderAllTimeFair = Builders<Feedback>.Filter;
-            var filterBuilderAllTimePoor = Builders<Feedback>.Filter;
 
             var filterHour = filterBuilderHour.Eq(x => x.PublicToken, servicePublicToken) &
                              filterBuilderHour.Gte(x => x.InstantUtc, DateTime.UtcNow.AddHours(-1)) &
@@ -61,32 +58,12 @@ namespace Persistence.MongoDB
 
             var filterAllTime = filterBuilderHour.Eq(x => x.PublicToken, servicePublicToken);
 
-
-            var filterAllTimeGood = filterBuilderAllTimeGood.Eq(x => x.PublicToken, servicePublicToken) &
-                                    filterBuilderAllTimeGood.Eq(x => x.Rating, Rating.Good);
-
-            var filterAllTimeFair = filterBuilderAllTimeFair.Eq(x => x.PublicToken, servicePublicToken) &
-                                    filterBuilderAllTimeFair.Eq(x => x.Rating, Rating.Fair);
-
-            var filterAllTimePoor = filterBuilderAllTimePoor.Eq(x => x.PublicToken, servicePublicToken) &
-                                    filterBuilderAllTimePoor.Eq(x => x.Rating, Rating.Poor);
-
             List<Feedback> feedbacksLastHour = feedbackCollection.Find(filterHour).ToList();
             List<Feedback> feedbacksLastDay = feedbackCollection.Find(filterDay).ToList();
             List<Feedback> feedbacksLastWeek = feedbackCollection.Find(filterWeek).ToList();
             List<Feedback> feedbacksLastMonth = feedbackCollection.Find(filterMonth).ToList();
             List<Feedback> feedbacksLastYear = feedbackCollection.Find(filterYear).ToList();
             List<Feedback> feedbacksAllTimeList = feedbackCollection.Find(filterAllTime).ToList();
-
-
-
-            var feedbacksAllTime = feedbackCollection.Find(filterAllTime);
-
-
-            var feedbacksAllTimeGood = feedbackCollection.Find(filterAllTimeGood).CountDocuments();
-            var feedbacksAllTimeFair = feedbackCollection.Find(filterAllTimeFair).CountDocuments();
-            var feedbacksAllTimePoor = feedbackCollection.Find(filterAllTimePoor).CountDocuments();
-
 
             var averageScoreFeedbacksLastHour = 0.0;
             var averageScoreFeedbacksLastDay = 0.0;
@@ -126,8 +103,6 @@ namespace Persistence.MongoDB
                 averageScoreFeedbacksAllTime += GetRating(feedback.Rating.ToString());
             }
 
-
-
             feedbackAverageScoreList.Add(new FeedbackAverageScore() 
             {   
                 Intervallo = "averageScoreFeedbacksLastHour", 
@@ -162,13 +137,15 @@ namespace Persistence.MongoDB
 
             //Costruisco la percentuale dei voti raccolti sulla base di tutti i feedback registrati
 
-            var totalFeedback = feedbacksAllTimeList.Count;
+            double feedbacksAllTimeGood = feedbacksAllTimeList.Where(x => x.Rating == Rating.Good).Count();
+            double feedbacksAllTimeFair = feedbacksAllTimeList.Where(x => x.Rating == Rating.Fair).Count();
+            double feedbacksAllTimePoor = feedbacksAllTimeList.Where(x => x.Rating == Rating.Poor).Count();
 
             var facetStatList = new List<FacetStatistiche>();
 
-            facetStatList.Add(new FacetStatistiche() { Voto = "good", Percentuale = feedbacksAllTimeGood / totalFeedback });
-            facetStatList.Add(new FacetStatistiche() { Voto = "fair", Percentuale = feedbacksAllTimeFair / totalFeedback });
-            facetStatList.Add(new FacetStatistiche() { Voto = "poor", Percentuale = feedbacksAllTimePoor / totalFeedback });
+            facetStatList.Add(new FacetStatistiche() { Voto = "good", Percentuale = feedbacksAllTimeGood / (double)feedbacksAllTimeList.Count });
+            facetStatList.Add(new FacetStatistiche() { Voto = "fair", Percentuale = feedbacksAllTimeFair / (double)feedbacksAllTimeList.Count });
+            facetStatList.Add(new FacetStatistiche() { Voto = "poor", Percentuale = feedbacksAllTimePoor / (double)feedbacksAllTimeList.Count });
 
 
             var getServiceAverageFeedbackScoreQueryResult = new GetServiceAverageFeedbackScoreQueryResult()
