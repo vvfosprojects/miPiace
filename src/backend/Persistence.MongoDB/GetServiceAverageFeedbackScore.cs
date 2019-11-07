@@ -40,7 +40,8 @@ namespace Persistence.MongoDB
                              filterBuilderHour.Lte(x => x.InstantUtc, DateTime.UtcNow);
 
             var filterDay = filterBuilderHour.Eq(x => x.PublicToken, servicePublicToken) &
-                             filterBuilderHour.Eq(x => x.InstantUtc, DateTime.UtcNow.AddDays(-1));
+                             filterBuilderHour.Gte(x => x.InstantUtc, DateTime.UtcNow.AddDays(-1)) &
+                             filterBuilderHour.Lt(x => x.InstantUtc, DateTime.UtcNow);
 
             var filterWeek = filterBuilderHour.Eq(x => x.PublicToken, servicePublicToken) &
                              filterBuilderHour.Gte(x => x.InstantUtc, DateTime.UtcNow.AddDays(-6)) &

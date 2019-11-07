@@ -8,6 +8,6 @@ namespace DomainModel.Services
 {
     public interface IGetFeedback
     {
-        Feedback Get(GetFeedbackQuery query); 
+        Feedback Get(string privateToken, string id); 
     }
 }

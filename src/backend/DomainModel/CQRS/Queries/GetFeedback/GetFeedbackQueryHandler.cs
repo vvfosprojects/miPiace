@@ -13,13 +13,13 @@ namespace DomainModel.CQRS.Queries.GetFeedback
 
         public GetFeedbackQueryHandler(IGetFeedback getFeedback)
         {
-            this.getFeedback = getFeedback;
+            this.getFeedback = getFeedback ?? throw new ArgumentNullException(nameof(getFeedback));
 
         }
 
         public GetFeedbackQueryResult Handle(GetFeedbackQuery query)
         {
-            Feedback feedback = this.getFeedback.Get(query);
+            Feedback feedback = this.getFeedback.Get(query.PrivateToken, query.Id);
 
             return new GetFeedbackQueryResult() {Feedback = feedback};
         }

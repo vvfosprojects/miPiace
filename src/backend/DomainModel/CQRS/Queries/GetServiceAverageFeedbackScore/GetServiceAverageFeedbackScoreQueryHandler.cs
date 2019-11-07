@@ -10,7 +10,7 @@ namespace DomainModel.CQRS.Queries.GetServiceAverageFeedbackScore
 
         public GetServiceAverageFeedbackScoreQueryHandler(IGetServiceAverageFeedbackScore getSeriviceAverageFeedbackScore)
         {
-            this.getSeriviceAverageFeedbackScore = getSeriviceAverageFeedbackScore ?? throw new ArgumentNullException(nameof(getSeriviceAverageFeedbackScore)); ;
+            this.getSeriviceAverageFeedbackScore = getSeriviceAverageFeedbackScore ?? throw new ArgumentNullException(nameof(getSeriviceAverageFeedbackScore)); 
         }
 
         public GetServiceAverageFeedbackScoreQueryResult Handle(GetServiceAverageFeedbackScoreQuery query)

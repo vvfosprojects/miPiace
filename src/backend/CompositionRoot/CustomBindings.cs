@@ -24,6 +24,7 @@ namespace CompositionRoot
             container.Register<DomainModel.Services.IGetWelcomeMessageByPublicToken, Persistence.MongoDB.GetWelcomeMessageByPublicToken>();
             container.Register<DomainModel.Services.IGetServiceAverageFeedbackScore, Persistence.MongoDB.GetServiceAverageFeedbackScore>();
             container.Register<DomainModel.Services.IGetFeedback, Persistence.MongoDB.GetFeedback>();
+            container.Register<DomainModel.Services.IGetAllFeedbackByRating, Persistence.MongoDB.GetAllFeedbackByFilter>();
         }
     }
 }

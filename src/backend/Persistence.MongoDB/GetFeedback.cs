@@ -1,10 +1,7 @@
 ﻿using DomainModel.Classes;
-using DomainModel.CQRS.Queries.GetFeedback;
 using DomainModel.Services;
 using MongoDB.Driver;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace Persistence.MongoDB
 {
@@ -17,16 +14,16 @@ namespace Persistence.MongoDB
             this.dbContext = dbContext;
         }
 
-        public Feedback Get(GetFeedbackQuery query)
+        public Feedback Get(string id, string privateToken)
         {
             var collectionServices = dbContext.ServiceCollection;
             var filterBuilderPrivateToken = Builders<Service>.Filter;
-            var filterPrivateToken = filterBuilderPrivateToken.Eq(x => x.PrivateToken, query.privateToken);
+            var filterPrivateToken = filterBuilderPrivateToken.Eq(x => x.PrivateToken, privateToken);
             var servicePublicToken = collectionServices.Find(filterPrivateToken).Single();
 
             var collectionFeedback = dbContext.FeedbackCollection;
             var filterBuilderId = Builders<Feedback>.Filter;
-            var filterId = filterBuilderId.Eq(x => x.Id, query.Id) &
+            var filterId = filterBuilderId.Eq(x => x.Id, id) &
                            filterBuilderId.Eq(x => x.PublicToken, servicePublicToken.PublicToken);
 
             return collectionFeedback.Find(filterId).Single();

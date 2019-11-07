@@ -9,6 +9,6 @@ namespace DomainModel.CQRS.Queries.GetFeedback
     {
         public string Id { get; set; }
 
-        public string privateToken { get; set; }
+        public string PrivateToken { get; set; }
     }
 }
