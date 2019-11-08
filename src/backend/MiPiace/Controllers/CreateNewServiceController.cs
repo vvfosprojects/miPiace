@@ -1,6 +1,7 @@
 ﻿using CQRS.Commands;
 using DomainModel.Classes;
 using DomainModel.CQRS.Commands.CreateNewService;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using MiPiace.Helper;
 using System;

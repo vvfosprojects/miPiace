@@ -1,10 +1,12 @@
 ﻿using DomainModel.Classes;
 using DomainModel.CQRS.Queries.GetServiceAverageFeedbackScore;
 using DomainModel.Services;
+using Microsoft.Extensions.Configuration;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 
 namespace Persistence.MongoDB
@@ -12,10 +14,12 @@ namespace Persistence.MongoDB
     public class GetServiceAverageFeedbackScore : IGetServiceAverageFeedbackScore
     {
         private readonly DbContext dbContext;
+        private readonly IConfiguration configuration;
 
-        public GetServiceAverageFeedbackScore(DbContext dbContext)
+        public GetServiceAverageFeedbackScore(DbContext dbContext, IConfiguration configuration)
         {
             this.dbContext = dbContext;
+            this.configuration = configuration;
         }
 
         public GetServiceAverageFeedbackScoreQueryResult Get(string privateToken)
@@ -35,26 +39,32 @@ namespace Persistence.MongoDB
             var filterBuilderYear = Builders<Feedback>.Filter;
             var filterBuilderAllTime = Builders<Feedback>.Filter;
 
+            //recupero tutti i feedback registrati negli ultimi 60 min
             var filterHour = filterBuilderHour.Eq(x => x.PublicToken, servicePublicToken) &
                              filterBuilderHour.Gte(x => x.InstantUtc, DateTime.UtcNow.AddHours(-1)) &
                              filterBuilderHour.Lte(x => x.InstantUtc, DateTime.UtcNow);
-
+            
+            //recupero tutti i feedback registrati nel giornata antecedente la data odierna 
             var filterDay = filterBuilderHour.Eq(x => x.PublicToken, servicePublicToken) &
                              filterBuilderHour.Gte(x => x.InstantUtc, DateTime.UtcNow.AddDays(-1)) &
                              filterBuilderHour.Lt(x => x.InstantUtc, DateTime.UtcNow);
 
+            //recupero tutti i feedback registrati nel corso dell'ultima settimana (compresi quelli registrati nella giornata odierna)
             var filterWeek = filterBuilderHour.Eq(x => x.PublicToken, servicePublicToken) &
                              filterBuilderHour.Gte(x => x.InstantUtc, DateTime.UtcNow.AddDays(-6)) &
                              filterBuilderHour.Lte(x => x.InstantUtc, DateTime.UtcNow);
 
+            //recupero tutti i feedback registrati nel corso dell'ultimo mese(compresi quelli registrati nella giornata odierna)
             var filterMonth = filterBuilderHour.Eq(x => x.PublicToken, servicePublicToken) &
                               filterBuilderHour.Gte(x => x.InstantUtc, DateTime.UtcNow.AddDays(-30)) &
                               filterBuilderHour.Lte(x => x.InstantUtc, DateTime.UtcNow);
 
+            //recupero tutti i feedback registrati nel corso dell'ultimo anno (compresi quelli registrati nella giornata odierna)
             var filterYear = filterBuilderHour.Eq(x => x.PublicToken, servicePublicToken) &
                              filterBuilderHour.Gte(x => x.InstantUtc, DateTime.UtcNow.AddYears(-1)) &
                              filterBuilderHour.Lte(x => x.InstantUtc, DateTime.UtcNow);
 
+            //recupero tutti i feedback registrati
             var filterAllTime = filterBuilderHour.Eq(x => x.PublicToken, servicePublicToken);
 
             List<Feedback> feedbacksLastHour = feedbackCollection.Find(filterHour).ToList();
@@ -102,6 +112,7 @@ namespace Persistence.MongoDB
                 averageScoreFeedbacksAllTime += GetRating(feedback.Rating.ToString());
             }
 
+            //aggiungo alla lista di output la media dei valori registrati divisi per intervallo temporale
             feedbackAverageScoreList.Add(new FeedbackAverageScore() 
             {   
                 Intervallo = "averageScoreFeedbacksLastHour", 
@@ -141,19 +152,34 @@ namespace Persistence.MongoDB
             double feedbacksAllTimePoor = feedbacksAllTimeList.Where(x => x.Rating == Rating.Poor).Count();
 
             var facetStatList = new List<FacetStatistiche>();
+            var url = configuration.GetSection("BasePath").Value;
 
-            facetStatList.Add(new FacetStatistiche() { Voto = "good", Percentuale = feedbacksAllTimeGood / (double)feedbacksAllTimeList.Count });
-            facetStatList.Add(new FacetStatistiche() { Voto = "fair", Percentuale = feedbacksAllTimeFair / (double)feedbacksAllTimeList.Count });
-            facetStatList.Add(new FacetStatistiche() { Voto = "poor", Percentuale = feedbacksAllTimePoor / (double)feedbacksAllTimeList.Count });
+            facetStatList.Add(new FacetStatistiche() 
+            { 
+                Voto = "good", 
+                Percentuale = feedbacksAllTimeGood / (double)feedbacksAllTimeList.Count,
+                FeedbackLink = url
+            });
+            facetStatList.Add(new FacetStatistiche() 
+            { 
+                Voto = "fair", 
+                Percentuale = feedbacksAllTimeFair / (double)feedbacksAllTimeList.Count,
+                FeedbackLink = url
+            });
+            facetStatList.Add(new FacetStatistiche() 
+            { 
+                Voto = "poor", 
+                Percentuale = feedbacksAllTimePoor / (double)feedbacksAllTimeList.Count,
+                FeedbackLink = url
+            });
 
 
-            var getServiceAverageFeedbackScoreQueryResult = new GetServiceAverageFeedbackScoreQueryResult()
+            return new GetServiceAverageFeedbackScoreQueryResult()
             {
                 feedbackAverageScores = feedbackAverageScoreList,
                 facetStatistiche = facetStatList
             };
 
-            return getServiceAverageFeedbackScoreQueryResult;
         }
 
 

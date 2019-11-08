@@ -3,10 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DomainModel.CQRS.Queries.GetAllFeedbackByFilter
+namespace DomainModel.CQRS.Queries.GetAllFeedback
 {
-    public class GetAllFeedbackByRatingQueryResult
+    public class GetAllFeedbackQueryResult
     {
         public List<Feedback> AllFeedback { get; set; }
+
+        public CriteriDiRicerca CriteriDiRicerca { get; set; }
     }
 }
