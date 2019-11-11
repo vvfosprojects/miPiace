@@ -29,7 +29,8 @@ namespace DomainModel.CQRS.Queries.GetAllFeedback
                     FirstIndex = (int)((query.Page - 1) * query.PageSize),
                     LastIndex = (int)(((query.Page - 1) * query.PageSize) + query.PageSize - 1),
                     PageSize = (int)query.PageSize,
-                    Rating = query.Rating.ToString()
+                    Rating = query.Rating.ToString(),
+                    PrivateToken = query.PrivateToken
                 }
             };
         }

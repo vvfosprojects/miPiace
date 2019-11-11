@@ -31,7 +31,7 @@ namespace MiPiace.Controllers
         [HttpPost]
         public ActionResult Insert([FromBody] string welcomeMessage)
         {
-            var service = new CreateNewServiceCommand()
+            var service = new CreateNewServiceCommand() 
             {
                 Service = new Service()
                 {
@@ -46,6 +46,7 @@ namespace MiPiace.Controllers
                 handler.Handle(service);
                 return Created(service.Service.Id, service.Service);
             }
+            
             catch
             {
                 return BadRequest();

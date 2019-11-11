@@ -26,7 +26,6 @@ namespace MiPiace.Helper
                 builder.Append(ch);
                 }
             }
-
             return builder.ToString().ToLower();
         }
     }

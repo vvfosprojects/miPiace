@@ -21,7 +21,7 @@ namespace MiPiace.Controllers
         }
 
         [HttpGet]
-        public ActionResult<GetAllFeedbackQueryResult> Get([FromBody] GetAllFeedbackQuery query)
+        public ActionResult<GetAllFeedbackQueryResult> Get([FromQuery] GetAllFeedbackQuery query)
         {
             return this.handler.Handle(query);
         }
