@@ -38,6 +38,10 @@ namespace Persistence.MongoDB
             var filterBuilderMonth = Builders<Feedback>.Filter;
             var filterBuilderYear = Builders<Feedback>.Filter;
             var filterBuilderAllTime = Builders<Feedback>.Filter;
+            var filterBuilderAllTimeGood = Builders<Feedback>.Filter;
+            var filterBuilderAllTimeFair = Builders<Feedback>.Filter;
+            var filterBuilderAllTimePoor = Builders<Feedback>.Filter;
+
 
             //recupero tutti i feedback registrati negli ultimi 60 min
             var filterHour = filterBuilderHour.Eq(x => x.PublicToken, servicePublicToken) &
@@ -45,27 +49,27 @@ namespace Persistence.MongoDB
                              filterBuilderHour.Lte(x => x.InstantUtc, DateTime.UtcNow);
             
             //recupero tutti i feedback registrati nel giornata antecedente la data odierna 
-            var filterDay = filterBuilderHour.Eq(x => x.PublicToken, servicePublicToken) &
-                             filterBuilderHour.Gte(x => x.InstantUtc, DateTime.UtcNow.AddDays(-1)) &
-                             filterBuilderHour.Lt(x => x.InstantUtc, DateTime.UtcNow);
+            var filterDay = filterBuilderDay.Eq(x => x.PublicToken, servicePublicToken) &
+                             filterBuilderDay.Gte(x => x.InstantUtc, DateTime.UtcNow.AddDays(-1)) &
+                             filterBuilderDay.Lt(x => x.InstantUtc, DateTime.UtcNow);
 
             //recupero tutti i feedback registrati nel corso dell'ultima settimana (compresi quelli registrati nella giornata odierna)
-            var filterWeek = filterBuilderHour.Eq(x => x.PublicToken, servicePublicToken) &
-                             filterBuilderHour.Gte(x => x.InstantUtc, DateTime.UtcNow.AddDays(-6)) &
-                             filterBuilderHour.Lte(x => x.InstantUtc, DateTime.UtcNow);
+            var filterWeek = filterBuilderWeek.Eq(x => x.PublicToken, servicePublicToken) &
+                             filterBuilderWeek.Gte(x => x.InstantUtc, DateTime.UtcNow.AddDays(-6)) &
+                             filterBuilderWeek.Lte(x => x.InstantUtc, DateTime.UtcNow);
 
             //recupero tutti i feedback registrati nel corso dell'ultimo mese(compresi quelli registrati nella giornata odierna)
-            var filterMonth = filterBuilderHour.Eq(x => x.PublicToken, servicePublicToken) &
-                              filterBuilderHour.Gte(x => x.InstantUtc, DateTime.UtcNow.AddDays(-30)) &
-                              filterBuilderHour.Lte(x => x.InstantUtc, DateTime.UtcNow);
+            var filterMonth = filterBuilderMonth.Eq(x => x.PublicToken, servicePublicToken) &
+                              filterBuilderMonth.Gte(x => x.InstantUtc, DateTime.UtcNow.AddDays(-30)) &
+                              filterBuilderMonth.Lte(x => x.InstantUtc, DateTime.UtcNow);
 
             //recupero tutti i feedback registrati nel corso dell'ultimo anno (compresi quelli registrati nella giornata odierna)
-            var filterYear = filterBuilderHour.Eq(x => x.PublicToken, servicePublicToken) &
-                             filterBuilderHour.Gte(x => x.InstantUtc, DateTime.UtcNow.AddYears(-1)) &
-                             filterBuilderHour.Lte(x => x.InstantUtc, DateTime.UtcNow);
+            var filterYear = filterBuilderYear.Eq(x => x.PublicToken, servicePublicToken) &
+                             filterBuilderYear.Gte(x => x.InstantUtc, DateTime.UtcNow.AddYears(-1)) &
+                             filterBuilderYear.Lte(x => x.InstantUtc, DateTime.UtcNow);
 
             //recupero tutti i feedback registrati
-            var filterAllTime = filterBuilderHour.Eq(x => x.PublicToken, servicePublicToken);
+            var filterAllTime = filterBuilderAllTime.Eq(x => x.PublicToken, servicePublicToken);
 
             List<Feedback> feedbacksLastHour = feedbackCollection.Find(filterHour).ToList();
             List<Feedback> feedbacksLastDay = feedbackCollection.Find(filterDay).ToList();
@@ -147,30 +151,39 @@ namespace Persistence.MongoDB
 
             //Costruisco la percentuale dei voti raccolti sulla base di tutti i feedback registrati
 
-            double feedbacksAllTimeGood = feedbacksAllTimeList.Where(x => x.Rating == Rating.Good).Count();
-            double feedbacksAllTimeFair = feedbacksAllTimeList.Where(x => x.Rating == Rating.Fair).Count();
-            double feedbacksAllTimePoor = feedbacksAllTimeList.Where(x => x.Rating == Rating.Poor).Count();
+            var filterAllTimeGood = filterBuilderAllTimeGood.Eq(x => x.PublicToken, servicePublicToken) & 
+                                    filterBuilderAllTimeGood.Eq(x => x.Rating, Rating.Good);
+
+            var filterAllTimeFair = filterBuilderAllTimeFair.Eq(x => x.PublicToken, servicePublicToken) &
+                                    filterBuilderAllTimeFair.Eq(x => x.Rating, Rating.Fair);
+
+            var filterAllTimePoor = filterBuilderAllTimePoor.Eq(x => x.PublicToken, servicePublicToken) &
+                                    filterBuilderAllTimePoor.Eq(x => x.Rating, Rating.Poor);
+
+            double feedbacksAllTimeGood = feedbackCollection.Find(filterAllTimeGood).ToList().Count(); //feedbacksAllTimeList.Where(x => x.Rating == Rating.Good).Count();
+            double feedbacksAllTimeFair = feedbackCollection.Find(filterAllTimeFair).ToList().Count();
+            double feedbacksAllTimePoor = feedbackCollection.Find(filterAllTimePoor).ToList().Count();
 
             var facetStatList = new List<FacetStatistiche>();
             var url = configuration.GetSection("BasePath").Value;
 
-            facetStatList.Add(new FacetStatistiche() 
-            { 
-                Voto = "good", 
+            facetStatList.Add(new FacetStatistiche()
+            {
+                Voto = "good",
                 Percentuale = feedbacksAllTimeGood / (double)feedbacksAllTimeList.Count,
-                FeedbackLink = url
-            });
+                FeedbackLink = url + "?privateToken=" + privateToken + "&rating=" + 3
+            }); 
             facetStatList.Add(new FacetStatistiche() 
             { 
                 Voto = "fair", 
                 Percentuale = feedbacksAllTimeFair / (double)feedbacksAllTimeList.Count,
-                FeedbackLink = url
+                FeedbackLink = url + "?privateToken=" + privateToken + "&rating=" + 2
             });
             facetStatList.Add(new FacetStatistiche() 
             { 
                 Voto = "poor", 
                 Percentuale = feedbacksAllTimePoor / (double)feedbacksAllTimeList.Count,
-                FeedbackLink = url
+                FeedbackLink = url + "?privateToken=" + privateToken + "&rating=" + 1
             });
 
 
