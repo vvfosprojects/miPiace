@@ -33,18 +33,13 @@ namespace MiPiace.Controllers
         {
             var service = new CreateNewServiceCommand() 
             {
-                Service = new Service()
-                {
-                    PrivateToken = GenerateToken.Generate(24),
-                    PublicToken = GenerateToken.Generate(24),
-                    WelcomeMessage = welcomeMessage
-                }
+                WelcomeMessage = welcomeMessage
             };
 
             try
             {
                 handler.Handle(service);
-                return Created(service.Service.Id, service.Service);
+                return Created(service.WelcomeMessage, service);
             }
             
             catch
