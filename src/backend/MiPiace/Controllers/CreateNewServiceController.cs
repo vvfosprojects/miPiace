@@ -1,6 +1,7 @@
 ﻿using CQRS.Commands;
 using DomainModel.Classes;
 using DomainModel.CQRS.Commands.CreateNewService;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using MiPiace.Helper;
 using System;
@@ -30,21 +31,17 @@ namespace MiPiace.Controllers
         [HttpPost]
         public ActionResult Insert([FromBody] string welcomeMessage)
         {
-            var service = new CreateNewServiceCommand()
+            var service = new CreateNewServiceCommand() 
             {
-                Service = new Service()
-                {
-                    PrivateToken = GenerateToken.Generate(24),
-                    PublicToken = GenerateToken.Generate(24),
-                    WelcomeMessage = welcomeMessage
-                }
+                WelcomeMessage = welcomeMessage
             };
 
             try
             {
                 handler.Handle(service);
-                return Created(service.Service.Id, service.Service);
+                return Created(service.WelcomeMessage, service);
             }
+            
             catch
             {
                 return BadRequest();

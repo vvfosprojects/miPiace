@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CQRS.Queries;
 using DomainModel.CQRS.Queries.GetServiceAverageFeedbackScore;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace MiPiace.Controllers
 {

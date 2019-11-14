@@ -13,7 +13,7 @@ namespace MiPiace.Helper
             StringBuilder builder = new StringBuilder();
             Random random = new Random();
             char ch;
-            for (int i = 1; i < length; i++)
+            for (int i = 1; i <= length; i++)
             {
                 if (Math.Floor(26 * random.NextDouble() + DateTime.UtcNow.Millisecond) % 2 == 0)
                 {
@@ -21,10 +21,11 @@ namespace MiPiace.Helper
                     var num = ran.Next(0, 9);
                     builder.Append(num);
                 }
+                else { 
                 ch = Convert.ToChar(Convert.ToInt32(Math.Floor(26 * random.NextDouble() + 65)));
                 builder.Append(ch);
+                }
             }
-
             return builder.ToString().ToLower();
         }
     }

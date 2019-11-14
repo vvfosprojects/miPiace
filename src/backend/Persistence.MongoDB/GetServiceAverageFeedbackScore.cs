@@ -1,25 +1,30 @@
 ﻿using DomainModel.Classes;
+using DomainModel.CQRS.Queries.GetServiceAverageFeedbackScore;
 using DomainModel.Services;
+using Microsoft.Extensions.Configuration;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
-
+using System.Configuration;
+using System.Linq;
 
 namespace Persistence.MongoDB
 {
     public class GetServiceAverageFeedbackScore : IGetServiceAverageFeedbackScore
     {
         private readonly DbContext dbContext;
+        private readonly IConfiguration configuration;
 
-        public GetServiceAverageFeedbackScore(DbContext dbContext)
+        public GetServiceAverageFeedbackScore(DbContext dbContext, IConfiguration configuration)
         {
             this.dbContext = dbContext;
+            this.configuration = configuration;
         }
 
-        public Dictionary<string, double> Get(string privateToken)
+        public GetServiceAverageFeedbackScoreQueryResult Get(string privateToken)
         {
-            Dictionary<string, double> scoreDictionary = new Dictionary<string, double>();
+            List<FeedbackAverageScore> feedbackAverageScoreList = new List<FeedbackAverageScore>();
 
             var serviceCollection = dbContext.ServiceCollection;
 
@@ -27,47 +32,54 @@ namespace Persistence.MongoDB
 
             var feedbackCollection = dbContext.FeedbackCollection;
 
-            DateTime utcNow = DateTime.UtcNow;
-
             var filterBuilderHour = Builders<Feedback>.Filter;
             var filterBuilderDay = Builders<Feedback>.Filter;
             var filterBuilderWeek = Builders<Feedback>.Filter;
             var filterBuilderMonth = Builders<Feedback>.Filter;
             var filterBuilderYear = Builders<Feedback>.Filter;
             var filterBuilderAllTime = Builders<Feedback>.Filter;
+            var filterBuilderAllTimeGood = Builders<Feedback>.Filter;
+            var filterBuilderAllTimeFair = Builders<Feedback>.Filter;
+            var filterBuilderAllTimePoor = Builders<Feedback>.Filter;
 
+
+            //recupero tutti i feedback registrati negli ultimi 60 min
             var filterHour = filterBuilderHour.Eq(x => x.PublicToken, servicePublicToken) &
-                             filterBuilderHour.Gte(x => x.InstantUtc, utcNow.AddHours(-1)) &
-                             filterBuilderHour.Lte(x => x.InstantUtc, utcNow);
+                             filterBuilderHour.Gte(x => x.InstantUtc, DateTime.UtcNow.AddHours(-1)) &
+                             filterBuilderHour.Lte(x => x.InstantUtc, DateTime.UtcNow);
+            
+            //recupero tutti i feedback registrati nel giornata antecedente la data odierna 
+            var filterDay = filterBuilderDay.Eq(x => x.PublicToken, servicePublicToken) &
+                             filterBuilderDay.Gte(x => x.InstantUtc, DateTime.UtcNow.AddDays(-1)) &
+                             filterBuilderDay.Lt(x => x.InstantUtc, DateTime.UtcNow);
 
-            var filterDay = filterBuilderHour.Eq(x => x.PublicToken, servicePublicToken) &
-                             filterBuilderHour.Gte(x => x.InstantUtc, utcNow.AddDays(-1)) &
-                             filterBuilderHour.Lte(x => x.InstantUtc, utcNow);
+            //recupero tutti i feedback registrati nel corso dell'ultima settimana (compresi quelli registrati nella giornata odierna)
+            var filterWeek = filterBuilderWeek.Eq(x => x.PublicToken, servicePublicToken) &
+                             filterBuilderWeek.Gte(x => x.InstantUtc, DateTime.UtcNow.AddDays(-6)) &
+                             filterBuilderWeek.Lte(x => x.InstantUtc, DateTime.UtcNow);
 
-            var filterWeek = filterBuilderHour.Eq(x => x.PublicToken, servicePublicToken) &
-                             filterBuilderHour.Gte(x => x.InstantUtc, utcNow.AddDays(-7)) &
-                             filterBuilderHour.Lte(x => x.InstantUtc, utcNow);
+            //recupero tutti i feedback registrati nel corso dell'ultimo mese(compresi quelli registrati nella giornata odierna)
+            var filterMonth = filterBuilderMonth.Eq(x => x.PublicToken, servicePublicToken) &
+                              filterBuilderMonth.Gte(x => x.InstantUtc, DateTime.UtcNow.AddDays(-30)) &
+                              filterBuilderMonth.Lte(x => x.InstantUtc, DateTime.UtcNow);
 
-            var filterMonth = filterBuilderHour.Eq(x => x.PublicToken, servicePublicToken) &
-                              filterBuilderHour.Gte(x => x.InstantUtc, utcNow.AddDays(-31)) &
-                              filterBuilderHour.Lte(x => x.InstantUtc, utcNow);
+            //recupero tutti i feedback registrati nel corso dell'ultimo anno (compresi quelli registrati nella giornata odierna)
+            var filterYear = filterBuilderYear.Eq(x => x.PublicToken, servicePublicToken) &
+                             filterBuilderYear.Gte(x => x.InstantUtc, DateTime.UtcNow.AddYears(-1)) &
+                             filterBuilderYear.Lte(x => x.InstantUtc, DateTime.UtcNow);
 
-            var filterYear = filterBuilderHour.Eq(x => x.PublicToken, servicePublicToken) &
-                             filterBuilderHour.Gte(x => x.InstantUtc, utcNow.AddDays(-365)) &
-                             filterBuilderHour.Lte(x => x.InstantUtc, utcNow);
-
-            var filterAllTime = filterBuilderHour.Eq(x => x.PublicToken, servicePublicToken);
+            //recupero tutti i feedback registrati
+            var filterAllTime = filterBuilderAllTime.Eq(x => x.PublicToken, servicePublicToken);
 
             List<Feedback> feedbacksLastHour = feedbackCollection.Find(filterHour).ToList();
             List<Feedback> feedbacksLastDay = feedbackCollection.Find(filterDay).ToList();
             List<Feedback> feedbacksLastWeek = feedbackCollection.Find(filterWeek).ToList();
             List<Feedback> feedbacksLastMonth = feedbackCollection.Find(filterMonth).ToList();
             List<Feedback> feedbacksLastYear = feedbackCollection.Find(filterYear).ToList();
-            List<Feedback> feedbacksAllTime = feedbackCollection.Find(filterAllTime).ToList();
-
+            List<Feedback> feedbacksAllTimeList = feedbackCollection.Find(filterAllTime).ToList();
 
             var averageScoreFeedbacksLastHour = 0.0;
-            var averageScoreFeedbackLastDay = 0.0;
+            var averageScoreFeedbacksLastDay = 0.0;
             var averageScoreFeedbacksLastWeek = 0.0;
             var averageScoreFeedbacksLastMonth = 0.0;
             var averageScoreFeedbacksLastYear = 0.0;
@@ -80,7 +92,8 @@ namespace Persistence.MongoDB
 
             foreach (var feedback in feedbacksLastDay)
             {
-                averageScoreFeedbackLastDay += GetRating(feedback.Rating.ToString());
+                averageScoreFeedbacksLastDay += GetRating(feedback.Rating.ToString());
+
             }
 
             foreach (var feedback in feedbacksLastWeek)
@@ -98,20 +111,88 @@ namespace Persistence.MongoDB
                 averageScoreFeedbacksLastYear += GetRating(feedback.Rating.ToString());
             }
 
-            foreach (var feedback in feedbacksAllTime)
+            foreach (var feedback in feedbacksAllTimeList)
             {
                 averageScoreFeedbacksAllTime += GetRating(feedback.Rating.ToString());
             }
 
-            
-            scoreDictionary.Add("averageScoreFeedbacksLastHour", averageScoreFeedbacksLastHour / feedbacksLastHour.Count);
-            scoreDictionary.Add("averageScoreFeedbacksLastDay", averageScoreFeedbackLastDay / feedbacksLastDay.Count);
-            scoreDictionary.Add("averageScoreFeedbacksLastWeek", averageScoreFeedbacksLastWeek / feedbacksLastWeek.Count);
-            scoreDictionary.Add("averageScoreFeedbacksLastMonth", averageScoreFeedbacksLastMonth / feedbacksLastMonth.Count);
-            scoreDictionary.Add("averageScoreFeedbacksLastYear", averageScoreFeedbacksLastYear / feedbacksLastYear.Count);
-            scoreDictionary.Add("averageScoreFeedbacksAllTime", averageScoreFeedbacksAllTime / feedbacksLastYear.Count);
+            //aggiungo alla lista di output la media dei valori registrati divisi per intervallo temporale
+            feedbackAverageScoreList.Add(new FeedbackAverageScore() 
+            {   
+                Intervallo = "averageScoreFeedbacksLastHour", 
+                Average = averageScoreFeedbacksLastHour / feedbacksLastHour.Count
+            });
 
-            return scoreDictionary;
+            feedbackAverageScoreList.Add(new FeedbackAverageScore()
+            { 
+                Intervallo = "averageScoreFeedbacksLastDay",
+                Average = averageScoreFeedbacksLastDay / feedbacksLastDay.Count
+            });
+            feedbackAverageScoreList.Add(new FeedbackAverageScore()
+            {
+                Intervallo = "averageScoreFeedbacksLastWeek",
+                Average = averageScoreFeedbacksLastWeek / feedbacksLastWeek.Count
+            });
+            feedbackAverageScoreList.Add(new FeedbackAverageScore()
+            { 
+                Intervallo = "averageScoreFeedbacksLastMonth",
+                Average = averageScoreFeedbacksLastMonth / feedbacksLastMonth.Count
+            });
+            feedbackAverageScoreList.Add(new FeedbackAverageScore() 
+            {
+                Intervallo = "averageScoreFeedbacksLastYear", 
+                Average = averageScoreFeedbacksLastYear / feedbacksLastYear.Count
+            });
+            feedbackAverageScoreList.Add(new FeedbackAverageScore() 
+            {
+                Intervallo = "averageScoreFeedbacksAllTime",
+                Average = averageScoreFeedbacksAllTime / feedbacksAllTimeList.Count
+            });
+
+            //Costruisco la percentuale dei voti raccolti sulla base di tutti i feedback registrati
+
+            var filterAllTimeGood = filterBuilderAllTimeGood.Eq(x => x.PublicToken, servicePublicToken) & 
+                                    filterBuilderAllTimeGood.Eq(x => x.Rating, Rating.Good);
+
+            var filterAllTimeFair = filterBuilderAllTimeFair.Eq(x => x.PublicToken, servicePublicToken) &
+                                    filterBuilderAllTimeFair.Eq(x => x.Rating, Rating.Fair);
+
+            var filterAllTimePoor = filterBuilderAllTimePoor.Eq(x => x.PublicToken, servicePublicToken) &
+                                    filterBuilderAllTimePoor.Eq(x => x.Rating, Rating.Poor);
+
+            double feedbacksAllTimeGood = feedbackCollection.Find(filterAllTimeGood).ToList().Count(); //feedbacksAllTimeList.Where(x => x.Rating == Rating.Good).Count();
+            double feedbacksAllTimeFair = feedbackCollection.Find(filterAllTimeFair).ToList().Count();
+            double feedbacksAllTimePoor = feedbackCollection.Find(filterAllTimePoor).ToList().Count();
+
+            var facetStatList = new List<FacetStatistiche>();
+            var url = configuration.GetSection("BasePath").Value;
+
+            facetStatList.Add(new FacetStatistiche()
+            {
+                Voto = "good",
+                Percentuale = feedbacksAllTimeGood / (double)feedbacksAllTimeList.Count,
+                FeedbackLink = url + "?privateToken=" + privateToken + "&rating=" + 3
+            }); 
+            facetStatList.Add(new FacetStatistiche() 
+            { 
+                Voto = "fair", 
+                Percentuale = feedbacksAllTimeFair / (double)feedbacksAllTimeList.Count,
+                FeedbackLink = url + "?privateToken=" + privateToken + "&rating=" + 2
+            });
+            facetStatList.Add(new FacetStatistiche() 
+            { 
+                Voto = "poor", 
+                Percentuale = feedbacksAllTimePoor / (double)feedbacksAllTimeList.Count,
+                FeedbackLink = url + "?privateToken=" + privateToken + "&rating=" + 1
+            });
+
+
+            return new GetServiceAverageFeedbackScoreQueryResult()
+            {
+                feedbackAverageScores = feedbackAverageScoreList,
+                facetStatistiche = facetStatList
+            };
+
         }
 
 

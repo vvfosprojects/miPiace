@@ -6,7 +6,13 @@ using System.Text;
 namespace DomainModel.CQRS.Commands.CreateNewService
 {
     public class CreateNewServiceCommand
-    {
-        public Service Service { get; set; }
+    { 
+        public string Id { get; set; }
+
+        public string PrivateToken { get; set; }
+
+        public string PublicToken { get; set; }
+
+        public string WelcomeMessage { get; set; }
     }
 }

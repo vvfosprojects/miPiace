@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DomainModel.CQRS.Commands.CreateNewService
 {
-    class CreateNewServiceCommandValidator
+    public class CreateNewServiceCommandValidator
     {
     }
 }
