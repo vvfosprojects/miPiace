@@ -39,7 +39,7 @@ namespace MiPiace.Controllers
             try
             {
                 handler.Handle(service);
-                return Created(service.WelcomeMessage, service);
+                return Created(service.Id, service);
             }
             
             catch
