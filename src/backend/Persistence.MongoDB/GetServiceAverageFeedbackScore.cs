@@ -45,11 +45,11 @@ namespace Persistence.MongoDB
             var filterHour = filterBuilderHour.Eq(x => x.PublicToken, servicePublicToken) &
                              filterBuilderHour.Gte(x => x.InstantUtc, DateTime.UtcNow.AddHours(-1)) &
                              filterBuilderHour.Lte(x => x.InstantUtc, DateTime.UtcNow);
-            
+
             //recupero tutti i feedback registrati nel giornata antecedente la data odierna 
             var filterDay = filterBuilderDay.Eq(x => x.PublicToken, servicePublicToken) &
-                             filterBuilderDay.Gte(x => x.InstantUtc, DateTime.UtcNow.AddDays(-1)) &
-                             filterBuilderDay.Lt(x => x.InstantUtc, DateTime.UtcNow);
+                             filterBuilderDay.Gte(x => x.InstantUtc, DateTime.Today.AddDays(-1).Date) &
+                             filterBuilderDay.Lt(x => x.InstantUtc, DateTime.Today);
 
             //recupero tutti i feedback registrati nel corso dell'ultima settimana (compresi quelli registrati nella giornata odierna)
             var filterWeek = filterBuilderWeek.Eq(x => x.PublicToken, servicePublicToken) &
@@ -197,7 +197,7 @@ namespace Persistence.MongoDB
         /// Il metodo presa in input una stringa contenente un Rating assegna un punteggio (intero) 
         /// </summary>
         /// <param name="rate">Accetta in input un stringa con possibili valori (Good, Fair, Poor)</param>
-        /// <returns></returns>
+        /// <returns>Intero associato al valore testuale in input</returns>
         protected int GetRating (string rate)
         {
             var score = 0;
