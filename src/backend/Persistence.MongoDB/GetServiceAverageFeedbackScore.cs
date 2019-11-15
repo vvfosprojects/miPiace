@@ -45,7 +45,7 @@ namespace Persistence.MongoDB
             var filterHour = filterBuilderHour.Eq(x => x.PublicToken, servicePublicToken) &
                              filterBuilderHour.Gte(x => x.InstantUtc, DateTime.UtcNow.AddHours(-1)) &
                              filterBuilderHour.Lte(x => x.InstantUtc, DateTime.UtcNow);
-            
+
             //recupero tutti i feedback registrati nel giornata antecedente la data odierna 
             var filterDay = filterBuilderDay.Eq(x => x.PublicToken, servicePublicToken) &
                              filterBuilderDay.Gte(x => x.InstantUtc, DateTime.UtcNow.AddHours(-23)) &

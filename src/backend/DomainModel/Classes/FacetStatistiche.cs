@@ -15,5 +15,6 @@ namespace DomainModel.Classes
         /// Rappresenta la percentuale rispetto al totale dei feedback rilascati che corrispondono ad un determinato Voto.
         /// </summary>
         public double Percentuale { get; set; }
+
     }
 }
