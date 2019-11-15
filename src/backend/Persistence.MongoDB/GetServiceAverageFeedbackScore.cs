@@ -14,12 +14,10 @@ namespace Persistence.MongoDB
     public class GetServiceAverageFeedbackScore : IGetServiceAverageFeedbackScore
     {
         private readonly DbContext dbContext;
-        private readonly IConfiguration configuration;
 
-        public GetServiceAverageFeedbackScore(DbContext dbContext, IConfiguration configuration)
+        public GetServiceAverageFeedbackScore(DbContext dbContext )
         {
             this.dbContext = dbContext;
-            this.configuration = configuration;
         }
 
         public GetServiceAverageFeedbackScoreQueryResult Get(string privateToken)
@@ -165,25 +163,25 @@ namespace Persistence.MongoDB
             double feedbacksAllTimePoor = feedbackCollection.Find(filterAllTimePoor).ToList().Count();
 
             var facetStatList = new List<FacetStatistiche>();
-            var url = configuration.GetSection("BasePath").Value;
+            //var url = configuration.GetSection("BasePath").Value;
 
             facetStatList.Add(new FacetStatistiche()
             {
                 Voto = "good",
                 Percentuale = feedbacksAllTimeGood / (double)feedbacksAllTimeList.Count,
-                FeedbackLink = url + "?privateToken=" + privateToken + "&rating=" + 3
+               // FeedbackLink = url + "?privateToken=" + privateToken + "&rating=" + 3
             }); 
             facetStatList.Add(new FacetStatistiche() 
             { 
                 Voto = "fair", 
                 Percentuale = feedbacksAllTimeFair / (double)feedbacksAllTimeList.Count,
-                FeedbackLink = url + "?privateToken=" + privateToken + "&rating=" + 2
+               // FeedbackLink = url + "?privateToken=" + privateToken + "&rating=" + 2
             });
             facetStatList.Add(new FacetStatistiche() 
             { 
                 Voto = "poor", 
                 Percentuale = feedbacksAllTimePoor / (double)feedbacksAllTimeList.Count,
-                FeedbackLink = url + "?privateToken=" + privateToken + "&rating=" + 1
+               // FeedbackLink = url + "?privateToken=" + privateToken + "&rating=" + 1
             });
 
 
@@ -195,7 +193,11 @@ namespace Persistence.MongoDB
 
         }
 
-
+        /// <summary>
+        /// Il metodo presa in input una stringa contenente un Rating assegna un punteggio (intero) 
+        /// </summary>
+        /// <param name="rate">Accetta in input un stringa con possibili valori (Good, Fair, Poor)</param>
+        /// <returns></returns>
         protected int GetRating (string rate)
         {
             var score = 0;

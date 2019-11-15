@@ -15,6 +15,11 @@ namespace Persistence.MongoDB
             this.dbContext = dbContext;
         }
 
+        /// <summary>
+        /// Restituisce il welcomeMessage assocaito al publicToken di input.
+        /// </summary>
+        /// <param name="publicToken">Rappresenta il token pubblico necessario al recupero dei dati del servizio</param>
+        /// <returns></returns>
         public string Get(string publicToken)
         {
             return this.dbContext.ServiceCollection
