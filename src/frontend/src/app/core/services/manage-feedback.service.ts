@@ -4,6 +4,10 @@ import { Service } from '../../shared/models/service';
 import { environment } from '../../../environments/environment';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
+import { FeedbackScore } from '../../shared/models/feedback-score';
+import { Feedback } from '../../shared/models/feedback';
+import { Rating } from '../../shared/enums/rating.enum';
+import { AllFeedback } from '../../shared/models/all-feedback';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -36,9 +40,40 @@ export class ManageFeedbackService {
   }
 
   public createService(welcomeMessage: string): Observable<Service> {
-    const url = environment.backendUrl + '/createNewService';
+    const url = environment.backendUrl + '/createNewService/';
 
     return this.http.post<Service>(url, welcomeMessage, httpOptions)
+      .pipe(
+        catchError(ManageFeedbackService.handleError)
+      );
+  }
+
+  public getAllFeedback(privateToken: string, rating: Rating, page?: string, pageSize?: string): Observable<AllFeedback> {
+    let queryParams = `?PrivateToken=${privateToken}&Rating=${rating}&`;
+    queryParams += page ? `Page=${page}&` : ``;
+    queryParams += pageSize ? `PageSize=${pageSize}&` : ``;
+    const url = environment.backendUrl + '/getAllFeedback' + queryParams;
+
+    return this.http.get<AllFeedback>(url)
+      .pipe(
+        catchError(ManageFeedbackService.handleError)
+      );
+  }
+
+  public getFeedback(privateToken: string, id: string): Observable<Feedback> {
+    const queryParams = `?Id=${id}&PrivateToken=${privateToken}`;
+    const url = environment.backendUrl + '/getFeedback' + queryParams;
+
+    return this.http.get<Feedback>(url)
+      .pipe(
+        catchError(ManageFeedbackService.handleError)
+      );
+  }
+
+  public getServiceAverageFeedbackScore(privateToken: string): Observable<FeedbackScore> {
+    const url = environment.backendUrl + '/getServiceAverageFeedbackScore?privateToken=' + privateToken;
+
+    return this.http.get<FeedbackScore>(url)
       .pipe(
         catchError(ManageFeedbackService.handleError)
       );
