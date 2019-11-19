@@ -2,16 +2,3 @@
     margin-top: 3em;
     margin-bottom: 5em;
 }
-
-.footer {
-    font-size: 80%;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: whitesmoke;
-    color: gray;
-    text-align: center;
-    padding: 0;
-    margin: 0;
-  }
