@@ -14,6 +14,9 @@ import { NoServiceSpecifiedComponent } from './features/no-service-specified/no-
 import { CreateServiceComponent } from './features/create-service/create-service.component';
 import { StatisticsComponent } from './features/statistics/statistics.component';
 import {DesignAngularKitModule} from 'design-angular-kit';
+import { ChartsModule } from 'ng2-charts';
+import { AverageBarChartComponent } from './shared/components/average-pie-chart/average-bar-chart.component';
+import { StatistichePieChartComponent } from './shared/components/statistiche-bar-chart/statistiche-pie-chart.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,9 @@ import {DesignAngularKitModule} from 'design-angular-kit';
     SendFeedbackDetailComponent,
     NoServiceSpecifiedComponent,
     CreateServiceComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    AverageBarChartComponent,
+    StatistichePieChartComponent
   ],
   imports: [
     RouterModule.forRoot(AppRoutes),
@@ -34,6 +39,7 @@ import {DesignAngularKitModule} from 'design-angular-kit';
     ReactiveFormsModule,
     DesignAngularKitModule,
     FormsModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,8 @@
+<div style="display: block" *ngIf="facetStatistiche">
+  <canvas baseChart
+          [datasets]="barChartData"
+          [labels]="barChartLabels"
+          [chartType]="barChartType"
+          (chartClick)="chartClicked($event)">
+  </canvas>
+</div>

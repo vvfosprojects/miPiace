@@ -5,6 +5,7 @@ export class FeedbackScore {
   constructor(
     public readonly feedbackAverageScores: FeedbackAverageScore[],
     public readonly facetStatistiche: FacetStatistiche[],
+    public readonly publicToken: string
   ) {
   }
 }

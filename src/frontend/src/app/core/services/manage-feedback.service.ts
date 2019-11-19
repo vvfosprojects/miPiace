@@ -48,8 +48,9 @@ export class ManageFeedbackService {
       );
   }
 
-  public getAllFeedback(privateToken: string, rating: Rating, page?: string, pageSize?: string): Observable<AllFeedback> {
-    let queryParams = `?PrivateToken=${privateToken}&Rating=${rating}&`;
+  public getAllFeedback(privateToken: string, rating?: Rating, page?: number, pageSize?: number): Observable<AllFeedback> {
+    let queryParams = `?PrivateToken=${privateToken}&`;
+    queryParams += rating ? `Rating=${rating}&` : ``;
     queryParams += page ? `Page=${page}&` : ``;
     queryParams += pageSize ? `PageSize=${pageSize}&` : ``;
     const url = environment.backendUrl + '/getAllFeedback' + queryParams;
