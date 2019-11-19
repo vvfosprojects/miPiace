@@ -5,16 +5,19 @@ import { SendRatingComponent } from './features/send-rating/send-rating.componen
 import { SendFeedbackDetailComponent } from './features/send-feedback-detail/send-feedback-detail.component';
 import { NoServiceSpecifiedComponent } from './features/no-service-specified/no-service-specified.component';
 import { CreateServiceComponent } from './features/create-service/create-service.component';
+import { StatisticsComponent } from './features/statistics/statistics.component';
 
 export const AppRoutes: Routes = [
-    { path: 'thanks', component: ThanksComponent },
-    { path: 'sendRating/:id', component: SendRatingComponent },
-    { path: 'sendFeedbackDetail', component: SendFeedbackDetailComponent },
-    { path: 'createService', component: CreateServiceComponent },
-    { path: ':id',
-      redirectTo: '/sendRating/:id',
-      pathMatch: 'full'
-    },
-    { path: '', component: NoServiceSpecifiedComponent },
-    { path: '**', component: PageNotFoundComponent }
-  ];
+  { path: 'thanks', component: ThanksComponent },
+  { path: 'sendRating/:id', component: SendRatingComponent },
+  { path: 'statistics/:id', component: StatisticsComponent },
+  { path: 'sendFeedbackDetail', component: SendFeedbackDetailComponent },
+  { path: 'createService', component: CreateServiceComponent },
+  {
+    path: ':id',
+    redirectTo: '/sendRating/:id',
+    pathMatch: 'full'
+  },
+  { path: '', component: NoServiceSpecifiedComponent },
+  { path: '**', component: PageNotFoundComponent }
+];

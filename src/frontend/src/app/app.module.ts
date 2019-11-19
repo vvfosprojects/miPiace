@@ -12,6 +12,7 @@ import { SendRatingComponent } from './features/send-rating/send-rating.componen
 import { SendFeedbackDetailComponent } from './features/send-feedback-detail/send-feedback-detail.component';
 import { NoServiceSpecifiedComponent } from './features/no-service-specified/no-service-specified.component';
 import { CreateServiceComponent } from './features/create-service/create-service.component';
+import { StatisticsComponent } from './features/statistics/statistics.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { CreateServiceComponent } from './features/create-service/create-service
     SendRatingComponent,
     SendFeedbackDetailComponent,
     NoServiceSpecifiedComponent,
-    CreateServiceComponent
+    CreateServiceComponent,
+    StatisticsComponent
   ],
   imports: [
     RouterModule.forRoot(AppRoutes),

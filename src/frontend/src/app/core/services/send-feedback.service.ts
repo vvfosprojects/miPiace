@@ -6,14 +6,20 @@ import { HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { ReturnedId } from '../../shared/models/returned-id';
 import { FeedbackDetail } from '../../shared/models/feedback-detail';
-import { Service } from '../../shared/models/service';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+  })
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class SendFeedbackService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   private static handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
@@ -43,12 +49,6 @@ export class SendFeedbackService {
   public sendRating(rating: string, publicToken: string): Observable<ReturnedId> {
     const url = environment.backendUrl + '/insertRating';
 
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-      })
-    };
-
     const body = {
       rating,
       publicToken
@@ -63,30 +63,10 @@ export class SendFeedbackService {
   public sendFeedbackDetail(detail: FeedbackDetail): Observable<null> {
     const url = environment.backendUrl + '/appendFeedbackDetail';
 
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-      })
-    };
-
     return this.http.post<null>(url, detail, httpOptions)
       .pipe(
         catchError(SendFeedbackService.handleError)
       );
   }
 
-  public createService(welcomeMessage: string): Observable<Service> {
-    const url = environment.backendUrl + '/createNewService';
-
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      })
-    };
-
-    return this.http.post<Service>(url, welcomeMessage, httpOptions)
-      .pipe(
-        catchError(SendFeedbackService.handleError)
-      );
-  }
 }
