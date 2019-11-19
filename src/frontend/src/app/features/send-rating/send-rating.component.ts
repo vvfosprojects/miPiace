@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SendFeedbackService } from '../services/send-feedback.service';
-import { Router, ActivatedRoute } from "@angular/router";
+import { SendFeedbackService } from '../../core/services/send-feedback.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-send-rating',
@@ -10,10 +10,10 @@ import { Router, ActivatedRoute } from "@angular/router";
 export class SendRatingComponent implements OnInit {
   private publicToken: string;
   public welcomeMessage: string = null;
-  
+
   constructor(private sendFeedbackService: SendFeedbackService,
-    private route: ActivatedRoute,
-    private router: Router) {
+              private route: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -32,7 +32,7 @@ export class SendRatingComponent implements OnInit {
 
   public sendGoodRating(): void {
     this.sendFeedbackService
-      .sendRating("good", this.publicToken)
+      .sendRating('good', this.publicToken)
       .subscribe(id => this.router.navigate(['thanks']));
   }
 

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { FeedbackDetail } from '../feedback-detail';
-import { SendFeedbackService } from '../services/send-feedback.service';
+import { FeedbackDetail } from '../../shared/models/feedback-detail';
+import { SendFeedbackService } from '../../core/services/send-feedback.service';
 
 @Component({
   selector: 'app-send-feedback-detail',
@@ -33,7 +33,7 @@ export class SendFeedbackDetailComponent implements OnInit {
       this.feedbackDetailForm.get('text').value,
       this.feedbackDetailForm.get('username').value,
       this.feedbackDetailForm.get('contacts').value,
-    )
+    );
 
     this.sendFeedbackService
       .sendFeedbackDetail(feedbackDetail)
