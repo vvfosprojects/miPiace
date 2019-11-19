@@ -1,33 +1,48 @@
-<div class="row">
-    <div *ngIf="!service" class="col">
-        <div class="h5 mt-5 text-center">
-            Crea ora il tuo servizio.
+<div class="row mt-lg-5">
+    <div *ngIf="!service" class="col-lg-6 mx-auto mt-5 text-center border border-light px-0 shadow-sm">
+        <div class="bg-secondary py-4">
+            <h3 class="text-white">Crea ora il tuo servizio</h3>
         </div>
-        <div class="m-2">
-            <div class="form-group">
-                <input type="text" class="form-control" [formControl]="welcomeMessage"
-                    aria-describedby="welcomeMessageHelp" placeholder="Indica qui il testo della domanda">
-                <small id="createServiceHelp" class="form-text text-muted">Questo campo è obbligatorio</small>
+        <div class="py-4">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="form-group mt-4">
+                        <it-input [label]="'Testo della domanda'"
+                                  [placeholder]="'Indica qui il testo della domanda'"
+                                  [type]="'text'" [formControl]="welcomeMessage"
+                                  [note]="'Questo campo è obbligatorio'">
+                        </it-input>
+                    </div>
+                    <it-button [color]="'dark'" [size]="'lg'" [disabled]="!welcomeMessage.valid"
+                               (click)="onSubmit()">
+                        Crea il servizio
+                    </it-button>
+                </div>
             </div>
-
-            <button type="button" class="btn btn-primary" [disabled]="!welcomeMessage.valid" (click)="onSubmit()">Crea il servizio</button>
         </div>
     </div>
 
     <div *ngIf="!!service" class="col">
-        <div class=" m-5 card">
-            <div class="card-body">
-              <h5 class="card-title">Ecco il tuo servizio</h5>
-              <h6 class="card-subtitle mb-2 text-muted">{{ service.welcomeMessage }}</h6>
-              <p class="card-text">
-                Ecco il link pubblico per compilare il sondaggio:
-                <a href="#" class="card-link" routerLink="/sendRating">{{ getPublicLink() }}</a>
-              </p>
-              <p class="card-text">
-                Ecco il link <b>privato</b> per accedere alle statistiche:
-                <a href="#" class="card-link">{{ getPrivateLink() }}</a>
-              </p>
+        <div class="col-lg-6 mx-auto mt-5 text-center border border-light px-0 shadow-sm">
+            <div class="bg-success py-4">
+                <h5 class="text-white">Ecco il tuo servizio:</h5>
+                <h6 class="text-white font-weight-lighter">{{ service.welcomeMessage }}</h6>
             </div>
-          </div>
+            <div class="py-4">
+                <div class="row">
+                    <div class="col-lg-10 mx-auto">
+                        <p class="card-text">
+                            Ecco il link pubblico per compilare il sondaggio:<br>
+                            <a href="#" class="card-link" routerLink="/sendRating">{{ getPublicLink() }}</a>
+                        </p>
+                        <hr>
+                        <p class="card-text">
+                            Ecco il link <b>privato</b> per accedere alle statistiche:<br>
+                            <a href="#" class="card-link">{{ getPrivateLink() }}</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
