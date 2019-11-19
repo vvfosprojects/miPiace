@@ -1,4 +1,11 @@
-.title-text {
-    margin-top: 3em;
-    margin-bottom: 5em;
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.logo {
+  opacity: .85;
+}
+
+.logo:hover {
+  opacity: 1;
 }

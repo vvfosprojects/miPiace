@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-no-service-specified',
@@ -8,15 +7,9 @@ import {Router} from '@angular/router';
 })
 export class NoServiceSpecifiedComponent implements OnInit {
 
-  codiceServizio = '';
-
-  constructor(private router: Router) {
+  constructor() {
   }
 
   ngOnInit() {
-  }
-
-  goToServizio() {
-    this.router.navigate(['sendRating/' + this.codiceServizio]);
   }
 }

@@ -1,0 +1,7 @@
+<it-input [label]="'Codice Servizio'"
+          [placeholder]="'Inserisci il codice del servizio'" [type]="'text'" [(ngModel)]="codiceServizio"
+          [note]="'Il codice del servizio ti permette di lasciare un feedback al servizio desiderato'">
+</it-input>
+<it-button [disabled]="!codiceServizio || codiceServizio.length <= 0" (click)="goToServizio()"
+           [color]="'dark'" [size]="'lg'">Vai al Servizio
+</it-button>

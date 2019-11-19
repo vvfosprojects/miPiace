@@ -13,7 +13,8 @@ import { SendFeedbackDetailComponent } from './features/send-feedback-detail/sen
 import { NoServiceSpecifiedComponent } from './features/no-service-specified/no-service-specified.component';
 import { CreateServiceComponent } from './features/create-service/create-service.component';
 import { StatisticsComponent } from './features/statistics/statistics.component';
-import {DesignAngularKitModule} from 'design-angular-kit';
+import { DesignAngularKitModule } from 'design-angular-kit';
+import { SearchServiceComponent } from './shared/components/search-service/search-service.component';
 import { ChartsModule } from 'ng2-charts';
 import { AverageBarChartComponent } from './shared/components/average-pie-chart/average-bar-chart.component';
 import { StatistichePieChartComponent } from './shared/components/statistiche-bar-chart/statistiche-pie-chart.component';
@@ -29,7 +30,8 @@ import { StatistichePieChartComponent } from './shared/components/statistiche-ba
     CreateServiceComponent,
     StatisticsComponent,
     AverageBarChartComponent,
-    StatistichePieChartComponent
+    StatistichePieChartComponent,
+    SearchServiceComponent
   ],
   imports: [
     RouterModule.forRoot(AppRoutes),

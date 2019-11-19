@@ -1,22 +1,17 @@
 <div class="row mt-5">
-  <div class="col-lg-8 mx-auto mt-5 text-center border border-light px-3 py-4 shadow-sm">
-    <p class="h3 text-danger">
-      <i class="fa fa-exclamation-triangle mr-1"></i>
-      Accidenti!
-    </p>
-    <p class="h6 font-weight-lighter text-dark mb-0">Se non indichi il servizio per cui vuoi lasciare il feedback...
-      è
-      complicato!</p>
-    <hr>
-    <div class="row mt-5">
+  <div class="col-lg-6 mx-auto mt-5 text-center border border-light px-0 shadow-sm">
+    <div class="bg-danger text-white py-4">
+      <p class="h3">
+        <i class="fa fa-exclamation-triangle mr-1"></i>
+        Accidenti!
+      </p>
+      <p class="h6 font-weight-lighter mb-0">Se non indichi il servizio per cui vuoi lasciare il feedback...
+        è
+        complicato!</p>
+    </div>
+    <div class="row mt-5 py-4">
       <div class="col-lg-9 mx-auto">
-        <it-input [label]="'Codice Servizio'"
-                  [placeholder]="'Inserisci il codice del servizio'" [type]="'text'" [(ngModel)]="codiceServizio"
-                  [note]="'Il codice del servizio ti permette di lasciare un feedback al servizio desiderato'">
-        </it-input>
-        <it-button [disabled]="!codiceServizio || codiceServizio.length <= 0" (click)="goToServizio()"
-                   [color]="'primary'">Vai al Servizio
-        </it-button>
+        <app-search-service></app-search-service>
       </div>
     </div>
   </div>
