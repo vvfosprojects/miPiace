@@ -48,8 +48,8 @@ namespace Persistence.MongoDB
             
             //recupero tutti i feedback registrati nel giornata antecedente la data odierna 
             var filterDay = filterBuilderDay.Eq(x => x.PublicToken, servicePublicToken) &
-                             filterBuilderDay.Gte(x => x.InstantUtc, DateTime.UtcNow.AddDays(-1)) &
-                             filterBuilderDay.Lt(x => x.InstantUtc, DateTime.UtcNow);
+                             filterBuilderDay.Gte(x => x.InstantUtc, DateTime.UtcNow.AddHours(-23)) &
+                             filterBuilderDay.Lte(x => x.InstantUtc, DateTime.UtcNow);
 
             //recupero tutti i feedback registrati nel corso dell'ultima settimana (compresi quelli registrati nella giornata odierna)
             var filterWeek = filterBuilderWeek.Eq(x => x.PublicToken, servicePublicToken) &
