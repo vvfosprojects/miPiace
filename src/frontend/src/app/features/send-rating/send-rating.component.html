@@ -1,21 +1,29 @@
-<div class="row justify-content-center text-center">
-    <!-- spinner -->
-    <div *ngIf="!welcomeMessage" class="col">
-        <img src="../../../assets/images/spinner.gif" alt="welcome">
-    </div>
+<div class="row mt-lg-5">
+  <!-- spinner -->
+  <!--  <div *ngIf="!welcomeMessage" class="col">-->
+  <!--    <img src="../../../assets/images/spinner.gif" alt="welcome">-->
+  <!--  </div>-->
+  <!-- spinner -->
+  <div *ngIf="!welcomeMessage" class="col-lg-10 mx-auto mt-lg-5 text-center border border-light px-3 py-4 shadow-sm">
+    <h3 class="text-danger">
+      <i class="fa fa-exclamation-triangle mr-1"></i>
+      Servizio non trovato
+    </h3>
+  </div>
 
-    <!-- form -->
-    <div *ngIf="!!welcomeMessage" class="col">
-        <div>
-            <p class="h2 title-text">{{ welcomeMessage }}</p>
-        </div>
-        <div>
-            <a routerLink="/sendRating" (click)="sendRating('poor')"><img alt="scarso" class="smile"
-                    src="../../../assets/images/poor.png" /></a>
-            <a routerLink="/sendRating" (click)="sendRating('fair')"><img alt="senza lode e senza infamia" class="smile"
-                    src="../../../assets/images/fair.png" /></a>
-            <a routerLink="/sendRating" (click)="sendGoodRating()"><img alt="buono!" class="smile"
-                    src="../../../assets/images/good.png" /></a>
-        </div>
+  <!-- form -->
+  <div *ngIf="!!welcomeMessage" class="col-lg-10 mx-auto mt-5 text-center border border-light px-3 py-5 shadow-sm">
+    <h3 class="text-center">{{ welcomeMessage }}</h3>
+    <div class="mt-4">
+      <a class="score border border-light" routerLink="/sendRating" (click)="sendRating('poor')">
+        <img alt="scarso" src="../../../assets/images/poor.png"/>
+      </a>
+      <a class="score border border-light" routerLink="/sendRating" (click)="sendRating('fair')">
+        <img alt="senza lode e senza infamia" src="../../../assets/images/fair.png"/>
+      </a>
+      <a class="score border border-light" routerLink="/sendRating" (click)="sendGoodRating()">
+        <img alt="buono!" src="../../../assets/images/good.png"/>
+      </a>
     </div>
+  </div>
 </div>
