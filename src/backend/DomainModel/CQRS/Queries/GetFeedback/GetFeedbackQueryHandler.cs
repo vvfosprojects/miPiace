@@ -19,7 +19,7 @@ namespace DomainModel.CQRS.Queries.GetFeedback
 
         public GetFeedbackQueryResult Handle(GetFeedbackQuery query)
         {
-            Feedback feedback = this.getFeedback.Get(query.PrivateToken, query.Id);
+            Feedback feedback = this.getFeedback.Get(query.Id, query.PrivateToken);
 
             return new GetFeedbackQueryResult() {Feedback = feedback};
         }

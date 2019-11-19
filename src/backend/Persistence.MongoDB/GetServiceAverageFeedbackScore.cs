@@ -188,7 +188,8 @@ namespace Persistence.MongoDB
             return new GetServiceAverageFeedbackScoreQueryResult()
             {
                 feedbackAverageScores = feedbackAverageScoreList,
-                facetStatistiche = facetStatList
+                facetStatistiche = facetStatList,
+                publicToken = servicePublicToken
             };
 
         }

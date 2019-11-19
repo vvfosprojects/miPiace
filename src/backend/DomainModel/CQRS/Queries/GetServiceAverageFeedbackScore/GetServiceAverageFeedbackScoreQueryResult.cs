@@ -15,5 +15,7 @@ namespace DomainModel.CQRS.Queries.GetServiceAverageFeedbackScore
         public List<FeedbackAverageScore> feedbackAverageScores { get; set; }
 
         public List<FacetStatistiche> facetStatistiche { get; set; }
+
+        public string publicToken { get; set; }
     }
 }
