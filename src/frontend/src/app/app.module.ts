@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { ThanksComponent } from './features/thanks/thanks.component';
 import { PageNotFoundComponent } from './features/page-not-found/page-not-found.component';
@@ -13,6 +13,7 @@ import { SendFeedbackDetailComponent } from './features/send-feedback-detail/sen
 import { NoServiceSpecifiedComponent } from './features/no-service-specified/no-service-specified.component';
 import { CreateServiceComponent } from './features/create-service/create-service.component';
 import { StatisticsComponent } from './features/statistics/statistics.component';
+import {DesignAngularKitModule} from 'design-angular-kit';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,8 @@ import { StatisticsComponent } from './features/statistics/statistics.component'
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
+    DesignAngularKitModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
