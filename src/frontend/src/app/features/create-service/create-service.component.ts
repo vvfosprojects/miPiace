@@ -26,7 +26,7 @@ export class CreateServiceComponent implements OnInit {
   }
 
   public getPublicLink(): string {
-    const urlTree = this.router.parseUrl('/' + this.service.publicToken);
+    const urlTree = this.router.parseUrl('/sendRating/' + this.service.publicToken);
     return this.router.serializeUrl(urlTree);
   }
 

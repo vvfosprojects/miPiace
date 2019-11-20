@@ -33,12 +33,12 @@
                     <div class="col-lg-10 mx-auto">
                         <p class="card-text">
                             Ecco il link pubblico per compilare il sondaggio:<br>
-                            <a href="#" class="card-link" routerLink="/sendRating">{{ getPublicLink() }}</a>
+                          <a href="#" class="card-link" routerLink="{{getPublicLink()}}" target="_blank">{{getPublicLink()}}</a>
                         </p>
                         <hr>
                         <p class="card-text">
                             Ecco il link <b>privato</b> per accedere alle statistiche:<br>
-                            <a href="#" class="card-link">{{ getPrivateLink() }}</a>
+                          <a href="{{getPrivateLink()}}" class="card-link" target="_blank">{{getPrivateLink()}}</a>
                         </p>
                     </div>
                 </div>
