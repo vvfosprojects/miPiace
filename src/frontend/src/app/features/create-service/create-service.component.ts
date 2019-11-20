@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Service } from '../../shared/models/service';
 import { ManageFeedbackService } from '../../core/services/manage-feedback.service';
 
+
 @Component({
   selector: 'app-create-service',
   templateUrl: './create-service.component.html',
@@ -13,8 +14,12 @@ export class CreateServiceComponent implements OnInit {
   welcomeMessage = new FormControl('', [Validators.minLength(5), Validators.required]);
   service: Service;
 
+  locationPath: string;
+
   constructor(private manageFeedbackService: ManageFeedbackService,
-              private router: Router) { }
+              private router: Router) {
+    this.locationPath = window.location.origin;
+  }
 
   ngOnInit() {
   }
@@ -25,13 +30,15 @@ export class CreateServiceComponent implements OnInit {
       .subscribe(service => this.service = service);
   }
 
-  public getPublicLink(): string {
+  public getPublicLink(fullUrl?: boolean): string {
     const urlTree = this.router.parseUrl('/sendRating/' + this.service.publicToken);
-    return this.router.serializeUrl(urlTree);
+    const serializedUrl = this.router.serializeUrl(urlTree);
+    return fullUrl ? this.locationPath + serializedUrl : serializedUrl;
   }
 
-  public getPrivateLink(): string {
+  public getPrivateLink(fullUrl?: boolean): string {
     const urlTree = this.router.parseUrl('/statistics/' + this.service.privateToken);
-    return this.router.serializeUrl(urlTree);
+    const serializedUrl = this.router.serializeUrl(urlTree);
+    return fullUrl ? this.locationPath + serializedUrl : serializedUrl;
   }
 }

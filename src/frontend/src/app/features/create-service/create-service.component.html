@@ -34,11 +34,19 @@
                         <p class="card-text">
                             Ecco il link pubblico per compilare il sondaggio:<br>
                           <a href="#" class="card-link" routerLink="{{getPublicLink()}}" target="_blank">{{getPublicLink()}}</a>
+                          <it-button size="sm" class="btn btn-block btn-secondary" ngbTooltip="Copia link publico" placement="bottom"
+                                     ngxClipboard [cbContent]="getPublicLink(true)">
+                            <i class="fa fa-clipboard"></i>
+                          </it-button>
                         </p>
                         <hr>
                         <p class="card-text">
                             Ecco il link <b>privato</b> per accedere alle statistiche:<br>
                           <a href="{{getPrivateLink()}}" class="card-link" target="_blank">{{getPrivateLink()}}</a>
+                          <it-button size="sm" class="btn btn-block btn-secondary" ngbTooltip="Copia link privato" placement="bottom"
+                                     ngxClipboard [cbContent]="getPrivateLink(true)">
+                            <i class="fa fa-clipboard"></i>
+                          </it-button>
                         </p>
                     </div>
                 </div>
