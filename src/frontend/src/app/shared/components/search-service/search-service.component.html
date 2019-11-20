@@ -3,5 +3,7 @@
           [note]="'Il codice del servizio ti permette di lasciare un feedback al servizio desiderato'">
 </it-input>
 <it-button [disabled]="!codiceServizio || codiceServizio.length <= 0" (click)="goToServizio()"
-           [color]="'dark'" [size]="'lg'">Vai al Servizio
+           [color]="'dark'" [size]="'lg'">
+  <i class="fa fa-send mr-1"></i>
+  Vai al Servizio
 </it-button>
