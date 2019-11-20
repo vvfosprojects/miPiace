@@ -10,10 +10,14 @@
   </div>
 </ng-container>
 <ng-container *ngIf="feedbacks">
-  <div class="h4">
-    Lista feedback
-  </div>
-  <div class="h5">
-    <pre *ngFor="let feedback of feedbacks">{{feedback | json}}</pre>
+  <div class="row">
+    <div class="col-lg-9">
+      <div class="h4">
+        Lista feedback
+      </div>
+      <div class="h5">
+        <pre *ngFor="let feedback of feedbacks">{{feedback | json}}</pre>
+      </div>
+    </div>
   </div>
 </ng-container>
