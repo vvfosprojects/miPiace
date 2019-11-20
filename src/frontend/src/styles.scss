@@ -1,2 +1,14 @@
 @import '../node_modules/bootstrap-italia/dist/css/bootstrap-italia.min.css';
 @import '../node_modules/font-awesome/css/font-awesome.min.css';
+
+@font-face {
+  font-family: 'accidents';
+  src: url('./assets/fonts/accidents.eot?12043303');
+  src: url('./assets/fonts/accidents.eot?12043303#iefix') format('embedded-opentype'),
+  url('./assets/fonts/accidents.woff2?12043303') format('woff2'),
+  url('./assets/fonts/accidents.woff?12043303') format('woff'),
+  url('./assets/fonts/accidents.ttf?12043303') format('truetype'),
+  url('./assets/fonts/accidents.svg?12043303#accidents') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
