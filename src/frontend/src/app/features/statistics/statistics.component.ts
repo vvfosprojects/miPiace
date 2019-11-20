@@ -16,7 +16,7 @@ import { Feedback } from '../../shared/models/feedback';
   styleUrls: ['./statistics.component.css']
 })
 export class StatisticsComponent implements OnInit {
-  private privateToken: string;
+  privateToken: string;
 
   feedbackAverageScores: FeedbackAverageScore[];
   facetStatistiche: FacetStatistiche[];
