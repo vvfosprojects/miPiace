@@ -1,0 +1,72 @@
+<div class="row mt-lg-5">
+  <div *ngIf="!service" class="col-lg-6 mx-auto mt-5 text-center border border-light px-0 shadow-sm">
+    <div class="bg-secondary py-4">
+      <h3 class="text-white">Crea ora il tuo servizio</h3>
+    </div>
+    <div class="py-4">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <div class="form-group mt-4">
+            <it-input [label]="'Testo della domanda'"
+                      [placeholder]="'Indica qui il testo della domanda'"
+                      [type]="'text'" [formControl]="welcomeMessage"
+                      [note]="'Questo campo è obbligatorio'">
+            </it-input>
+          </div>
+          <it-button [color]="'dark'" [size]="'lg'" [disabled]="!welcomeMessage.valid"
+                     (click)="onSubmit()">
+            Crea il servizio
+          </it-button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!!service" class="col">
+    <div class="col-lg-6 mx-auto mt-5 text-center border border-light px-0 shadow-sm">
+      <div class="bg-success py-4">
+        <h5 class="text-white">Ecco il tuo servizio:</h5>
+        <h6 class="text-white font-weight-lighter">{{ service.welcomeMessage }}</h6>
+      </div>
+      <div class="py-4">
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <div class="card-text">
+              Accesso sondaggio - <b>pubblico</b>
+              <div class="mt-2">
+                <it-button class="mr-2" ngbTooltip="Vai al sondaggio" placement="bottom" [size]="'sm'"
+                           [color]="'success'" routerLink="{{getPublicLink()}}">
+                  <i class="fa fa-send mr-1"></i>
+                  Vai al sondaggio
+                </it-button>
+                <it-button ngbTooltip="Copia link pubblico" placement="bottom" [size]="'sm'"
+                           [color]="'dark'"
+                           [cbContent]="getPublicLink(true)" ngxClipboard>
+                  <i class="fa fa-clipboard mr-1"></i>
+                  Copia Link Pubblico
+                </it-button>
+              </div>
+            </div>
+            <hr>
+            <div class="card-text">
+              Accesso statistiche - <b>privato</b>
+              <div class="mt-2">
+                <it-button class="mr-2" ngbTooltip="Vai alle statistiche" placement="bottom" [size]="'sm'"
+                           [color]="'success'" routerLink="{{getPrivateLink()}}">
+                  <i class="fa fa-send mr-1"></i>
+                  Vai alle statistiche
+                </it-button>
+                <it-button ngbTooltip="Copia link privato" placement="bottom" [size]="'sm'"
+                           [color]="'dark'"
+                           [cbContent]="getPrivateLink(true)" ngxClipboard>
+                  <i class="fa fa-clipboard mr-1"></i>
+                  Copia Link Privato
+                </it-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

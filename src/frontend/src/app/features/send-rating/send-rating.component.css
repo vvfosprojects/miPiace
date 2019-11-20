@@ -1,0 +1,16 @@
+.score {
+  height: 200px !important;
+  padding: 20px;
+  opacity: .6;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+.score:hover {
+  opacity: 1;
+}
+
+.score img {
+  margin-right: 2.5em;
+  margin-left: 2.5em;
+}

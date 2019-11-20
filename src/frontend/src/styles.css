@@ -1,17 +1,11 @@
-.title-text {
-    margin-top: 3em;
-    margin-bottom: 5em;
+.cursor-pointer {
+  cursor: pointer;
 }
 
-.footer {
-    font-size: 80%;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: whitesmoke;
-    color: gray;
-    text-align: center;
-    padding: 0;
-    margin: 0;
-  }
+.logo {
+  opacity: .85;
+}
+
+.logo:hover {
+  opacity: 1;
+}

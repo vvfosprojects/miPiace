@@ -48,8 +48,13 @@ namespace Persistence.MongoDB
 
             //recupero tutti i feedback registrati nel giornata antecedente la data odierna 
             var filterDay = filterBuilderDay.Eq(x => x.PublicToken, servicePublicToken) &
+<<<<<<< HEAD
                              filterBuilderDay.Gte(x => x.InstantUtc, DateTime.Today.AddDays(-1).Date) &
                              filterBuilderDay.Lt(x => x.InstantUtc, DateTime.Today);
+=======
+                             filterBuilderDay.Gte(x => x.InstantUtc, DateTime.UtcNow.AddHours(-23)) &
+                             filterBuilderDay.Lte(x => x.InstantUtc, DateTime.UtcNow);
+>>>>>>> origin/develop
 
             //recupero tutti i feedback registrati nel corso dell'ultima settimana (compresi quelli registrati nella giornata odierna)
             var filterWeek = filterBuilderWeek.Eq(x => x.PublicToken, servicePublicToken) &
@@ -188,7 +193,8 @@ namespace Persistence.MongoDB
             return new GetServiceAverageFeedbackScoreQueryResult()
             {
                 feedbackAverageScores = feedbackAverageScoreList,
-                facetStatistiche = facetStatList
+                facetStatistiche = facetStatList,
+                publicToken = servicePublicToken
             };
 
         }

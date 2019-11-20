@@ -1,0 +1,23 @@
+<ng-container *ngIf="privateToken">
+  <div class="h3">{{title}}</div>
+  <div class="row">
+    <div class="col-md-6">
+      <app-average-bar-chart [feedbackAverageScores]="feedbackAverageScores" [title]="title"></app-average-bar-chart>
+    </div>
+    <div class="col-md-6">
+      <app-statistiche-pie-chart [facetStatistiche]="facetStatistiche" [title]="title"></app-statistiche-pie-chart>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="feedbacks">
+  <div class="row">
+    <div class="col-lg-9">
+      <div class="h4">
+        Lista feedback
+      </div>
+      <div class="h5">
+        <pre *ngFor="let feedback of feedbacks">{{feedback | json}}</pre>
+      </div>
+    </div>
+  </div>
+</ng-container>
