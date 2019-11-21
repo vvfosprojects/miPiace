@@ -23,7 +23,8 @@
     <div class="col-lg-9 mx-auto my-3">
       <div class="row">
         <div class="col-md-6">
-          <app-average-bar-chart [feedbackAverageScores]="feedbackAverageScores" [title]="title"></app-average-bar-chart>
+          <app-average-bar-chart [feedbackAverageScores]="feedbackAverageScores"
+                                 [title]="title"></app-average-bar-chart>
         </div>
         <div class="col-md-6">
           <app-statistiche-pie-chart [facetStatistiche]="facetStatistiche" [title]="title"></app-statistiche-pie-chart>
@@ -40,7 +41,7 @@
     </div>
     <div class="col-lg-8 mx-auto mt-2">
       <div class="h5">
-        <app-rate *ngFor="let feedback of feedbacks" [feedback]="feedback"></app-rate>
+        <app-rate *ngFor="let feedback of feedbacks" [feedback]="feedback" (onDetail)="onDetail($event)"></app-rate>
       </div>
     </div>
   </div>

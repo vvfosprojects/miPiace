@@ -1,13 +1,21 @@
 <div class="rounded border border-light shadow-sm p-2 mb-3 bg-light cursor-pointer" (mouseover)="hover = true"
      (mouseout)="hover = false" [ngClass]="{'bg-white shadow-lg': hover}">
   <div class="row">
-    <div class="col-lg-8 pt-1">
-      {{getIconByRate(feedback.rating)}}
-      {{feedback.user}}
-      ({{feedback.instantUtc | date}})
+    <div class="col-lg-8">
+      <img class="mr-3" alt="{{getImgPathByRate(feedback.rating).alt}}" src="{{getImgPathByRate(feedback.rating).src}}"
+           width="40px">
+      <span class="d-inline-block pt-1 h6 mr-3">
+        <i class="fa fa-user mr-1"></i>
+        <span *ngIf="feedback.user">{{feedback.user}}</span>
+        <span *ngIf="!feedback.user">Anonimo</span>
+      </span>
+      <span class="d-inline-block pt-1 h6 text-md-right">
+        <i class="fa fa-calendar mr-1"></i>
+        {{feedback.instantUtc | date}}
+      </span>
     </div>
     <div class="col-lg-4">
-      <it-button class="float-lg-right" [size]="'sm'" [color]="'dark'">
+      <it-button class="float-lg-right" [size]="'sm'" [color]="'dark'" (click)="detail()">
         <i class="fa fa-info mr-1"></i>
         Dettaglio
       </it-button>

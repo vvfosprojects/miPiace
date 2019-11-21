@@ -20,6 +20,7 @@ import { StatistichePieChartComponent } from './shared/components/statistiche-pi
 import { ClipboardModule } from 'ngx-clipboard';
 import { SearchStatisticsComponent } from './shared/components/search-statistics/search-statistics.component';
 import { RateComponent } from './features/statistics/rate/rate.component';
+import { DetailModalComponent } from './features/statistics/detail-modal/detail-modal.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { RateComponent } from './features/statistics/rate/rate.component';
     StatistichePieChartComponent,
     SearchServiceComponent,
     SearchStatisticsComponent,
-    RateComponent
+    RateComponent,
+    DetailModalComponent
   ],
   imports: [
     RouterModule.forRoot(AppRoutes),
@@ -48,6 +50,7 @@ import { RateComponent } from './features/statistics/rate/rate.component';
     ClipboardModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DetailModalComponent]
 })
 export class AppModule { }

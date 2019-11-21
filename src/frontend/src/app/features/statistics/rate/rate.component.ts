@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FeedbackI } from '../../../shared/interfaces/feedback-i';
+import { Rating } from '../../../shared/enums/rating.enum';
 
 @Component({
   selector: 'app-rate',
@@ -11,14 +12,27 @@ export class RateComponent implements OnInit {
   @Input() feedback: FeedbackI;
   hover: boolean;
 
+  @Output() onDetail: EventEmitter<FeedbackI> = new EventEmitter<FeedbackI>();
+
   constructor() {
   }
 
   ngOnInit() {
   }
 
-  getIconByRate(rate: number) {
-    return;
+  getImgPathByRate(rating: Rating) {
+    switch (rating) {
+      case Rating.Poor:
+        return { src: './assets/images/poor.png', alt: 'poor smile face image' };
+      case Rating.Fair:
+        return { src: './assets/images/fair.png', alt: 'fair smile face image' };
+      case Rating.Good:
+        return { src: './assets/images/good.png', alt: 'good smile face image' };
+    }
+  }
+
+  detail() {
+    this.onDetail.emit(this.feedback);
   }
 
 }
