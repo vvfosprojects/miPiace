@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { ThanksComponent } from './features/thanks/thanks.component';
 import { PageNotFoundComponent } from './features/page-not-found/page-not-found.component';
@@ -19,6 +19,7 @@ import { AverageBarChartComponent } from './shared/components/average-pie-chart/
 import { StatistichePieChartComponent } from './shared/components/statistiche-bar-chart/statistiche-pie-chart.component';
 import { ClipboardModule } from 'ngx-clipboard';
 import { SearchStatisticsComponent } from './shared/components/search-statistics/search-statistics.component';
+import { RateComponent } from './features/statistics/rate/rate.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { SearchStatisticsComponent } from './shared/components/search-statistics
     AverageBarChartComponent,
     StatistichePieChartComponent,
     SearchServiceComponent,
-    SearchStatisticsComponent
+    SearchStatisticsComponent,
+    RateComponent
   ],
   imports: [
     RouterModule.forRoot(AppRoutes),

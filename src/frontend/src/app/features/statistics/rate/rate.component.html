@@ -1,0 +1,16 @@
+<div class="rounded border border-light shadow-sm p-2 mb-3 bg-light cursor-pointer" (mouseover)="hover = true"
+     (mouseout)="hover = false" [ngClass]="{'bg-white shadow-lg': hover}">
+  <div class="row">
+    <div class="col-lg-8 pt-1">
+      {{getIconByRate(feedback.rating)}}
+      {{feedback.user}}
+      ({{feedback.instantUtc | date}})
+    </div>
+    <div class="col-lg-4">
+      <it-button class="float-lg-right" [size]="'sm'" [color]="'dark'">
+        <i class="fa fa-info mr-1"></i>
+        Dettaglio
+      </it-button>
+    </div>
+  </div>
+</div>
