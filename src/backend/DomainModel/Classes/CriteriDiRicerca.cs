@@ -17,5 +17,7 @@ namespace DomainModel.Classes
         public int FirstIndex { get; set; }
 
         public int LastIndex { get; set; }
+
+        public int TotalItems { get; set; }
     }
 }

@@ -30,7 +30,8 @@ namespace DomainModel.CQRS.Queries.GetAllFeedback
                     LastIndex = (int)(((query.Page - 1) * query.PageSize) + query.PageSize - 1),
                     PageSize = (int)query.PageSize,
                     Rating = query.Rating.ToString(),
-                    PrivateToken = query.PrivateToken
+                    PrivateToken = query.PrivateToken,
+                    TotalItems = feedbackList.Count
                 }
             };
         }
