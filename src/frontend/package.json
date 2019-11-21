@@ -4,12 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-<<<<<<< HEAD
-    "build": "ng build --prod --base-href ./",
-=======
     "build": "ng build --aot --prod --base-href ./",
     "lite-server": "lite-server --baseDir=\"./dist/mipiace\"",
->>>>>>> origin/develop
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
