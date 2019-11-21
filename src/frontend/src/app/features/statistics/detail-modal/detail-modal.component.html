@@ -1,1 +1,52 @@
-<pre>{{feedback | json}}</pre>
+<div>
+  <div class="text-center p-2">
+    <img alt="{{getImgPathByRating(feedback.rating).alt}}" src="{{getImgPathByRating(feedback.rating).src}}">
+  </div>
+  <div class="bg-dark mt-2 p-3 text-white">
+    <div class="mb-3">
+      <h6 class="text-center mb-0">
+        <i class="fa fa-calendar mr-2"></i>
+        <span *ngIf="feedback.instantUtc">{{feedback.instantUtc | date}}</span>
+      </h6>
+    </div>
+
+    <div class="">
+      <small class="d-block mb-0">
+        <i class="fa fa-user mr-2"></i>
+        Testo del feedback
+      </small>
+      <hr class="bg-light mt-1 mb-2">
+      <p style="max-height:180px; overflow-y:scroll">
+        <span *ngIf="feedback.feedbackText">
+          {{feedback.feedbackText}}
+        </span>
+        <span *ngIf="!feedback.feedbackText">Testo non disponibile</span>
+      </p>
+    </div>
+
+    <div class="row">
+      <div class="col-lg">
+        <small class="d-block mb-0">
+          <i class="fa fa-user mr-2"></i>
+          Utente
+        </small>
+        <hr class="bg-light mt-1 mb-2">
+        <h6 class="font-weight-normal">
+          <span *ngIf="feedback.user">{{feedback.user}}</span>
+          <span *ngIf="!feedback.user">Anonimo</span>
+        </h6>
+      </div>
+      <div class="col-lg">
+        <small class="d-block mb-0">
+          <i class="fa fa-phone mr-2"></i>
+          Contatti Utente
+        </small>
+        <hr class="bg-light mt-1 mb-2">
+        <h6 class="font-weight-normal">
+          <span *ngIf="feedback.userContacts">{{feedback.userContacts}}</span>
+          <span *ngIf="!feedback.userContacts">Nessun Contatto</span>
+        </h6>
+      </div>
+    </div>
+  </div>
+</div>

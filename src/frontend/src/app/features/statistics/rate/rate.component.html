@@ -2,7 +2,8 @@
      (mouseout)="hover = false" [ngClass]="{'bg-white shadow-lg': hover}">
   <div class="row">
     <div class="col-lg-8">
-      <img class="mr-3" alt="{{getImgPathByRate(feedback.rating).alt}}" src="{{getImgPathByRate(feedback.rating).src}}"
+      <img class="mr-3" alt="{{getImgPathByRating(feedback.rating).alt}}"
+           src="{{getImgPathByRating(feedback.rating).src}}"
            width="40px">
       <span class="d-inline-block pt-1 h6 mr-3">
         <i class="fa fa-user mr-1"></i>
@@ -15,7 +16,8 @@
       </span>
     </div>
     <div class="col-lg-4">
-      <it-button class="float-lg-right" [size]="'sm'" [color]="'dark'" (click)="detail()">
+      <it-button class="float-lg-right" [size]="'sm'" [color]="'dark'" [disabled]="feedback.rating === rating.Good"
+                 (click)="onDetail()">
         <i class="fa fa-info mr-1"></i>
         Dettaglio
       </it-button>

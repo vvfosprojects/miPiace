@@ -41,7 +41,7 @@
     </div>
     <div class="col-lg-8 mx-auto mt-2">
       <div class="h5">
-        <app-rate *ngFor="let feedback of feedbacks" [feedback]="feedback" (onDetail)="onDetail($event)"></app-rate>
+        <app-rate *ngFor="let feedback of feedbacks" [feedback]="feedback" (detail)="onDetail($event)"></app-rate>
       </div>
     </div>
   </div>
