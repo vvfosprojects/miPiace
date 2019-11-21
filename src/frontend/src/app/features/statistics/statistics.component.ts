@@ -44,7 +44,6 @@ export class StatisticsComponent implements OnInit {
           this.facetStatistiche = feedbackScore.facetStatistiche;
           this.feedbackAverageScores = feedbackScore.feedbackAverageScores;
           if (feedbackScore.publicToken) {
-            console.log('test');
             this.sendFeedbackService.getWelcomeMessage(feedbackScore.publicToken).subscribe(welcome => this.title = welcome);
             this.getAllFeedback();
           }

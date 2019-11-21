@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --aot --prod --base-href ./",
+    "build": "ng build --aot --prod",
     "lite-server": "lite-server --baseDir=\"./dist/mipiace\"",
     "test": "ng test",
     "lint": "ng lint",
