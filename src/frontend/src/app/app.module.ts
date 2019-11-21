@@ -19,6 +19,7 @@ import { ChartsModule } from 'ng2-charts';
 import { AverageBarChartComponent } from './shared/components/average-pie-chart/average-bar-chart.component';
 import { StatistichePieChartComponent } from './shared/components/statistiche-bar-chart/statistiche-pie-chart.component';
 import { ClipboardModule } from 'ngx-clipboard';
+import { SearchStatisticsComponent } from './shared/components/search-statistics/search-statistics.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ClipboardModule } from 'ngx-clipboard';
     StatisticsComponent,
     AverageBarChartComponent,
     StatistichePieChartComponent,
-    SearchServiceComponent
+    SearchServiceComponent,
+    SearchStatisticsComponent
   ],
   imports: [
     RouterModule.forRoot(AppRoutes),

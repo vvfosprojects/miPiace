@@ -1,0 +1,13 @@
+<div class="row py-5">
+  <div class="col-11 col-lg-9 mx-auto">
+    <h6 class="text-dark font-weight-bold mb-4">Se hai un codice privato, inseriscilo:</h6>
+    <it-input [label]="'Codice Accesso Statistiche'"
+              [placeholder]="'Inserisci il codice privato'" [type]="'text'" [(ngModel)]="privateToken"
+              [note]="'Il codice privato ti permette di accedere al pannello delle statistiche del servizio feedback associato'">
+    </it-input>
+    <it-button [disabled]="!privateToken || privateToken.length <= 0" (click)="goToStatistiche()"
+               [color]="'dark'" [size]="'lg'">
+      <i class="fa fa-send mr-1"></i>
+      Vai al Servizio
+    </it-button>  </div>
+</div>

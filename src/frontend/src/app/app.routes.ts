@@ -6,10 +6,12 @@ import { SendFeedbackDetailComponent } from './features/send-feedback-detail/sen
 import { NoServiceSpecifiedComponent } from './features/no-service-specified/no-service-specified.component';
 import { CreateServiceComponent } from './features/create-service/create-service.component';
 import { StatisticsComponent } from './features/statistics/statistics.component';
+import { SearchStatisticsComponent } from './shared/components/search-statistics/search-statistics.component';
 
 export const AppRoutes: Routes = [
   { path: 'thanks', component: ThanksComponent },
   { path: 'sendRating/:id', component: SendRatingComponent },
+  { path: 'statistics', component: SearchStatisticsComponent },
   { path: 'statistics/:id', component: StatisticsComponent },
   { path: 'sendFeedbackDetail', component: SendFeedbackDetailComponent },
   { path: 'createService', component: CreateServiceComponent },

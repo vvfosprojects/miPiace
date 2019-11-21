@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ManageFeedbackService } from '../../core/services/manage-feedback.service';
 import { FeedbackScore } from '../../shared/models/feedback-score';
 import { FeedbackAverageScore } from '../../shared/interfaces/feedback-average-score';
@@ -17,6 +17,7 @@ import { Feedback } from '../../shared/models/feedback';
 })
 export class StatisticsComponent implements OnInit {
   privateToken: string;
+  feedbackResult: boolean;
 
   feedbackAverageScores: FeedbackAverageScore[];
   facetStatistiche: FacetStatistiche[];
@@ -26,26 +27,27 @@ export class StatisticsComponent implements OnInit {
 
   constructor(private manageFeedbackService: ManageFeedbackService,
               private sendFeedbackService: SendFeedbackService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit() {
     this.privateToken = this.route.snapshot.paramMap.get('id');
-    this.getAllFeedback();
-
     this.manageFeedbackService
       .getServiceAverageFeedbackScore(this.privateToken)
       .subscribe((feedbackScore: FeedbackScore) => {
         if (feedbackScore) {
+          this.feedbackResult = !!feedbackScore;
           console.log('getServiceAverageFeedbackScore', feedbackScore);
           this.facetStatistiche = feedbackScore.facetStatistiche;
           this.feedbackAverageScores = feedbackScore.feedbackAverageScores;
           if (feedbackScore.publicToken) {
             console.log('test');
             this.sendFeedbackService.getWelcomeMessage(feedbackScore.publicToken).subscribe(welcome => this.title = welcome);
+            this.getAllFeedback();
           }
         }
-      });
+      }, () => this.goToSearchStatistiche());
   }
 
   getAllFeedback(rating?: Rating, page?: number, pageSize?: number) {
@@ -66,6 +68,10 @@ export class StatisticsComponent implements OnInit {
           // Todo: Apertura modale
         }
       });
+  }
+
+  goToSearchStatistiche() {
+    this.router.navigate([ 'statistics' ]);
   }
 
 }
