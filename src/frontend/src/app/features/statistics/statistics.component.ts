@@ -9,6 +9,8 @@ import { Rating } from '../../shared/enums/rating.enum';
 import { AllFeedback } from '../../shared/models/all-feedback';
 import { FeedbackI } from '../../shared/interfaces/feedback-i';
 import { Feedback } from '../../shared/models/feedback';
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { DetailModalComponent } from "./detail-modal/detail-modal.component";
 
 @Component({
   selector: 'app-statistics',
@@ -28,7 +30,8 @@ export class StatisticsComponent implements OnInit {
 
   constructor(private manageFeedbackService: ManageFeedbackService,
               private sendFeedbackService: SendFeedbackService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private modal: NgbModal) {
   }
 
   ngOnInit() {
@@ -59,14 +62,19 @@ export class StatisticsComponent implements OnInit {
       });
   }
 
-  getFeedback(id: string) {
-    this.manageFeedbackService.getFeedback(this.privateToken, id)
-      .subscribe((feedback: Feedback) => {
-        if (feedback) {
-          console.log('getFeedback', feedback);
-          // Todo: Apertura modale
-        }
-      });
-  }
+  // getFeedback(id: string) {
+  //   this.manageFeedbackService.getFeedback(this.privateToken, id)
+  //     .subscribe((feedback: Feedback) => {
+  //       if (feedback) {
+  //         console.log('getFeedback', feedback);
+  //          const modal = this.modal.open(DetailModalComponent, { centered: true });
+  //          modal.componentInstance.feedback = feedback;
+  //       }
+  //     });
+  // }
 
+  onDetail(feedback: FeedbackI) {
+    const modal = this.modal.open(DetailModalComponent, { centered: true });
+    modal.componentInstance.feedback = feedback;
+  }
 }

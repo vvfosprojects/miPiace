@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { ThanksComponent } from './features/thanks/thanks.component';
 import { PageNotFoundComponent } from './features/page-not-found/page-not-found.component';
@@ -21,6 +21,8 @@ import { ClipboardModule } from 'ngx-clipboard';
 import { SearchStatisticsComponent } from './shared/components/search-statistics/search-statistics.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RateComponent } from './features/statistics/rate/rate.component';
+import { DetailModalComponent } from './features/statistics/detail-modal/detail-modal.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AverageBarChartComponent,
     StatistichePieChartComponent,
     SearchServiceComponent,
-    SearchStatisticsComponent
+    SearchStatisticsComponent,
+    RateComponent,
+    DetailModalComponent
   ],
   imports: [
     RouterModule.forRoot(AppRoutes),
@@ -50,6 +54,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NgxChartsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DetailModalComponent]
 })
 export class AppModule { }

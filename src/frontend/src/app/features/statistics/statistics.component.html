@@ -14,25 +14,34 @@
     </div>
   </div>
 </div>
+
 <ng-container *ngIf="feedbackResult">
-  <div class="h3">{{title}}</div>
   <div class="row">
-    <div class="col-md-6">
-      <app-average-bar-chart [feedbackAverageScores]="feedbackAverageScores" [title]="title"></app-average-bar-chart>
+    <div class="col-12">
+      <div class="h3 text-center">{{title}}</div>
     </div>
-    <div class="col-md-6">
-      <app-statistiche-pie-chart [facetStatistiche]="facetStatistiche" [title]="title"></app-statistiche-pie-chart>
+    <div class="col-lg-9 mx-auto my-3">
+      <div class="row">
+        <div class="col-md-6">
+          <app-average-bar-chart [feedbackAverageScores]="feedbackAverageScores"
+                                 [title]="title"></app-average-bar-chart>
+        </div>
+        <div class="col-md-6">
+          <app-statistiche-pie-chart [facetStatistiche]="facetStatistiche" [title]="title"></app-statistiche-pie-chart>
+        </div>
+      </div>
     </div>
   </div>
 </ng-container>
 <ng-container *ngIf="feedbacks">
-  <div class="row">
-    <div class="col-lg-9">
-      <div class="h4">
-        Lista feedback
-      </div>
+  <div class="row bg-primary mt-3 pt-4 pb-5">
+    <div class="col-lg-9 mx-auto">
+      <h4 class="text-white">Lista feedback</h4>
+      <hr class="bg-light">
+    </div>
+    <div class="col-lg-8 mx-auto mt-2">
       <div class="h5">
-        <pre *ngFor="let feedback of feedbacks">{{feedback | json}}</pre>
+        <app-rate *ngFor="let feedback of feedbacks" [feedback]="feedback" (onDetail)="onDetail($event)"></app-rate>
       </div>
     </div>
   </div>
