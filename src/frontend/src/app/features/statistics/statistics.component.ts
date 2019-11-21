@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ManageFeedbackService } from '../../core/services/manage-feedback.service';
 import { FeedbackScore } from '../../shared/models/feedback-score';
 import { FeedbackAverageScore } from '../../shared/interfaces/feedback-average-score';
@@ -18,6 +18,7 @@ import { Feedback } from '../../shared/models/feedback';
 export class StatisticsComponent implements OnInit {
   privateToken: string;
   feedbackResult: boolean;
+  notFound: boolean;
 
   feedbackAverageScores: FeedbackAverageScore[];
   facetStatistiche: FacetStatistiche[];
@@ -27,8 +28,7 @@ export class StatisticsComponent implements OnInit {
 
   constructor(private manageFeedbackService: ManageFeedbackService,
               private sendFeedbackService: SendFeedbackService,
-              private route: ActivatedRoute,
-              private router: Router) {
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -47,7 +47,7 @@ export class StatisticsComponent implements OnInit {
             this.getAllFeedback();
           }
         }
-      }, () => this.goToSearchStatistiche());
+      }, () => this.notFound = true);
   }
 
   getAllFeedback(rating?: Rating, page?: number, pageSize?: number) {
@@ -68,10 +68,6 @@ export class StatisticsComponent implements OnInit {
           // Todo: Apertura modale
         }
       });
-  }
-
-  goToSearchStatistiche() {
-    this.router.navigate([ 'statistics' ]);
   }
 
 }
