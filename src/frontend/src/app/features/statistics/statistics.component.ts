@@ -73,7 +73,7 @@ export class StatisticsComponent implements OnInit {
   // }
 
   onDetail(feedback: FeedbackI) {
-    const modal = this.modal.open(DetailModalComponent, { centered: true });
+    const modal = this.modal.open(DetailModalComponent);
     modal.componentInstance.feedback = feedback;
   }
 }

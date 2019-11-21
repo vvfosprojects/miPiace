@@ -11,6 +11,7 @@ export class RateComponent implements OnInit {
 
   @Input() feedback: FeedbackI;
   hover: boolean;
+  rating = Rating;
 
   @Output() detailEmitter: EventEmitter<FeedbackI> = new EventEmitter<FeedbackI>();
 
@@ -20,7 +21,7 @@ export class RateComponent implements OnInit {
   ngOnInit() {
   }
 
-  getImgPathByRate(rating: Rating) {
+  getImgPathByRating(rating: Rating) {
     switch (rating) {
       case Rating.Poor:
         return { src: './assets/images/small-smile/poor.png', alt: 'poor smile face image' };
@@ -34,5 +35,4 @@ export class RateComponent implements OnInit {
   detail() {
     this.detailEmitter.emit(this.feedback);
   }
-
 }
