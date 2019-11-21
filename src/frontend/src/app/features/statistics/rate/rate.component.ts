@@ -12,7 +12,7 @@ export class RateComponent implements OnInit {
   @Input() feedback: FeedbackI;
   hover: boolean;
 
-  @Output() onDetail: EventEmitter<FeedbackI> = new EventEmitter<FeedbackI>();
+  @Output() detailEmitter: EventEmitter<FeedbackI> = new EventEmitter<FeedbackI>();
 
   constructor() {
   }
@@ -23,16 +23,16 @@ export class RateComponent implements OnInit {
   getImgPathByRate(rating: Rating) {
     switch (rating) {
       case Rating.Poor:
-        return { src: './assets/images/poor.png', alt: 'poor smile face image' };
+        return { src: './assets/images/small-smile/poor.png', alt: 'poor smile face image' };
       case Rating.Fair:
-        return { src: './assets/images/fair.png', alt: 'fair smile face image' };
+        return { src: './assets/images/small-smile/fair.png', alt: 'fair smile face image' };
       case Rating.Good:
-        return { src: './assets/images/good.png', alt: 'good smile face image' };
+        return { src: './assets/images/small-smile/good.png', alt: 'good smile face image' };
     }
   }
 
   detail() {
-    this.onDetail.emit(this.feedback);
+    this.detailEmitter.emit(this.feedback);
   }
 
 }

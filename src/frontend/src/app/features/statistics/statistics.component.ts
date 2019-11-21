@@ -8,9 +8,8 @@ import { SendFeedbackService } from '../../core/services/send-feedback.service';
 import { Rating } from '../../shared/enums/rating.enum';
 import { AllFeedback } from '../../shared/models/all-feedback';
 import { FeedbackI } from '../../shared/interfaces/feedback-i';
-import { Feedback } from '../../shared/models/feedback';
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { DetailModalComponent } from "./detail-modal/detail-modal.component";
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DetailModalComponent } from './detail-modal/detail-modal.component';
 
 @Component({
   selector: 'app-statistics',
