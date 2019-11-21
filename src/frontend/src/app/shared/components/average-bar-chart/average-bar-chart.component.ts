@@ -25,7 +25,7 @@ export class AverageBarChartComponent implements OnChanges {
   showYAxisLabel = true;
   yAxisLabel = 'Voto medio';
   colorScheme = {
-    domain: [ '#aaaaaa', '#b5b4b4', '#d1d5de',  ]
+    domain: [ '#63ADF2', '#0D5C63', '#2081C3', '#304D6D', '#0D1F2D', '#022B3A' ]
   };
 
   constructor() {
@@ -39,7 +39,8 @@ export class AverageBarChartComponent implements OnChanges {
         this.data = averageScores.map(value => {
           return {
             name: refreshAverageDesc(value.intervallo),
-            value: isNaN(value.average) ? 0 : value.average
+            value: isNaN(value.average) ? 0 : value.average,
+            color: '#b5b4b4'
           };
         });
       }
