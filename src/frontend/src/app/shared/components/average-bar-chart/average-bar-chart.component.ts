@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FeedbackAverageScore } from '../../interfaces/feedback-average-score';
+import { refreshAverageDesc } from '../../helpers/functions';
 
 @Component({
   selector: 'app-average-bar-chart',
@@ -11,6 +12,22 @@ export class AverageBarChartComponent implements OnChanges {
   @Input() feedbackAverageScores: FeedbackAverageScore[];
   @Input() title: string;
 
+  data: any[] = [];
+
+  view: any[] = [ 700, 400 ];
+
+  // options
+  showXAxis = true;
+  showYAxis = true;
+  gradient = false;
+  showLegend = true;
+  showXAxisLabel = true;
+  showYAxisLabel = true;
+  yAxisLabel = 'Voto medio';
+  colorScheme = {
+    domain: [ '#aaaaaa', '#b5b4b4', '#d1d5de',  ]
+  };
+
   constructor() {
   }
 
@@ -19,7 +36,12 @@ export class AverageBarChartComponent implements OnChanges {
       const averageScores: FeedbackAverageScore[] = changes.feedbackAverageScores.currentValue;
       if (averageScores) {
         console.log(averageScores);
-        // this.pieChartData = [];
+        this.data = averageScores.map(value => {
+          return {
+            name: refreshAverageDesc(value.intervallo),
+            value: isNaN(value.average) ? 0 : value.average
+          };
+        });
       }
     }
     if (changes.title && changes.title.currentValue) {
@@ -29,6 +51,10 @@ export class AverageBarChartComponent implements OnChanges {
         // this.pieChartLabels = [title];
       }
     }
+  }
+
+  onSelect(event) {
+    console.log(event);
   }
 
 }

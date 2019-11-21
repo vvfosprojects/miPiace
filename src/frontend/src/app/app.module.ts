@@ -19,6 +19,8 @@ import { AverageBarChartComponent } from './shared/components/average-bar-chart/
 import { StatistichePieChartComponent } from './shared/components/statistiche-pie-chart/statistiche-pie-chart.component';
 import { ClipboardModule } from 'ngx-clipboard';
 import { SearchStatisticsComponent } from './shared/components/search-statistics/search-statistics.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -39,11 +41,13 @@ import { SearchStatisticsComponent } from './shared/components/search-statistics
     RouterModule.forRoot(AppRoutes),
     NgbModule,
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
     DesignAngularKitModule,
     FormsModule,
-    ClipboardModule
+    ClipboardModule,
+    NgxChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
