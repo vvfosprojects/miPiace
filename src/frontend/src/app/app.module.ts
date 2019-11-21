@@ -23,6 +23,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RateComponent } from './features/statistics/rate/rate.component';
 import { DetailModalComponent } from './features/statistics/detail-modal/detail-modal.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { PaginationComponent } from './features/statistics/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { DetailModalComponent } from './features/statistics/detail-modal/detail-
     SearchServiceComponent,
     SearchStatisticsComponent,
     RateComponent,
-    DetailModalComponent
+    DetailModalComponent,
+    PaginationComponent
   ],
   imports: [
     RouterModule.forRoot(AppRoutes),
@@ -52,6 +55,7 @@ import { DetailModalComponent } from './features/statistics/detail-modal/detail-
     FormsModule,
     ClipboardModule,
     NgxChartsModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent],
