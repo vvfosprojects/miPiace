@@ -15,8 +15,8 @@ import { CreateServiceComponent } from './features/create-service/create-service
 import { StatisticsComponent } from './features/statistics/statistics.component';
 import { DesignAngularKitModule } from 'design-angular-kit';
 import { SearchServiceComponent } from './shared/components/search-service/search-service.component';
-import { AverageBarChartComponent } from './shared/components/average-pie-chart/average-bar-chart.component';
-import { StatistichePieChartComponent } from './shared/components/statistiche-bar-chart/statistiche-pie-chart.component';
+import { AverageBarChartComponent } from './shared/components/average-bar-chart/average-bar-chart.component';
+import { StatistichePieChartComponent } from './shared/components/statistiche-pie-chart/statistiche-pie-chart.component';
 import { ClipboardModule } from 'ngx-clipboard';
 import { SearchStatisticsComponent } from './shared/components/search-statistics/search-statistics.component';
 
