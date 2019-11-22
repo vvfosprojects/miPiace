@@ -32,7 +32,7 @@ export class RateComponent implements OnInit {
     }
   }
 
-  detail() {
+  onDetail() {
     this.detailEmitter.emit(this.feedback);
   }
 }
