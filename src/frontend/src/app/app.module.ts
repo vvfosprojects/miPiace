@@ -25,6 +25,7 @@ import { RateComponent } from './features/statistics/rate/rate.component';
 import { DetailModalComponent } from './features/statistics/detail-modal/detail-modal.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { PaginationComponent } from './features/statistics/pagination/pagination.component';
+import { TrustedTokenComponent } from './features/trusted-token/trusted-token.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { PaginationComponent } from './features/statistics/pagination/pagination
     SearchStatisticsComponent,
     RateComponent,
     DetailModalComponent,
-    PaginationComponent
+    PaginationComponent,
+    TrustedTokenComponent
   ],
   imports: [
     RouterModule.forRoot(AppRoutes),
