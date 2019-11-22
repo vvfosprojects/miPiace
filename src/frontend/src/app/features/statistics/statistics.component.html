@@ -38,7 +38,7 @@
 <ng-container *ngIf="feedbacks">
   <div class="row bg-primary mt-3 pt-4 pb-5">
     <div class="col-lg-9 mx-auto clearfix">
-      <h4 class="text-white float-left">Lista feedback</h4>
+      <h4 class="text-white float-left mb-0" style="padding-top:5px">Lista feedback</h4>
       <it-dropdown class="text-white float-right mr-2" [color]="'light'" [label]="rating" [dark]="false"
                    it-tooltip="Tipologia voto" placement="bottom">
         <it-dropdown-item *ngFor="let r of ratingDropdown" class="cursor-pointer" (click)="onRatingChange(r)"

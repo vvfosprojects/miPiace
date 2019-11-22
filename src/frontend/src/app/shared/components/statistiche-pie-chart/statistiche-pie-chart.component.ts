@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FacetStatistiche } from '../../interfaces/facet-statistiche';
-import { refreshVotoDesc, refreshVotoRating } from '../../helpers/functions';
+import { refreshVotoDesc, stringToRating } from '../../helpers/functions';
 import { Rating } from '../../enums/rating.enum';
 
 @Component({
@@ -53,7 +53,7 @@ export class StatistichePieChartComponent implements OnChanges {
   }
 
   onSelect(event) {
-    this.selectedRate.emit(refreshVotoRating(event.name));
+    this.selectedRate.emit(stringToRating(event.name));
   }
 
 }

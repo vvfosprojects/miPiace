@@ -29,13 +29,18 @@ namespace Persistence.MongoDB
             {
                 var filterRating = builderFilterFeedbackByRating.Eq(x => (int)x.Rating, (int)rating) &
                                builderFilterFeedbackByRating.Eq(x => x.PublicToken, publicToken.PublicToken);
-                var allFeedback = collectionFeedback.Find(filterRating).ToList().OrderByDescending(x => x.Rating);
+
+                var allFeedback = collectionFeedback.Find(filterRating).ToList().OrderByDescending(x => x.InstantUtc);
+                if (page == 0 && pageSize == 0)
+                {
+                    return allFeedback.ToList();
+                }
                 return allFeedback.Skip((page - 1) * pageSize).Take(pageSize).ToList();
             }
             else
             {
                 var filterRating = builderFilterFeedbackByRating.Eq(x => x.PublicToken, publicToken.PublicToken);
-                var allFeedback = collectionFeedback.Find(filterRating).ToList().OrderByDescending(x => x.Rating);
+                var allFeedback = collectionFeedback.Find(filterRating).ToList().OrderByDescending(x => x.InstantUtc);
                 if (page == 0 && pageSize == 0)
                 {
                     return allFeedback.ToList();
