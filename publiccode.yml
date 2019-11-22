@@ -2,7 +2,7 @@ publiccodeYmlVersion: '0.2'
 name: MiPiace
 releaseDate: '2019-10-27'
 url: 'https://github.com/vvfosprojects/mipiace'
-developmentStatus: beta
+developmentStatus: stable
 softwareType: standalone/web
 platforms:
   - web
@@ -29,14 +29,15 @@ intendedAudience:
   countries:
     - it
 localisation:
-  localisationReady: false
+  localisationReady: no
   availableLanguages:
     - it
 it:
-  countryExtensionVersion: '0.2'
+  countryExtensionVersion: '1.0'
   conforme:
-    misureMinimeSicurezza: true
-    gdpr: true
+    lineeGuidaDesign: yes
+    misureMinimeSicurezza: yes
+    gdpr: yes
   riuso:
     codiceIPA: m_it
 description:
@@ -62,6 +63,8 @@ description:
       - docs/images/mainScreen.JPG
       - docs/images/feedbackDetail.JPG
       - docs/images/thanks.JPG
+	  - docs/images/statistics.JPG
+	  - docs/images/showFeedbackDetail.JPG
 inputTypes:
   - text/plain
 outputTypes:
