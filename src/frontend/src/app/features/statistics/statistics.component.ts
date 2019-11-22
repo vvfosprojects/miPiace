@@ -15,6 +15,7 @@ import { QueryI } from '../../shared/interfaces/query-i';
 import { Subscription } from 'rxjs';
 import { refreshVotoDesc, stringToRating, stringToRatingIt } from '../../shared/helpers/functions';
 import { Path } from '../../shared/enums/path.enum';
+import { Feedback } from "../../shared/models/feedback";
 
 @Component({
   selector: 'app-statistics',
@@ -108,13 +109,14 @@ export class StatisticsComponent implements OnInit {
     );
   }
 
-  // getFeedback(id: string) {
-  //   this.manageFeedbackService.getFeedback(this.privateToken, id)
+  // onDetail(f: FeedbackI) {
+  //   this.manageFeedbackService.getFeedback(this.privateToken, f.id)
   //     .subscribe((feedback: Feedback) => {
+  //       console.log(feedback);
   //       if (feedback) {
   //         console.log('getFeedback', feedback);
-  //          const modal = this.modal.open(DetailModalComponent, { centered: true });
-  //          modal.componentInstance.feedback = feedback;
+  //         const modal = this.modal.open(DetailModalComponent, { centered: true });
+  //         modal.componentInstance.feedback = feedback.feedback;
   //       }
   //     });
   // }
