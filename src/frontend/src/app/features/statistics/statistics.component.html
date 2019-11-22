@@ -1,0 +1,71 @@
+<div class="row mt-lg-2">
+  <div *ngIf="notFound" class="col-lg-6 mx-auto mt-lg-5 text-center border border-light px-0 shadow-sm">
+    <div class="bg-danger py-4">
+      <h3 class="text-white mb-0">
+        <i class="custom-icon">&#xe800;</i>
+        Servizio non trovato
+      </h3>
+    </div>
+    <div class="py-4">
+      <it-button [color]="'dark'" [size]="'lg'" [routerLink]="[Path.Statistics]">
+        <i class="fa fa-arrow-left mr-1"></i>
+        Torna indietro e riprova
+      </it-button>
+    </div>
+  </div>
+</div>
+
+<ng-container *ngIf="feedbackResult">
+  <div class="row white-bg">
+    <div class="col-12">
+      <div class="h3 text-center">{{title}}</div>
+    </div>
+    <div class="col-lg-9 mx-auto mt-3">
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+          <app-average-bar-chart [feedbackAverageScores]="feedbackAverageScores"
+                                 [title]="title"></app-average-bar-chart>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 mx-auto pt-3 mb-0 pb-0">
+          <app-statistiche-pie-chart [facetStatistiche]="facetStatistiche" [title]="title" (selectedRate)="onRatingChange($event)"></app-statistiche-pie-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="feedbacks">
+  <div class="row bg-primary mt-3 pt-4 pb-5">
+    <div class="col-lg-9 mx-auto clearfix">
+      <h4 class="text-white float-left mb-0" style="padding-top:5px">Lista feedback</h4>
+      <it-dropdown class="text-white float-right mr-2" [color]="'light'" [label]="rating" [dark]="false"
+                   [ngbTooltip]="'Tipologia voto'" placement="top">
+        <it-dropdown-item *ngFor="let r of ratingDropdown" class="cursor-pointer" (click)="onRatingChange(r)"
+                          [link]="null">
+          {{r}}
+        </it-dropdown-item>
+      </it-dropdown>
+      <it-dropdown class="text-white float-right mr-2" [color]="'light'" [label]="''+pageSize" [dark]="false"
+                   [ngbTooltip]="'Feedback per pagina'" placement="top">
+        <it-dropdown-item *ngFor="let p of pageSizeDropdown" class="cursor-pointer" (click)="onPageSizeChange(+p)"
+                          [link]="null">
+          {{p}}
+        </it-dropdown-item>
+      </it-dropdown>
+    </div>
+    <div class="col-lg-9 mx-auto">
+      <hr class="bg-light">
+    </div>
+    <div class="col-lg-8 mx-auto mt-2">
+      <div class="h5">
+        <app-rate
+          *ngFor="let feedback of feedbacks | paginate: { itemsPerPage: pageSize, currentPage: page, totalItems: totalItems }"
+          [feedback]="feedback" (detailEmitter)="onDetail($event)"></app-rate>
+      </div>
+    </div>
+    <div class="col-12">
+      <app-pagination (pageChange)="onPageChange($event)"></app-pagination>
+    </div>
+  </div>
+</ng-container>

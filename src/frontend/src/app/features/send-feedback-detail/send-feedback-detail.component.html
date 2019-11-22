@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="col-lg-9 mx-auto mt-2 mt-lg-4 text-center border border-light px-0 shadow-sm">
+        <div class="bg-secondary text-center py-4">
+            <h5 class="text-white mb-0"> Grazie per averci inviato la tua valutazione, ora puoi fare di più!</h5>
+        </div>
+        <div class="mt-3 px-3 py-5">
+            <form [formGroup]="feedbackDetailForm">
+                <div class="row">
+                    <div class="col-lg-11 mx-auto">
+                        <div class="form-group">
+                            <h6 class="text-left">Descrivi il problema occorso oppure indica dei suggerimenti per il
+                                miglioramento del servizio.</h6>
+                            <textarea class="form-control border border-light" type="text" formControlName="text"
+                                      rows="6"
+                                      aria-describedby="detailHelp"
+                                      placeholder="Inserisci qui il testo"
+                                      required>
+                                </textarea>
+                            <small id="detailHelp" class="form-text text-danger mt-2">
+                                <i class="fa fa-info-circle mr-1"></i>
+                                Questo campo è obbligatorio
+                            </small>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                    <div class="col-lg-9 mx-auto">
+                        <div class="form-group mt-3">
+                            <it-input [label]="'Nome e Affiliazione'"
+                                      [placeholder]="'Inserisci qui il tuo nome e l\'affiliazione'"
+                                      [type]="'text'" [formControlName]="'username'"
+                                      [note]="'Puoi lasciare questo campo vuoto'">
+                            </it-input>
+                        </div>
+
+                        <div class="form-group mt-4">
+                            <it-input [label]="'Riferimenti di contatto'"
+                                      [placeholder]="'Inserisci qui i tuoi riferimenti, ai quali sarai eventualmente contattato.'"
+                                      [type]="'text'" [formControlName]="'contacts'"
+                                      [note]="'Puoi lasciare questo campo vuoto'">
+                            </it-input>
+                        </div>
+                    </div>
+                </div>
+                <it-button [color]="'dark'" [size]="'lg'" [disabled]="!feedbackDetailForm.valid" (click)="onSubmit()">
+                    Invia feedback
+                </it-button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<ng-container *ngIf="data && data.length > 0">
+  <div class="text-center">
+    <ngx-charts-bar-vertical
+      [view]="view"
+      [scheme]="colorScheme"
+      [results]="data"
+      [gradient]="gradient"
+      [yAxis]="showYAxis"
+      [legend]="showLegend"
+      barPadding="30"
+      [legendTitle]="legendLabel"
+      [showYAxisLabel]="showYAxisLabel"
+      legendPosition="below"
+      yScaleMax="3"
+      yScaleMin="0"
+      (select)="onSelect($event)">
+    </ngx-charts-bar-vertical>
+  </div>
+</ng-container>

@@ -1,0 +1,29 @@
+<div class="row mt-lg-3">
+  <div class="col-11 col-lg-6 mx-auto mt-4 mt-lg-5 text-center border border-light px-0 shadow-sm">
+    <div class="bg-danger text-white px-2 py-4">
+      <p class="h3">
+        <i class="custom-icon">&#xe805;</i>
+        Accidenti!
+      </p>
+      <p class="h6 font-weight-lighter mb-0">Se non indichi il servizio per cui vuoi lasciare il feedback...
+        è
+        complicato!</p>
+    </div>
+    <div class="row py-5">
+      <div class="col-11 col-lg-9 mx-auto">
+        <h6 class="text-dark font-weight-bold mb-4">Se hai un codice servizio, inseriscilo:</h6>
+        <app-search-service></app-search-service>
+      </div>
+      <div class="col-11 col-lg-10 mx-auto">
+        <hr class="my-5">
+      </div>
+      <div class="col-11 col-lg-9 mx-auto">
+        <h5 class="text-dark font-weight-bold mb-3">...oppure creane uno nuovo!</h5>
+        <it-button [color]="'success'" [size]="'lg'" [routerLink]="[Path.CreateService]">
+          <i class="fa fa-plus mr-1"></i>
+          Nuovo Servizio
+        </it-button>
+      </div>
+    </div>
+  </div>
+</div>

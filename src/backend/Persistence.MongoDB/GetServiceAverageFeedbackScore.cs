@@ -14,12 +14,10 @@ namespace Persistence.MongoDB
     public class GetServiceAverageFeedbackScore : IGetServiceAverageFeedbackScore
     {
         private readonly DbContext dbContext;
-        private readonly IConfiguration configuration;
 
-        public GetServiceAverageFeedbackScore(DbContext dbContext, IConfiguration configuration)
+        public GetServiceAverageFeedbackScore(DbContext dbContext )
         {
             this.dbContext = dbContext;
-            this.configuration = configuration;
         }
 
         public GetServiceAverageFeedbackScoreQueryResult Get(string privateToken)
@@ -47,11 +45,11 @@ namespace Persistence.MongoDB
             var filterHour = filterBuilderHour.Eq(x => x.PublicToken, servicePublicToken) &
                              filterBuilderHour.Gte(x => x.InstantUtc, DateTime.UtcNow.AddHours(-1)) &
                              filterBuilderHour.Lte(x => x.InstantUtc, DateTime.UtcNow);
-            
+
             //recupero tutti i feedback registrati nel giornata antecedente la data odierna 
             var filterDay = filterBuilderDay.Eq(x => x.PublicToken, servicePublicToken) &
-                             filterBuilderDay.Gte(x => x.InstantUtc, DateTime.UtcNow.AddDays(-1)) &
-                             filterBuilderDay.Lt(x => x.InstantUtc, DateTime.UtcNow);
+                             filterBuilderDay.Gte(x => x.InstantUtc, DateTime.UtcNow.AddHours(-23)) &
+                             filterBuilderDay.Lte(x => x.InstantUtc, DateTime.UtcNow);
 
             //recupero tutti i feedback registrati nel corso dell'ultima settimana (compresi quelli registrati nella giornata odierna)
             var filterWeek = filterBuilderWeek.Eq(x => x.PublicToken, servicePublicToken) &
@@ -165,37 +163,45 @@ namespace Persistence.MongoDB
             double feedbacksAllTimePoor = feedbackCollection.Find(filterAllTimePoor).ToList().Count();
 
             var facetStatList = new List<FacetStatistiche>();
-            var url = configuration.GetSection("BasePath").Value;
+            //var url = configuration.GetSection("BasePath").Value;
 
             facetStatList.Add(new FacetStatistiche()
             {
                 Voto = "good",
                 Percentuale = feedbacksAllTimeGood / (double)feedbacksAllTimeList.Count,
-                FeedbackLink = url + "?privateToken=" + privateToken + "&rating=" + 3
+                TotalItems = (int)feedbacksAllTimeGood
+               // FeedbackLink = url + "?privateToken=" + privateToken + "&rating=" + 3
             }); 
             facetStatList.Add(new FacetStatistiche() 
             { 
                 Voto = "fair", 
                 Percentuale = feedbacksAllTimeFair / (double)feedbacksAllTimeList.Count,
-                FeedbackLink = url + "?privateToken=" + privateToken + "&rating=" + 2
+                TotalItems = (int)feedbacksAllTimeFair
+                // FeedbackLink = url + "?privateToken=" + privateToken + "&rating=" + 2
             });
             facetStatList.Add(new FacetStatistiche() 
             { 
                 Voto = "poor", 
                 Percentuale = feedbacksAllTimePoor / (double)feedbacksAllTimeList.Count,
-                FeedbackLink = url + "?privateToken=" + privateToken + "&rating=" + 1
+                TotalItems = (int)feedbacksAllTimePoor
+               // FeedbackLink = url + "?privateToken=" + privateToken + "&rating=" + 1
             });
 
 
             return new GetServiceAverageFeedbackScoreQueryResult()
             {
                 feedbackAverageScores = feedbackAverageScoreList,
-                facetStatistiche = facetStatList
+                facetStatistiche = facetStatList,
+                publicToken = servicePublicToken
             };
 
         }
 
-
+        /// <summary>
+        /// Il metodo presa in input una stringa contenente un Rating assegna un punteggio (intero) 
+        /// </summary>
+        /// <param name="rate">Accetta in input un stringa con possibili valori (Good, Fair, Poor)</param>
+        /// <returns>Intero associato al valore testuale in input</returns>
         protected int GetRating (string rate)
         {
             var score = 0;
