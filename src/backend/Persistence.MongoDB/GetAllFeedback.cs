@@ -36,6 +36,10 @@ namespace Persistence.MongoDB
             {
                 var filterRating = builderFilterFeedbackByRating.Eq(x => x.PublicToken, publicToken.PublicToken);
                 var allFeedback = collectionFeedback.Find(filterRating).ToList().OrderByDescending(x => x.Rating);
+                if (page == 0 && pageSize == 0)
+                {
+                    return allFeedback.ToList();
+                }
                 return allFeedback.Skip((page - 1) * pageSize).Take(pageSize).ToList();
             }
         }

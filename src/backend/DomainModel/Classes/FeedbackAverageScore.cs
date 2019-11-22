@@ -8,5 +8,6 @@ namespace DomainModel.Classes
     {
         public string Intervallo { get; set; }
         public double Average { get; set; }
+
     }
 }

@@ -31,7 +31,7 @@ namespace DomainModel.CQRS.Queries.GetAllFeedback
                     PageSize = (int)query.PageSize,
                     Rating = query.Rating.ToString(),
                     PrivateToken = query.PrivateToken,
-                    TotalItems = feedbackList.Count
+                    TotalItems = this.getAllFeedback.Get(query.PrivateToken, null, 0,0).Count
                 }
             };
         }

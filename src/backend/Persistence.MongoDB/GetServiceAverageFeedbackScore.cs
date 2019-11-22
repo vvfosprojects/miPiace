@@ -169,18 +169,21 @@ namespace Persistence.MongoDB
             {
                 Voto = "good",
                 Percentuale = feedbacksAllTimeGood / (double)feedbacksAllTimeList.Count,
+                TotalItems = (int)feedbacksAllTimeGood
                // FeedbackLink = url + "?privateToken=" + privateToken + "&rating=" + 3
             }); 
             facetStatList.Add(new FacetStatistiche() 
             { 
                 Voto = "fair", 
                 Percentuale = feedbacksAllTimeFair / (double)feedbacksAllTimeList.Count,
-               // FeedbackLink = url + "?privateToken=" + privateToken + "&rating=" + 2
+                TotalItems = (int)feedbacksAllTimeFair
+                // FeedbackLink = url + "?privateToken=" + privateToken + "&rating=" + 2
             });
             facetStatList.Add(new FacetStatistiche() 
             { 
                 Voto = "poor", 
                 Percentuale = feedbacksAllTimePoor / (double)feedbacksAllTimeList.Count,
+                TotalItems = (int)feedbacksAllTimePoor
                // FeedbackLink = url + "?privateToken=" + privateToken + "&rating=" + 1
             });
 

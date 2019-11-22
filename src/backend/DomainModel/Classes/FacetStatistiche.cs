@@ -16,5 +16,7 @@ namespace DomainModel.Classes
         /// </summary>
         public double Percentuale { get; set; }
 
+        public int TotalItems { get; set; }
+
     }
 }
