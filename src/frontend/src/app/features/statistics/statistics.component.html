@@ -37,8 +37,22 @@
 </ng-container>
 <ng-container *ngIf="feedbacks">
   <div class="row bg-primary mt-3 pt-4 pb-5">
+    <div class="col-lg-9 mx-auto clearfix">
+      <h4 class="text-white float-left">Lista feedback</h4>
+      <it-dropdown class="text-white float-right mr-2" [color]="'light'" [label]="rating" [dark]="false"
+                   it-tooltip="Tipologia voto" placement="bottom">
+        <it-dropdown-item *ngFor="let r of ratingDropdown" (click)="onRatingChange(r)" [link]="null">
+          {{r}}
+        </it-dropdown-item>
+      </it-dropdown>
+      <it-dropdown class="text-white float-right mr-2" [color]="'light'" [label]="''+pageSize" [dark]="false"
+                   it-tooltip="Feedback per pagina" placement="bottom">
+        <it-dropdown-item *ngFor="let p of pageSizeDropdown" (click)="onPageSizeChange(+p)" [link]="null">
+          {{p}}
+        </it-dropdown-item>
+      </it-dropdown>
+    </div>
     <div class="col-lg-9 mx-auto">
-      <h4 class="text-white">Lista feedback</h4>
       <hr class="bg-light">
     </div>
     <div class="col-lg-8 mx-auto mt-2">

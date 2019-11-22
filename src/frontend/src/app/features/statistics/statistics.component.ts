@@ -23,16 +23,17 @@ export class StatisticsComponent implements OnInit {
   privateToken: string;
   feedbackResult: boolean;
   notFound: boolean;
-
+  title: string;
+  feedbacks: FeedbackI[];
   feedbackAverageScores: FeedbackAverageScore[];
   facetStatistiche: FacetStatistiche[];
-  title: string;
 
   page: number;
   pageSize: number;
+  pageSizeDropdown = ['5', '10', '15', '20', '30', '40'];
+  rating: string;
+  ratingDropdown = [Rating.Good, Rating.Fair, Rating.Poor];
   totalItems: number;
-
-  feedbacks: FeedbackI[];
 
   subscription: Subscription = new Subscription();
 
@@ -67,6 +68,7 @@ export class StatisticsComponent implements OnInit {
       .subscribe((allFeedback: AllFeedback) => {
         this.page = allFeedback.criteriDiRicerca.page;
         this.pageSize = allFeedback.criteriDiRicerca.pageSize;
+        this.rating = allFeedback.criteriDiRicerca.rating ? allFeedback.criteriDiRicerca.rating : 'Tutti i voti';
         this.totalItems = allFeedback.criteriDiRicerca.totalItems;
         if (allFeedback) {
           console.log('getAllFeedback', allFeedback);

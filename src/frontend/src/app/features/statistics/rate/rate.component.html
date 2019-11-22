@@ -16,7 +16,7 @@
       </span>
     </div>
     <div class="col-lg-4">
-      <it-button class="float-lg-right" [size]="'sm'" [color]="'dark'" [disabled]="feedback.rating === rating.Good"
+      <it-button *ngIf="feedback.rating !== rating.Good" class="float-lg-right" [size]="'sm'" [color]="'dark'"
                  (click)="onDetail()">
         <i class="fa fa-info mr-1"></i>
         Dettaglio
