@@ -5,7 +5,7 @@ import { FeedbackScore } from '../../shared/models/feedback-score';
 import { FeedbackAverageScore } from '../../shared/interfaces/feedback-average-score';
 import { FacetStatistiche } from '../../shared/interfaces/facet-statistiche';
 import { SendFeedbackService } from '../../core/services/send-feedback.service';
-import { Rating } from '../../shared/enums/rating.enum';
+import { Rating, RatingIt } from '../../shared/enums/rating.enum';
 import { AllFeedback } from '../../shared/models/all-feedback';
 import { FeedbackI } from '../../shared/interfaces/feedback-i';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -13,6 +13,7 @@ import { DetailModalComponent } from './detail-modal/detail-modal.component';
 import { QueryService } from '../../core/services/query.service';
 import { QueryI } from '../../shared/interfaces/query-i';
 import { Subscription } from 'rxjs';
+import { refreshVotoDesc, stringToRating, stringToRatingIt } from '../../shared/helpers/functions';
 
 @Component({
   selector: 'app-statistics',
@@ -31,8 +32,8 @@ export class StatisticsComponent implements OnInit {
   page: number;
   pageSize: number;
   pageSizeDropdown = ['5', '10', '15', '20', '30', '40'];
-  rating: string;
-  ratingDropdown = ['Tutti i voti', Rating.Good, Rating.Fair, Rating.Poor];
+  rating: RatingIt;
+  ratingDropdown = [RatingIt.Good, RatingIt.Fair, RatingIt.Poor, RatingIt.All];
   totalItems: number;
 
   subscription: Subscription = new Subscription();
@@ -68,7 +69,8 @@ export class StatisticsComponent implements OnInit {
       .subscribe((allFeedback: AllFeedback) => {
         this.page = allFeedback.criteriDiRicerca.page;
         this.pageSize = allFeedback.criteriDiRicerca.pageSize;
-        this.rating = allFeedback.criteriDiRicerca.rating ? allFeedback.criteriDiRicerca.rating : 'Tutti i voti';
+        // tslint:disable-next-line:max-line-length
+        this.rating = allFeedback.criteriDiRicerca.rating ? stringToRatingIt(refreshVotoDesc(allFeedback.criteriDiRicerca.rating)) : RatingIt.All;
         this.totalItems = allFeedback.criteriDiRicerca.totalItems;
         if (allFeedback) {
           console.log('getAllFeedback', allFeedback);
@@ -85,9 +87,9 @@ export class StatisticsComponent implements OnInit {
     this.queryService.setPageSize(pageSize);
   }
 
-  onRatingChange(rating: Rating | string) {
-    if (typeof rating !== 'string') {
-      this.queryService.setRatingParam(rating);
+  onRatingChange(rating: RatingIt) {
+    if (rating !== RatingIt.All) {
+      this.queryService.setRatingParam(stringToRating(rating));
     } else {
       this.queryService.setRatingParam(null);
     }

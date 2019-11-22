@@ -22,10 +22,10 @@ export function refreshVotoDesc(votoDesc: string): string {
   ];
   const mapDescriptions: Map<string, string> = new Map(descriptions);
 
-  return mapDescriptions.get(votoDesc);
+  return mapDescriptions.get(votoDesc.toLocaleLowerCase());
 }
 
-export function refreshVotoRating(votoDesc: string): Rating {
+export function stringToRating(rating: string): Rating {
   const descriptions: [RatingIt, Rating][] = [
     [RatingIt.Good, Rating.Good],
     [RatingIt.Fair, Rating.Fair],
@@ -33,5 +33,16 @@ export function refreshVotoRating(votoDesc: string): Rating {
   ];
   const mapDescriptions: Map<string, Rating> = new Map(descriptions);
 
-  return mapDescriptions.get(votoDesc);
+  return mapDescriptions.get(rating);
+}
+
+export function stringToRatingIt(rating: string): RatingIt {
+  const descriptions: [string, RatingIt][] = [
+    ['ottimo', RatingIt.Good],
+    ['mediocre', RatingIt.Fair],
+    ['pessimo', RatingIt.Poor]
+  ];
+  const mapDescriptions: Map<string, RatingIt> = new Map(descriptions);
+
+  return mapDescriptions.get(rating.toLocaleLowerCase());
 }

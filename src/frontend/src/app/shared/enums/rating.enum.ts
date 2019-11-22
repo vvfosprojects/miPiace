@@ -1,10 +1,12 @@
 export enum Rating {
-  Poor = 1,
+  All,
+  Poor ,
   Fair,
   Good
 }
 
 export enum RatingIt {
+  All =  'Tutti i voti',
   Poor = 'Pessimo',
   Fair = 'Mediocre',
   Good = 'Ottimo'
