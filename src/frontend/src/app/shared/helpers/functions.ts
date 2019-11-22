@@ -1,3 +1,5 @@
+import { Rating, RatingIt } from '../enums/rating.enum';
+
 export function refreshAverageDesc(averageDesc: string): string {
   const descriptions: [string, string][] = [
     ['averageScoreFeedbacksLastHour', 'Ultima ora'],
@@ -13,12 +15,23 @@ export function refreshAverageDesc(averageDesc: string): string {
 }
 
 export function refreshVotoDesc(votoDesc: string): string {
-  const descriptions: [string, string][] = [
-    ['good', 'Ottimo'],
-    ['fair', 'Mediocre'],
-    ['poor', 'Pessimo']
+  const descriptions: [string, RatingIt][] = [
+    ['good', RatingIt.Good],
+    ['fair', RatingIt.Fair],
+    ['poor', RatingIt.Poor]
   ];
   const mapDescriptions: Map<string, string> = new Map(descriptions);
+
+  return mapDescriptions.get(votoDesc);
+}
+
+export function refreshVotoRating(votoDesc: string): Rating {
+  const descriptions: [RatingIt, Rating][] = [
+    [RatingIt.Good, Rating.Good],
+    [RatingIt.Fair, Rating.Fair],
+    [RatingIt.Poor, Rating.Poor]
+  ];
+  const mapDescriptions: Map<string, Rating> = new Map(descriptions);
 
   return mapDescriptions.get(votoDesc);
 }

@@ -3,3 +3,9 @@ export enum Rating {
   Fair,
   Good
 }
+
+export enum RatingIt {
+  Poor = 'Pessimo',
+  Fair = 'Mediocre',
+  Good = 'Ottimo'
+}
