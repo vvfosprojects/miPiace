@@ -1,0 +1,16 @@
+.chart-legend .legend-labels {
+  text-align: center!important;
+  background-color: #f2effb !important;
+}
+
+.chart-legend .legend-label {
+  color: #012368 !important;
+}
+
+.chart-legend .legend-label-text {
+  font-size: 14px!important;
+}
+
+.ngx-charts-outer {
+margin: 0 auto!important;
+}

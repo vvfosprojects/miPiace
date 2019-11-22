@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FacetStatistiche } from '../../interfaces/facet-statistiche';
+import { refreshVotoDesc } from '../../helpers/functions';
 
 @Component({
   selector: 'app-statistiche-pie-chart',
@@ -11,6 +12,19 @@ export class StatistichePieChartComponent implements OnChanges {
   @Input() facetStatistiche: FacetStatistiche[];
   @Input() title: string;
 
+  data: any[] = [];
+
+  view: any[] = [ 600, 150 ];
+
+  showYAxis = true;
+  gradient = false;
+  showLegend = true;
+  showYAxisLabel = true;
+  legendLabel = 'Media voti ricevuti';
+  colorScheme = {
+    domain: [ '#28ea42', '#e9ff39', '#e00000' ]
+  };
+
   constructor() {
   }
 
@@ -19,13 +33,24 @@ export class StatistichePieChartComponent implements OnChanges {
       const facet: FacetStatistiche[] = changes.facetStatistiche.currentValue;
       if (facet) {
         console.log(facet);
+        this.data = facet.map(value => {
+          return {
+            name: refreshVotoDesc(value.voto),
+            value: value.totalItems,
+          };
+        });
       }
     }
     if (changes.title && changes.title.currentValue) {
       const title: string = changes.title.currentValue;
       if (title) {
+        console.log(title);
       }
     }
+  }
+
+  onSelect(event) {
+    console.log(event);
   }
 
 }

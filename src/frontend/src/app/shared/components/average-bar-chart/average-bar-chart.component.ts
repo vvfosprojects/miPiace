@@ -1,11 +1,12 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { FeedbackAverageScore } from '../../interfaces/feedback-average-score';
 import { refreshAverageDesc } from '../../helpers/functions';
 
 @Component({
   selector: 'app-average-bar-chart',
   templateUrl: './average-bar-chart.component.html',
-  styleUrls: [ './average-bar-chart.component.css' ]
+  styleUrls: [ './average-bar-chart.component.css' ],
+  encapsulation: ViewEncapsulation.None
 })
 export class AverageBarChartComponent implements OnChanges {
 
@@ -14,16 +15,13 @@ export class AverageBarChartComponent implements OnChanges {
 
   data: any[] = [];
 
-  view: any[] = [ 700, 400 ];
+  view: any[] = [ 600, 250 ];
 
-  // options
-  showXAxis = true;
   showYAxis = true;
   gradient = false;
   showLegend = true;
-  showXAxisLabel = true;
   showYAxisLabel = true;
-  yAxisLabel = 'Voto medio';
+  legendLabel = 'Voto medio per arco temporale';
   colorScheme = {
     domain: [ '#63ADF2', '#0D5C63', '#2081C3', '#304D6D', '#0D1F2D', '#022B3A' ]
   };
@@ -39,8 +37,7 @@ export class AverageBarChartComponent implements OnChanges {
         this.data = averageScores.map(value => {
           return {
             name: refreshAverageDesc(value.intervallo),
-            value: isNaN(value.average) ? 0 : value.average,
-            color: '#b5b4b4'
+            value: isNaN(value.average) ? 0 : Math.round(value.average * 100) / 100,
           };
         });
       }
@@ -49,7 +46,6 @@ export class AverageBarChartComponent implements OnChanges {
       const title: string = changes.title.currentValue;
       if (title) {
         console.log(title);
-        // this.pieChartLabels = [title];
       }
     }
   }

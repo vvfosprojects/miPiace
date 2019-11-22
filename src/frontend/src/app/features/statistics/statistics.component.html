@@ -1,4 +1,4 @@
-<div class="row mt-lg-5">
+<div class="row mt-lg-2">
   <div *ngIf="notFound" class="col-lg-6 mx-auto mt-lg-5 text-center border border-light px-0 shadow-sm">
     <div class="bg-danger py-4">
       <h3 class="text-white mb-0">
@@ -16,17 +16,19 @@
 </div>
 
 <ng-container *ngIf="feedbackResult">
-  <div class="row">
+  <div class="row white-bg">
     <div class="col-12">
       <div class="h3 text-center">{{title}}</div>
     </div>
-    <div class="col-lg-9 mx-auto my-3">
+    <div class="col-lg-9 mx-auto mt-3">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-8 mx-auto">
           <app-average-bar-chart [feedbackAverageScores]="feedbackAverageScores"
                                  [title]="title"></app-average-bar-chart>
         </div>
-        <div class="col-md-6">
+      </div>
+      <div class="row">
+        <div class="col-md-8 mx-auto pt-3 mb-0 pb-0">
           <app-statistiche-pie-chart [facetStatistiche]="facetStatistiche" [title]="title"></app-statistiche-pie-chart>
         </div>
       </div>
