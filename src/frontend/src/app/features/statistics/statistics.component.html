@@ -40,14 +40,14 @@
     <div class="col-lg-9 mx-auto clearfix">
       <h4 class="text-white float-left mb-0" style="padding-top:5px">Lista feedback</h4>
       <it-dropdown class="text-white float-right mr-2" [color]="'light'" [label]="rating" [dark]="false"
-                   it-tooltip="Tipologia voto" placement="bottom">
+                   [ngbTooltip]="'Tipologia voto'" placement="top">
         <it-dropdown-item *ngFor="let r of ratingDropdown" class="cursor-pointer" (click)="onRatingChange(r)"
                           [link]="null">
           {{r}}
         </it-dropdown-item>
       </it-dropdown>
       <it-dropdown class="text-white float-right mr-2" [color]="'light'" [label]="''+pageSize" [dark]="false"
-                   it-tooltip="Feedback per pagina" placement="bottom">
+                   [ngbTooltip]="'Feedback per pagina'" placement="top">
         <it-dropdown-item *ngFor="let p of pageSizeDropdown" class="cursor-pointer" (click)="onPageSizeChange(+p)"
                           [link]="null">
           {{p}}
