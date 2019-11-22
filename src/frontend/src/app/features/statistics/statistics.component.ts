@@ -32,7 +32,7 @@ export class StatisticsComponent implements OnInit {
   pageSize: number;
   pageSizeDropdown = ['5', '10', '15', '20', '30', '40'];
   rating: string;
-  ratingDropdown = [Rating.Good, Rating.Fair, Rating.Poor];
+  ratingDropdown = ['Tutti i voti', Rating.Good, Rating.Fair, Rating.Poor];
   totalItems: number;
 
   subscription: Subscription = new Subscription();
@@ -85,8 +85,12 @@ export class StatisticsComponent implements OnInit {
     this.queryService.setPageSize(pageSize);
   }
 
-  onRatingChange(rating: Rating) {
-    this.queryService.setRatingParam(rating);
+  onRatingChange(rating: Rating | string) {
+    if (typeof rating !== 'string') {
+      this.queryService.setRatingParam(rating);
+    } else {
+      this.queryService.setRatingParam(null);
+    }
   }
 
   getQueryParams() {
