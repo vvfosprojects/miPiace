@@ -8,21 +8,24 @@ import { CreateServiceComponent } from './features/create-service/create-service
 import { StatisticsComponent } from './features/statistics/statistics.component';
 import { SearchStatisticsComponent } from './shared/components/search-statistics/search-statistics.component';
 import { TrustedTokenComponent } from './features/trusted-token/trusted-token.component';
+import { Path } from './shared/enums/path.enum';
 
 export const AppRoutes: Routes = [
-  { path: 'thanks', component: ThanksComponent },
-  { path: 'sendRating', component: NoServiceSpecifiedComponent },
-  { path: 'sendRating/:id', component: SendRatingComponent },
-  { path: 'statistics', component: SearchStatisticsComponent },
-  { path: 'statistics/:id', component: StatisticsComponent },
-  { path: 'sendFeedbackDetail', component: SendFeedbackDetailComponent },
-  { path: 'trusted', component: NoServiceSpecifiedComponent },
-  { path: 'trusted/:id', component: TrustedTokenComponent },
-  { path: 'createService', component: CreateServiceComponent },
+  { path: Path.Thanks, component: ThanksComponent },
+  { path: Path.SendRating, component: NoServiceSpecifiedComponent },
+  { path: Path.SendRating + '/:id', component: SendRatingComponent },
+  { path: Path.Statistics, component: SearchStatisticsComponent },
+  { path: Path.Statistics + '/:id', component: StatisticsComponent },
+  { path: Path.SendFeedbackDetail, component: SendFeedbackDetailComponent },
+  { path: Path.Trusted, component: NoServiceSpecifiedComponent },
+  { path: Path.Trusted + '/:id', component: TrustedTokenComponent },
+  { path: Path.CreateService, component: CreateServiceComponent },
+  { path: Path.NotFound, component: PageNotFoundComponent },
   {
     path: ':id',
-    redirectTo: '/trusted/:id',
+    redirectTo: Path.Trusted + '/:id',
     pathMatch: 'full'
   },
-  { path: '**', component: PageNotFoundComponent }
+  { path: '', component: NoServiceSpecifiedComponent },
+  { path: '**', redirectTo: Path.NotFound }
 ];

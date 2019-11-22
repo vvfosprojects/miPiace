@@ -1,23 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Path } from '../../enums/path.enum';
 
 @Component({
   selector: 'app-search-statistics',
   templateUrl: './search-statistics.component.html',
   styleUrls: [ './search-statistics.component.css' ]
 })
-export class SearchStatisticsComponent implements OnInit {
+export class SearchStatisticsComponent {
 
   privateToken = '';
+
+  Path = Path;
 
   constructor(private router: Router) {
   }
 
-  ngOnInit() {
-  }
-
   goToStatistiche() {
-    this.router.navigate([ 'statistics/' + this.privateToken ]);
+    this.router.navigate([ `${Path.Statistics}/${this.privateToken}` ]);
   }
 
 }

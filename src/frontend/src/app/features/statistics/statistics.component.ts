@@ -13,6 +13,7 @@ import { DetailModalComponent } from './detail-modal/detail-modal.component';
 import { QueryService } from '../../core/services/query.service';
 import { QueryI } from '../../shared/interfaces/query-i';
 import { Subscription } from 'rxjs';
+import { Path } from '../../shared/enums/path.enum';
 
 @Component({
   selector: 'app-statistics',
@@ -36,6 +37,8 @@ export class StatisticsComponent implements OnInit {
   totalItems: number;
 
   subscription: Subscription = new Subscription();
+
+  Path = Path;
 
   constructor(private manageFeedbackService: ManageFeedbackService,
               private sendFeedbackService: SendFeedbackService,

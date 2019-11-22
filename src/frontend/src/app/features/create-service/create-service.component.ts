@@ -3,6 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Service } from '../../shared/models/service';
 import { ManageFeedbackService } from '../../core/services/manage-feedback.service';
+import { Path } from '../../shared/enums/path.enum';
 
 
 @Component({
@@ -31,13 +32,13 @@ export class CreateServiceComponent implements OnInit {
   }
 
   public getPublicLink(fullUrl?: boolean): string {
-    const urlTree = this.router.parseUrl('/sendRating/' + this.service.publicToken);
+    const urlTree = this.router.parseUrl(`${Path.SendRating}/${this.service.publicToken}`);
     const serializedUrl = this.router.serializeUrl(urlTree);
     return fullUrl ? this.locationPath + serializedUrl : serializedUrl;
   }
 
   public getPrivateLink(fullUrl?: boolean): string {
-    const urlTree = this.router.parseUrl('/statistics/' + this.service.privateToken);
+    const urlTree = this.router.parseUrl(`${Path.Statistics}/${this.service.privateToken}`);
     const serializedUrl = this.router.serializeUrl(urlTree);
     return fullUrl ? this.locationPath + serializedUrl : serializedUrl;
   }

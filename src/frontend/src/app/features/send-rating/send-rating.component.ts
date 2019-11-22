@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SendFeedbackService} from '../../core/services/send-feedback.service';
 import {Router, ActivatedRoute} from '@angular/router';
+import { Path } from '../../shared/enums/path.enum';
 
 @Component({
   selector: 'app-send-rating',
@@ -27,13 +28,13 @@ export class SendRatingComponent implements OnInit {
   public sendRating(rating: string): void {
     this.sendFeedbackService
       .sendRating(rating, this.publicToken)
-      .subscribe(id => this.router.navigate(['/sendFeedbackDetail', {ratingId: id.id}]));
+      .subscribe(id => this.router.navigate([Path.SendFeedbackDetail, {ratingId: id.id}]));
   }
 
   public sendGoodRating(): void {
     this.sendFeedbackService
       .sendRating('good', this.publicToken)
-      .subscribe(id => this.router.navigate(['thanks']));
+      .subscribe(id => this.router.navigate([Path.Thanks]));
   }
 
 }

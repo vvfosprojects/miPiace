@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FeedbackDetail } from '../../shared/models/feedback-detail';
 import { SendFeedbackService } from '../../core/services/send-feedback.service';
+import { Path } from '../../shared/enums/path.enum';
 
 @Component({
   selector: 'app-send-feedback-detail',
@@ -37,6 +38,6 @@ export class SendFeedbackDetailComponent implements OnInit {
 
     this.sendFeedbackService
       .sendFeedbackDetail(feedbackDetail)
-      .subscribe(r => this.router.navigate(['thanks']));
+      .subscribe(r => this.router.navigate([Path.Thanks]));
   }
 }
