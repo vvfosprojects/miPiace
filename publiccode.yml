@@ -63,8 +63,8 @@ description:
       - docs/images/mainScreen.JPG
       - docs/images/feedbackDetail.JPG
       - docs/images/thanks.JPG
-	  - docs/images/statistics.JPG
-	  - docs/images/showFeedbackDetail.JPG
+      - docs/images/statistics.JPG
+      - docs/images/showFeedbackDetail.JPG
 inputTypes:
   - text/plain
 outputTypes:
