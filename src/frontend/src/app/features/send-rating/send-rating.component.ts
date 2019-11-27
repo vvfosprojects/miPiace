@@ -11,6 +11,7 @@ import { Path } from '../../shared/enums/path.enum';
 export class SendRatingComponent implements OnInit {
   private publicToken: string;
   public welcomeMessage: string;
+  public noMessage = false;
 
   constructor(private sendFeedbackService: SendFeedbackService,
               private route: ActivatedRoute,
@@ -22,7 +23,9 @@ export class SendRatingComponent implements OnInit {
 
     this.sendFeedbackService
       .getWelcomeMessage(this.publicToken)
-      .subscribe(msg => this.welcomeMessage = msg);
+      .subscribe(msg => {
+        msg ? this.welcomeMessage = msg : this.noMessage = true;
+      });
   }
 
   public sendRating(rating: string): void {
@@ -34,7 +37,7 @@ export class SendRatingComponent implements OnInit {
   public sendGoodRating(): void {
     this.sendFeedbackService
       .sendRating('good', this.publicToken)
-      .subscribe(id => this.router.navigate([Path.Thanks]));
+      .subscribe(() => this.router.navigate([Path.Thanks]));
   }
 
 }
