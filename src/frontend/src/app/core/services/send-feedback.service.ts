@@ -3,7 +3,7 @@ import { environment } from '../../../environments/environment';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
-import { catchError, delay } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { ReturnedId } from '../../shared/models/returned-id';
 import { FeedbackDetail } from '../../shared/models/feedback-detail';
 
@@ -55,7 +55,6 @@ export class SendFeedbackService {
 
     return this.http.post<ReturnedId>(url, body, httpOptions)
       .pipe(
-        delay(10000),
         catchError(SendFeedbackService.handleError)
       );
   }
