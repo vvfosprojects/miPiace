@@ -32,13 +32,13 @@ export class CreateServiceComponent implements OnInit {
   }
 
   public getPublicLink(fullUrl?: boolean): string {
-    const urlTree = this.router.parseUrl(`${Path.SendRating}/${this.service.publicToken}`);
+    const urlTree = this.router.parseUrl(`${this.service.publicToken}`);
     const serializedUrl = this.router.serializeUrl(urlTree);
     return fullUrl ? this.locationPath + serializedUrl : serializedUrl;
   }
 
   public getPrivateLink(fullUrl?: boolean): string {
-    const urlTree = this.router.parseUrl(`${Path.Statistics}/${this.service.privateToken}`);
+    const urlTree = this.router.parseUrl(`${this.service.privateToken}`);
     const serializedUrl = this.router.serializeUrl(urlTree);
     return fullUrl ? this.locationPath + serializedUrl : serializedUrl;
   }
