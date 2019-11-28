@@ -14,3 +14,7 @@
   margin-right: 2.5em;
   margin-left: 2.5em;
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}
