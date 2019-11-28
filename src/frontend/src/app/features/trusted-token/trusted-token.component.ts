@@ -25,7 +25,7 @@ export class TrustedTokenComponent {
         console.log('Token Privato');
         this.router.navigate([`${Path.Statistics}/${token}`]);
       }, () => {
-        this.router.navigate([Path.SendRating]);
+        this.router.navigate(['/']);
       });
     });
   }
