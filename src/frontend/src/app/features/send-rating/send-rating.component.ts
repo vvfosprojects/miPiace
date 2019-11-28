@@ -12,6 +12,7 @@ export class SendRatingComponent implements OnInit {
   private publicToken: string;
   public welcomeMessage: string;
   public noMessage = false;
+  public loading = false;
 
   constructor(private sendFeedbackService: SendFeedbackService,
               private route: ActivatedRoute,
@@ -29,15 +30,23 @@ export class SendRatingComponent implements OnInit {
   }
 
   public sendRating(rating: string): void {
+    this.loading = true;
     this.sendFeedbackService
       .sendRating(rating, this.publicToken)
-      .subscribe(id => this.router.navigate([Path.SendFeedbackDetail, {ratingId: id.id}]));
+      .subscribe(id => {
+        this.loading = false;
+        this.router.navigate([ Path.SendFeedbackDetail, { ratingId: id.id } ]);
+      });
   }
 
   public sendGoodRating(): void {
+    this.loading = true;
     this.sendFeedbackService
       .sendRating('good', this.publicToken)
-      .subscribe(() => this.router.navigate([Path.Thanks]));
+      .subscribe(() => {
+        this.loading = false;
+        this.router.navigate([ Path.Thanks ]);
+      });
   }
 
 }

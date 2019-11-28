@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
@@ -26,6 +26,9 @@ import { DetailModalComponent } from './features/statistics/detail-modal/detail-
 import { NgxPaginationModule } from 'ngx-pagination';
 import { PaginationComponent } from './features/statistics/pagination/pagination.component';
 import { TrustedTokenComponent } from './features/trusted-token/trusted-token.component';
+import { LoaderComponent } from './features/loader/loader.component';
+import { LoaderService } from './core/services/loader.service';
+import { LoaderInterceptor } from './core/services/loader.interceptor';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,8 @@ import { TrustedTokenComponent } from './features/trusted-token/trusted-token.co
     RateComponent,
     DetailModalComponent,
     PaginationComponent,
-    TrustedTokenComponent
+    TrustedTokenComponent,
+    LoaderComponent
   ],
   imports: [
     RouterModule.forRoot(AppRoutes),
@@ -59,7 +63,9 @@ import { TrustedTokenComponent } from './features/trusted-token/trusted-token.co
     NgxChartsModule,
     NgxPaginationModule
   ],
-  providers: [],
+  providers: [LoaderService,
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent],
   entryComponents: [DetailModalComponent]
 })

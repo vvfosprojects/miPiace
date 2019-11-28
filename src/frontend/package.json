@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --aot --prod",
+    "build-test": "ng build --prod",
     "watch-serve": "ng build --aot --watch",
     "lite-server": "lite-server --baseDir=\"./dist/mipiace\"",
     "test": "ng test",
