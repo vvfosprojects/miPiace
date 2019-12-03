@@ -15,7 +15,6 @@ import { QueryI } from '../../shared/interfaces/query-i';
 import { Subscription } from 'rxjs';
 import { refreshVotoDesc, stringToRating, stringToRatingIt } from '../../shared/helpers/functions';
 import { Path } from '../../shared/enums/path.enum';
-import { Feedback } from "../../shared/models/feedback";
 
 @Component({
   selector: 'app-statistics',
@@ -91,7 +90,7 @@ export class StatisticsComponent implements OnInit {
     this.queryService.setPageSize(pageSize);
   }
 
-  onRatingChange(rating: RatingIt) {
+  onRatingChange(rating: RatingIt | any) {
     if (rating !== RatingIt.All) {
       this.queryService.setRatingParam(stringToRating(rating));
     } else {
