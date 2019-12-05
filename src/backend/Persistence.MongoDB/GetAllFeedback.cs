@@ -30,7 +30,7 @@ namespace Persistence.MongoDB
                 var filterRating = builderFilterFeedbackByRating.Eq(x => (int)x.Rating, (int)rating) &
                                builderFilterFeedbackByRating.Eq(x => x.PublicToken, publicToken.PublicToken);
 
-                var allFeedback = collectionFeedback.Find(filterRating).ToList().OrderBy(x => x.InstantUtc);
+                var allFeedback = collectionFeedback.Find(filterRating).ToList().OrderByDescending(x => x.InstantUtc);
                 if (page == 0 && pageSize == 0)
                 {
                     return allFeedback.ToList();
@@ -40,7 +40,7 @@ namespace Persistence.MongoDB
             else
             {
                 var filterRating = builderFilterFeedbackByRating.Eq(x => x.PublicToken, publicToken.PublicToken);
-                var allFeedback = collectionFeedback.Find(filterRating).ToList().OrderBy(x => x.InstantUtc);
+                var allFeedback = collectionFeedback.Find(filterRating).ToList().OrderByDescending(x => x.InstantUtc);
                 if (page == 0 && pageSize == 0)
                 {
                     return allFeedback.ToList();
