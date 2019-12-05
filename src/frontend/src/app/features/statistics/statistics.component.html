@@ -59,9 +59,9 @@
     </div>
     <div class="col-lg-8 mx-auto mt-2">
       <div class="h5">
-<!--        <app-rate-->
-<!--          *ngFor="let feedback of feedbacks | paginate: { itemsPerPage: pageSize, currentPage: page, totalItems: totalItems }"-->
-<!--          [feedback]="feedback" (detailEmitter)="onDetail($event)"></app-rate>-->
+        <app-rate
+          *ngFor="let feedback of feedbacks | paginate: { itemsPerPage: pageSize, currentPage: page, totalItems: totalItems }"
+          [feedback]="feedback" (detailEmitter)="onDetail($event)"></app-rate>
       </div>
     </div>
     <div class="col-12">
