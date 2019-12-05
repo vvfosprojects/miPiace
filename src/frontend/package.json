@@ -1,11 +1,11 @@
 {
   "name": "mipiace",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod",
-    "build-test": "ng build --prod",
+    "build-test": "ng build --prod --aot",
     "watch-serve": "ng build --aot --watch",
     "lite-server": "lite-server --baseDir=\"./dist/mipiace\"",
     "test": "ng test",
