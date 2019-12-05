@@ -29,6 +29,7 @@ import { TrustedTokenComponent } from './features/trusted-token/trusted-token.co
 import { LoaderComponent } from './features/loader/loader.component';
 import { LoaderService } from './core/services/loader.service';
 import { LoaderInterceptor } from './core/services/loader.interceptor';
+import { TruncatePipe } from './shared/pipes/truncate.pipe';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { LoaderInterceptor } from './core/services/loader.interceptor';
     DetailModalComponent,
     PaginationComponent,
     TrustedTokenComponent,
-    LoaderComponent
+    LoaderComponent,
+    TruncatePipe
   ],
   imports: [
     RouterModule.forRoot(AppRoutes),
