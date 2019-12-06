@@ -22,8 +22,7 @@
           {{feedback.feedbackText | truncate:45}}
         </span>
       </ng-container>
-      <it-button *ngIf="feedback.rating !== rating.Good" class="float-lg-right" [size]="'sm'" [color]="'dark'"
-                 (click)="onDetail()">
+      <it-button *ngIf="checkFeedbackDetail()" class="float-lg-right" [size]="'sm'" [color]="'dark'">
         <i class="fa fa-info mr-1"></i>
         Dettaglio
       </it-button>

@@ -33,6 +33,12 @@ export class RateComponent implements OnInit {
   }
 
   onDetail() {
-    this.detailEmitter.emit(this.feedback);
+    if (this.checkFeedbackDetail()) {
+      this.detailEmitter.emit(this.feedback);
+    }
+  }
+
+  checkFeedbackDetail() {
+    return (this.feedback.feedbackText || this.feedback.userContacts || this.feedback.user);
   }
 }

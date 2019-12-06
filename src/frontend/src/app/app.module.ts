@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -30,6 +30,10 @@ import { LoaderComponent } from './features/loader/loader.component';
 import { LoaderService } from './core/services/loader.service';
 import { LoaderInterceptor } from './core/services/loader.interceptor';
 import { TruncatePipe } from './shared/pipes/truncate.pipe';
+import localeIT from '@angular/common/locales/it';
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(localeIT);
 
 @NgModule({
   declarations: [
@@ -65,8 +69,9 @@ import { TruncatePipe } from './shared/pipes/truncate.pipe';
     NgxChartsModule,
     NgxPaginationModule
   ],
-  providers: [LoaderService,
-    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }
+  providers: [ LoaderService,
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
+    { provide: LOCALE_ID, useValue: 'it-IT' }
   ],
   bootstrap: [AppComponent],
   entryComponents: [DetailModalComponent]
