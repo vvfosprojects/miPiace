@@ -33,7 +33,7 @@ localisation:
   availableLanguages:
     - it
 it:
-  countryExtensionVersion: '1.0'
+  countryExtensionVersion: '0.2'
   conforme:
     lineeGuidaDesign: yes
     misureMinimeSicurezza: yes
